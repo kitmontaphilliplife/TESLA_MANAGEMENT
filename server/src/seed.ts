@@ -62,12 +62,10 @@ for (const [category, rows] of Object.entries(typedMasterData)) {
 }
 
 // ---------------------------------------------------------------------------
-// 2. Products (TESLA_MASTER cache) — cleared 2026-09-11 at the business's request:
-//    everything here was a mix of real payloads (WLN001/ENN002/ENN001) and guessed/
-//    synthetic ones (ENN019/PA0231), which was confusing to tell apart. Starting empty;
-//    real payloads go into server/src/rawProductPayloads/<PLAN_CODE>.json (see WLN001.json
-//    etc. — already in the repo, just not wired into `products` below anymore) and get
-//    added back here explicitly, one at a time, only once actually provided.
+// 2. Products (TESLA_MASTER cache) — reset 2026-09-11 at the business's request (old list
+//    mixed real payloads with guessed/synthetic ones, confusing to tell apart). Added back
+//    one at a time, only once a real payload is actually provided — see RAW_PAYLOADS above
+//    for the exact source file per plan code.
 // ---------------------------------------------------------------------------
 interface ProductChannel { code: string; nameEn: string; nameTh: string }
 interface ProductSeed {
@@ -81,7 +79,27 @@ interface ProductSeed {
   channels: ProductChannel[];
 }
 
-const products: ProductSeed[] = [];
+const products: ProductSeed[] = [
+  {
+    // Real payload: "Happy value 90/20" (WLN001) — re-confirmed by the business 2026-09-11,
+    // identical to what was provided before the reset. Full payload: rawProductPayloads/WLN001.json.
+    planCode: "WLN001", nameTh: "แฮปปี้ แวลู 90/20 ชนิดไม่มีเงินปันผล", nameEn: "Happy Value 90/20",
+    category: "ประกันชีวิตตลอดชีพ",
+    productTypeCode: "PTY01", productTypeNameEn: "Ordinary Life Insurance",
+    subProductTypeCode: "SPT02", subProductTypeNameEn: "Whole Life",
+    insuranceTypeCode: "INSTYPNRM", insuranceTypeNameEn: "Normal", hasSubPlan: false,
+    startDate: "2020-11-16", endDate: null,
+    additionalRiders: ["ประกันภัยอุบัติเหตุ", "ประกันโรคร้ายแรง", "ค่าชดเชยรายวันจากการเข้าพักรักษาตัวในโรงพยาบาล", "ประกันสุขภาพ", "สัญญาเพิ่มการประกันภัยชั่วระยะเวลา", "คุ้มครองผู้ชำระเบี้ยประกันภัย", "ทุพพลภาพสิ้นเชิงถาวร", "ยกเว้นเบี้ยประกันภัย"],
+    flags: { contractualPayouts: "Y", maturity: "Y", deathBenefit: "Y", cashSurrender: "Y", extendedTerm: "Y", reducedPaidup: "Y" },
+    channels: [
+      { code: "CHN01", nameEn: "Agent", nameTh: "ตัวแทนของบริษัท" },
+      { code: "CHN02", nameEn: "Broker", nameTh: "นายหน้าประกันชีวิต" },
+      { code: "CHN03", nameEn: "Bancassurance", nameTh: "ธนาคาร" },
+      { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
+      { code: "CHN09", nameEn: "Partnership", nameTh: "ช่องทางจัดจำหน่าย/ขยายธุรกิจผ่านพันธมิตร" },
+    ],
+  },
+];
 
 const insertProduct = db.prepare(`
   INSERT INTO products (plan_code, name_th, name_en, category, product_type_code, product_type_name_en,
