@@ -104,8 +104,8 @@ export function AddPackageModal({
 
           {products !== null && (
             <>
-              <div className="field-grid-3">
-                <div className="field">
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div className="field-row">
                   <label className="label">Distribution Channel *</label>
                   <select
                     className="select"
@@ -125,7 +125,7 @@ export function AddPackageModal({
                     ))}
                   </select>
                 </div>
-                <div className="field">
+                <div className="field-row">
                   <label className="label">Product Type *</label>
                   <select
                     className="select"
@@ -144,7 +144,7 @@ export function AddPackageModal({
                     ))}
                   </select>
                 </div>
-                <div className="field">
+                <div className="field-row">
                   <label className="label">Sub Product Type *</label>
                   <select
                     className="select"
