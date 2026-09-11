@@ -1,0 +1,9 @@
+node_modules/
+server/data/
+server/uploads/
+client/dist/
+client/tsconfig.tsbuildinfo
+*.log
+~$*
+*.msi
+package-setting-prototype.zip

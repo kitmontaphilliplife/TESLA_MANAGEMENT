@@ -1,0 +1,4729 @@
+{
+  "class_of_business": [
+    {
+      "codeId": "COB01",
+      "nameEn": "Life",
+      "nameTh": "ประกันชีวิต",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "line_of_business": [
+    {
+      "codeId": "LOB01",
+      "nameEn": "Individual",
+      "nameTh": "ประกันรายบุคคล",
+      "parentName": "Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "LOB03",
+      "nameEn": "Industrial",
+      "nameTh": "ประกันภัยอุตสาหกรรม",
+      "parentName": "Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "LOB02",
+      "nameEn": "Group",
+      "nameTh": "ประกันกลุ่ม",
+      "parentName": "Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "coverage_type": [
+    {
+      "codeId": "CTY01",
+      "nameEn": "Basic Plan",
+      "nameTh": "แบบประกันภัยหลัก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CTY02",
+      "nameEn": "Rider",
+      "nameTh": "สัญญาเพิ่มเติม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "product_type": [
+    {
+      "codeId": "PTY21",
+      "nameEn": "Ordinary Life Insurance (Rider)",
+      "nameTh": "สัญญาเพิ่มเติมประกันชีวิตสามัญ",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY19",
+      "nameEn": "Group Life",
+      "nameTh": "ประกันชีวิตกลุ่ม",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY20",
+      "nameEn": "Group TPD",
+      "nameTh": "สัญญาเพิ่มเติมทุพพลภาพสิ้นเชิงถาวรกลุ่ม",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY17",
+      "nameEn": "Group Takaful Life",
+      "nameTh": "ประกันชีวิตกลุ่มตะกาฟุล",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY18",
+      "nameEn": "Group Personal Accident",
+      "nameTh": "ประกันอุบัติเหตุกลุ่ม",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY16",
+      "nameEn": "Group Credit Life",
+      "nameTh": "ประกันชีวิตที่ใช้คุ้มครองเงินกู้",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY15",
+      "nameEn": "Total Permanate Disability",
+      "nameTh": "สัญญาเพิ่มเติมชดเชยการทุพพลภาพสิ้นเชิงถาวร",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY13",
+      "nameEn": "Waiver of Premium",
+      "nameTh": "การยกเว้นเบี้ยประกันภัย กรณีทุพพลภาพสิ้นเชิงถาวร",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY14",
+      "nameEn": "Payor Benefit",
+      "nameTh": "สัญญาเพิ่มเติม คุ้มครองผู้ชำระเบี้ยประกันภัย",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY10",
+      "nameEn": "Critical Illness",
+      "nameTh": "ประกันโรคร้ายแรง",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY11",
+      "nameEn": "Level Term",
+      "nameTh": "สัญญาเพิ่มการประกันภัยชั่วระยะเวลา",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY08",
+      "nameEn": "Accident",
+      "nameTh": "ประกันภัยอุบัติเหตุ",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY05",
+      "nameEn": "Health",
+      "nameTh": "ประกันสุขภาพ",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY06",
+      "nameEn": "HB",
+      "nameTh": "สัญญาเพิ่มเติมค่าดเชยรายวันจากการเข้าพักรักษาตัวในโรงพยาบาล",
+      "parentName": "Rider",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY03",
+      "nameEn": "Unit Link",
+      "nameTh": "ประกันชีวิตแบบยืดหยุ่นสูง (ยูนิเวอร์แซลไลฟ์)",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY04",
+      "nameEn": "Universal Life",
+      "nameTh": "ประกันชีวิตสามัญ",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY02",
+      "nameEn": "Personal Accident",
+      "nameTh": "ประกันอุบัติเหตุส่วนบุคคล",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PTY01",
+      "nameEn": "Ordinary Life Insurance",
+      "nameTh": "ประกันชีวิตสามัญ",
+      "parentName": "Basic Plan",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "sub_product_type": [
+    {
+      "codeId": "SPT24",
+      "nameEn": "Group TPD",
+      "nameTh": "สัญญาเพิ่มเติมทุพพลภาพสิ้นเชิงถาวรกลุ่ม",
+      "parentName": "Group TPD",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT25",
+      "nameEn": "ER Endowment",
+      "nameTh": "สัญญาเพิ่มเติมสะสมทรัพย์",
+      "parentName": "Ordinary Life Insurance (Rider)",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT01",
+      "nameEn": "Term Life",
+      "nameTh": "ประกันชีวิตแบบมีกำหนดระยะเวลา",
+      "parentName": "Ordinary Life Insurance",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT20",
+      "nameEn": "Group Takaful Life",
+      "nameTh": "ประกันชีวิตกลุ่มตะกาฟุล",
+      "parentName": "Group Takaful Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT23",
+      "nameEn": "Group Personal Accident",
+      "nameTh": "ประกันอุบัติเหตุกลุ่ม",
+      "parentName": "Group Personal Accident",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT22",
+      "nameEn": "Group Endowment",
+      "nameTh": "ประกันภัยกลุ่มแบบสะสมทรัพย์",
+      "parentName": "Group Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT21",
+      "nameEn": "Group Term (GYRT)",
+      "nameTh": "ประกันชีวิตกลุ่มแบบชั่วระยะเวลา",
+      "parentName": "Group Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT19",
+      "nameEn": "Group Credit Life",
+      "nameTh": "ประกันชีวิตที่ใช้คุ้มครองเงินกู้",
+      "parentName": "Group Credit Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT14",
+      "nameEn": "Level Term",
+      "nameTh": "สัญญาเพิ่มการประกันภัยชั่วระยะเวลา",
+      "parentName": "Level Term",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT05",
+      "nameEn": "Personal Accident",
+      "nameTh": "ประกันอุบัติเหตุส่วนบุคคล",
+      "parentName": "Personal Accident",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT06",
+      "nameEn": "Unit Link",
+      "nameTh": "ประกันชีวิตควบการลงทุน",
+      "parentName": "Unit Link",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT09",
+      "nameEn": "Inpatient",
+      "nameTh": "ประกันสุขภาพ",
+      "parentName": "Health",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT18",
+      "nameEn": "Waiver of Premium",
+      "nameTh": "การยกเว้นเบี้ยประกันภัย กรณีทุพพลภาพสิ้นเชิงถาวร",
+      "parentName": "Waiver of Premium",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT16",
+      "nameEn": "Payor Benefit",
+      "nameTh": "สัญญาเพิ่มเติม คุ้มครองผู้ชำระเบี้ยประกันภัย",
+      "parentName": "Payor Benefit",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT17",
+      "nameEn": "Total Permanate Disability",
+      "nameTh": "สัญญาเพิ่มเติมชดเชยการทุพพลภาพสิ้นเชิงถาวร",
+      "parentName": "Total Permanate Disability",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT15",
+      "nameEn": "Level Term for Payor Benefit",
+      "nameTh": "สัญญาเพิ่มการประกันภัยชั่วระยะเวลาสำหรับผู้ชำระเบี้ยประกันภัย",
+      "parentName": "Payor Benefit",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT13",
+      "nameEn": "Critical Illness",
+      "nameTh": "ประกันโรคร้ายแรง",
+      "parentName": "Critical Illness",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT12",
+      "nameEn": "Riot and Civil Commotion",
+      "nameTh": "บันทึกสลักสัญญาคุ้มครองฆาตกรรม ลอบทำร้าย ภัยสงครามกลางเมือง กบฏ และจลาจล (ฆจ)",
+      "parentName": "Accident",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT11",
+      "nameEn": "Accident",
+      "nameTh": "ประกันภัยอุบัติเหตุ",
+      "parentName": "Accident",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT10",
+      "nameEn": "Hospital Benefit",
+      "nameTh": "สัญญาเพิ่มเติมค่าดเชยรายวันจากการเข้าพักรักษาตัวในโรงพยาบาล",
+      "parentName": "HB",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT08",
+      "nameEn": "Outpatient",
+      "nameTh": "บันทึกสลักหลังแนบท้าย สำหรับผู้ป่วยนอก",
+      "parentName": "Health",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT07",
+      "nameEn": "Universal Life",
+      "nameTh": "ประกันชีวิตแบบยืดหยุ่นสูง (ยูนิเวอร์แซลไลฟ์)",
+      "parentName": "Universal Life",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT03",
+      "nameEn": "Endowment",
+      "nameTh": "ประกันแบบสะสมทรัพย์",
+      "parentName": "Ordinary Life Insurance",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT04",
+      "nameEn": "Annuity",
+      "nameTh": "ประกันบำนาญ",
+      "parentName": "Ordinary Life Insurance",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "SPT02",
+      "nameEn": "Whole Life",
+      "nameTh": "ประกันชีวิตตลอดชีพ",
+      "parentName": "Ordinary Life Insurance",
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "occupation_class": [
+    {
+      "codeId": "OCC02",
+      "nameEn": "Class 2",
+      "nameTh": "ชั้นอาชีพ 2",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCC01",
+      "nameEn": "Class 1",
+      "nameTh": "ชั้นอาชีพ 1",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCC04",
+      "nameEn": "Class 4",
+      "nameTh": "ชั้นอาชีพ 4",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCC03",
+      "nameEn": "Class 3",
+      "nameTh": "ชั้นอาชีพ 3",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "occupation_group": [
+    {
+      "codeId": "OCG01",
+      "nameEn": "Construction & Civil Engineering",
+      "nameTh": "ก่อสร้างและโยธา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG02",
+      "nameEn": "Medical / Healthcare",
+      "nameTh": "การแพทย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG03",
+      "nameEn": "Education",
+      "nameTh": "การศึกษา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG04",
+      "nameEn": "Finance / Banking / Securities / Insurance",
+      "nameTh": "การเงิน ธนาคาร หลักทรัพย์ ประกันภัย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG05",
+      "nameEn": "Agriculture",
+      "nameTh": "เกษตรกรรม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG06",
+      "nameEn": "Livestock / Animal Farming",
+      "nameTh": "การเลี้ยงสัตว์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG07",
+      "nameEn": "Service Industry",
+      "nameTh": "การให้บริการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG08",
+      "nameEn": "Sports Industry",
+      "nameTh": "การกีฬา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG09",
+      "nameEn": "Hospitality / Hotel Industry",
+      "nameTh": "การโรงแรม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG10",
+      "nameEn": "Tourism Industry",
+      "nameTh": "การท่องเที่ยว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG11",
+      "nameEn": "Entertainment Industry",
+      "nameTh": "การบันเทิง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG12",
+      "nameEn": "Land Department / Land Administration",
+      "nameTh": "กรมที่ดิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG13",
+      "nameEn": "Air Transportation",
+      "nameTh": "ขนส่งทางอากาศ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG14",
+      "nameEn": "Land Transportation",
+      "nameTh": "ขนส่งทางบก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG15",
+      "nameEn": "Railway Transportation",
+      "nameTh": "ขนส่งทางรถไฟ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG16",
+      "nameEn": "Marine / Water Transportation",
+      "nameTh": "ขนส่งทางน้ำและทางทะเล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG17",
+      "nameEn": "Government / Civil Service",
+      "nameTh": "ข้าราชการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG18",
+      "nameEn": "Pharmacy / Drug Retail",
+      "nameTh": "ขายยา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG19",
+      "nameEn": "Trading / Retail / Commerce",
+      "nameTh": "ค้าขาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG20",
+      "nameEn": "Warehousing / Logistics",
+      "nameTh": "คลังสินค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG21",
+      "nameEn": "Electrical Appliances",
+      "nameTh": "เครื่องใช้ไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG22",
+      "nameEn": "School Uniform Retail",
+      "nameTh": "เครื่องแบบนักเรียน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG23",
+      "nameEn": "Consumer Goods",
+      "nameTh": "เครื่องอุปโภค / บริโภค",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG24",
+      "nameEn": "Advertising / Media",
+      "nameTh": "โฆษณา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG25",
+      "nameEn": "Automotive Battery Business",
+      "nameTh": "แบตเตอรี่รถยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG26",
+      "nameEn": "Neon Sign / Signage",
+      "nameTh": "ป้ายนีออน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG27",
+      "nameEn": "Postal Services",
+      "nameTh": "ไปรษณีย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG28",
+      "nameEn": "Auto Accessories",
+      "nameTh": "ประดับยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG29",
+      "nameEn": "Fishery",
+      "nameTh": "ประมง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG30",
+      "nameEn": "Construction Materials Manufacturing",
+      "nameTh": "ผลิตของก่อสร้าง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG31",
+      "nameEn": "Electrical / Power Industry",
+      "nameTh": "ไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG32",
+      "nameEn": "Telecommunications",
+      "nameTh": "โทรศัพท์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG33",
+      "nameEn": "General / Miscellaneous",
+      "nameTh": "ทั่วไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG34",
+      "nameEn": "Fire Services",
+      "nameTh": "ดับเพลิง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG35",
+      "nameEn": "Police Service",
+      "nameTh": "ตำรวจ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG36",
+      "nameEn": "Army",
+      "nameTh": "ทหารบก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG37",
+      "nameEn": "Navy",
+      "nameTh": "ทหารเรือ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG38",
+      "nameEn": "Air Force",
+      "nameTh": "ทหารอากาศ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG39",
+      "nameEn": "Jewelry / Gems / Precious Metals",
+      "nameTh": "ทอง เพชร พลอย อัญมณี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG40",
+      "nameEn": "Bookstore / Book Rental",
+      "nameTh": "ร้านหนังสือ ขาย เช่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG41",
+      "nameEn": "Bicycle Business",
+      "nameTh": "รถจักรยาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG42",
+      "nameEn": "Motorcycle Business",
+      "nameTh": "รถจักรยานยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG43",
+      "nameEn": "Rice Mill",
+      "nameTh": "โรงสีข้าว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG44",
+      "nameEn": "Professional Services",
+      "nameTh": "วิชาชีพเฉพาะ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG45",
+      "nameEn": "Gas Station / Fuel Station",
+      "nameTh": "สถานีบริการน้ำมัน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG46",
+      "nameEn": "Daycare / Childcare Center",
+      "nameTh": "สถานรับเลี้ยงเด็ก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG47",
+      "nameEn": "Lottery / Gambling Operations",
+      "nameTh": "สลากกินแบ่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG48",
+      "nameEn": "Public Health",
+      "nameTh": "สาธารณสุข",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG49",
+      "nameEn": "Garment / Ready-to-Wear",
+      "nameTh": "เสื้อผ้าสำเร็จรูป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG50",
+      "nameEn": "Newspaper / Magazine / Printing",
+      "nameTh": "หนังสือพิมพ์ นิตยสาร โรงพิมพ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG51",
+      "nameEn": "Cold Storage",
+      "nameTh": "ห้องเย็น",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG52",
+      "nameEn": "Auto Repair Shop",
+      "nameTh": "อู่ซ่อมรถ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG53",
+      "nameEn": "Apartment / Dormitory",
+      "nameTh": "อพาร์ทเมนท์ / หอพัก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG54",
+      "nameEn": "Automotive Air Conditioning",
+      "nameTh": "แอร์รถยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG55",
+      "nameEn": "Construction Equipment",
+      "nameTh": "เครื่องมือก่อสร้าง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG56",
+      "nameEn": "Sanitary Ware",
+      "nameTh": "เครื่องสุขภัณฑ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG57",
+      "nameEn": "Auto Parts",
+      "nameTh": "อะไหล่รถยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG58",
+      "nameEn": "Oil & Gas",
+      "nameTh": "น้ำมันและก๊าซธรรมชาติ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG59",
+      "nameEn": "Manufacturing Industry",
+      "nameTh": "อุตสาหกรรมการผลิต",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCG60",
+      "nameEn": "Wood Processing Industry",
+      "nameTh": "อุตสาหกรรมไม้แปรรูป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "occupation_position": [
+    {
+      "codeId": "OCPOS001",
+      "nameEn": "Construction Contractor Owner (Registered Company)",
+      "nameTh": "เจ้าของกิจการรับเหมาก่อสร้าง(มีชื่อบริษัท)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS002",
+      "nameEn": "Construction Contractor Owner (Unregistered)",
+      "nameTh": "เจ้าของกิจการรับเหมาก่อสร้าง(ไม่มีชื่อบริษัท)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS003",
+      "nameEn": "Accounting / Administrative Staff",
+      "nameTh": "พนักงานบัญชี / งานเอกด้านเอกสารอื่นๆ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS004",
+      "nameEn": "Civil Engineer / Surveyor",
+      "nameTh": "วิศวกรโยธา / ช่างรังวัด / ช่างสำราจ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS005",
+      "nameEn": "Construction Supervisor / Foreman",
+      "nameTh": "หัวหน้าคุมคนงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS006",
+      "nameEn": "Carpenter / Mason / Painter (No Working at Height)",
+      "nameTh": "ช่างไม้ / ปูน / สี (ไม่ต้องปีนป่ายที่สูง)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS007",
+      "nameEn": "Welder / Roof Tile Installer",
+      "nameTh": "ช่างเชื่อม / ปูกระเบื้องหลังคา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS008",
+      "nameEn": "Electrician / Maintenance Technician",
+      "nameTh": "ช่างไฟฟ้า / ซ่อมบำรุง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS009",
+      "nameEn": "General Laborer",
+      "nameTh": "กรรมกร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS010",
+      "nameEn": "Executive",
+      "nameTh": "ผู้บริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS011",
+      "nameEn": "Director",
+      "nameTh": "ผู้อำนวยการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS012",
+      "nameEn": "Accountant",
+      "nameTh": "พนักงานบัญชี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS013",
+      "nameEn": "Hospital Administrative Staff",
+      "nameTh": "พนักงานด้านเอกสารภายในโรงพยาบาล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS014",
+      "nameEn": "Medical Doctor (All Specialties)",
+      "nameTh": "แพทย์ทุกสาขา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS015",
+      "nameEn": "Traditional Chinese Medicine Doctor (Acupuncture)",
+      "nameTh": "แพทย์จีนฝังเข็ม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS016",
+      "nameEn": "Dentist",
+      "nameTh": "ทันตแพทย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS017",
+      "nameEn": "Veterinarian",
+      "nameTh": "สัตวแพทย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS018",
+      "nameEn": "Veterinary Assistant",
+      "nameTh": "ผู้ช่วยสัตวแพทย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS019",
+      "nameEn": "Pharmacist / Dispenser",
+      "nameTh": "เภสัชกร/จ่ายยา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS020",
+      "nameEn": "Nurse / Nursing Assistant / Midwife / Public Health Officer",
+      "nameTh": "พยาบาล / ผู้ช่วยพยาบาล / เจ้าหน้าที่ผดุงครรภ์ / เจ้าหน้าที่อนามัย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS021",
+      "nameEn": "Psychiatric Nurse",
+      "nameTh": "พยาบาลจิตเวช",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS022",
+      "nameEn": "Medical Technologist / Laboratory Technician",
+      "nameTh": "นักเทคนิคการแพทย์ / เจ้าหน้าที่ห้อง Lab",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS023",
+      "nameEn": "Radiologic Technologist",
+      "nameTh": "รังสีเทคนิค",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS024",
+      "nameEn": "Physiotherapist",
+      "nameTh": "นักกายภาพบำบัด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS025",
+      "nameEn": "Housekeeper / Cleaner / Kitchen Staff / Laundry Worker",
+      "nameTh": "แม่บ้าน / คนทำความสะอาด / คนครัว / ซักรีด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS026",
+      "nameEn": "Ambulance Driver",
+      "nameTh": "คนขับรถพยาบาล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS027",
+      "nameEn": "Private School Owner",
+      "nameTh": "เจ้าของโรงเรียนเอกชน ทุกประเภท",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS028",
+      "nameEn": "Teacher / Lecturer / Academic Instructor",
+      "nameTh": "ครู / อาจารย์ / ผู้บรรยาย / ผู้สอน (วิชาการเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS029",
+      "nameEn": "Student",
+      "nameTh": "นักเรียน / นักศึกษา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS030",
+      "nameEn": "Janitor / Caretaker",
+      "nameTh": "ภารโรง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS031",
+      "nameEn": "Sports Instructor",
+      "nameTh": "ครูฝึกสอนกีฬา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS032",
+      "nameEn": "Military Academy Instructor (Cadet Level and Above)",
+      "nameTh": "ครูฝึกในวิทยาลัยทหาร (สำหรับนักเรียนเตรียมทหารขึ้นไป)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS033",
+      "nameEn": "Director / Manager / Accountant / Administrative Officer",
+      "nameTh": "ผู้อำนวยการ / ผู้จัดการ / พนักงานบัญชี / เจ้าหน้าที่บริหารทุกระดับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS034",
+      "nameEn": "Administrative Officer",
+      "nameTh": "เจ้าหน้าที่ทางด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS035",
+      "nameEn": "Office Messenger",
+      "nameTh": "คนส่งหนังสือในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS036",
+      "nameEn": "Currency Exchange Business Owner",
+      "nameTh": "เจ้าของกิจการแลกเปลี่ยนเงินตรา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS037",
+      "nameEn": "Money Transfer Business Owner",
+      "nameTh": "เจ้าของกิจการโอน / รับโอนมูลค่าเงิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS038",
+      "nameEn": "Insurance Sales Representative",
+      "nameTh": "พนักงานขาย (ประกัน)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS039",
+      "nameEn": "Loss Adjuster / Claims Assessor",
+      "nameTh": "พนักงานประเมินความเสียหาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS040",
+      "nameEn": "Call Center / Telephone Operator",
+      "nameTh": "พนักงานรับโทรศัพท์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS041",
+      "nameEn": "Stock Registry / Securities Trading Staff",
+      "nameTh": "พนักงานจัดทำทะเบียนหุ้น / ซื้อขายหุ้น",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS042",
+      "nameEn": "Office Staff",
+      "nameTh": "พนักงานปฏิบัติงานในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS043",
+      "nameEn": "Security Guard (Unarmed)",
+      "nameTh": "พนักงานรักษาความปลอดภัย ไม่พกอาวุธ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS044",
+      "nameEn": "Security Guard (Armed)",
+      "nameTh": "พนักงานรักษาความปลอดภัย พกอาวุธ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS045",
+      "nameEn": "Armed Security Guard (Vehicle Escort)",
+      "nameTh": "พนักงานรักษาความปลอดภัย พกอาวุธ (ประจำรถ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS046",
+      "nameEn": "Cash-in-Transit Driver / Escort",
+      "nameTh": "คนขับรถบรรทุกเงิน / ผู้ติดตาม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS047",
+      "nameEn": "Banknote Printing Staff",
+      "nameTh": "พนักงานพิมพ์ธนบัตร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS048",
+      "nameEn": "Farmer / Plantation Owner",
+      "nameTh": "ชาวนา / ชาวสวน / ชาวไร่ เจ้าของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS049",
+      "nameEn": "Farm Worker / Plantation Worker",
+      "nameTh": "คนงานในสวน / ในไร่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS050",
+      "nameEn": "Coconut / Palm Harvester / Tree Cutter",
+      "nameTh": "คนเก็บเกี่ยวมะพร้าว / ปาล์ม / คนตัดยวงมะพร้าว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS051",
+      "nameEn": "Tree Climber (Working at Height)",
+      "nameTh": "คนงานที่ต้องปีนต้นไม้สูง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS052",
+      "nameEn": "Owner",
+      "nameTh": "เจ้าของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS053",
+      "nameEn": "Worker / Laborer",
+      "nameTh": "คนงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS054",
+      "nameEn": "Owner (Non-Manual)",
+      "nameTh": "เจ้าของ (ไม่ต้องลงมือทำ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS055",
+      "nameEn": "Foreman / Supervisor",
+      "nameTh": "หัวหน้าคนงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS056",
+      "nameEn": "Rubber Tapper",
+      "nameTh": "คนกรีดยาง รองยาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS057",
+      "nameEn": "Rubber Plantation Worker",
+      "nameTh": "ดูแลต้นยาง ผลิตยาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS058",
+      "nameEn": "Large Farm Owner (Non-Manual)",
+      "nameTh": "เจ้าของฟาร์มใหญ่ ไม่ต้องลงมือทำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS059",
+      "nameEn": "Small Farm Owner / Farm Supervisor",
+      "nameTh": "เจ้าของฟาร์มเล็ก / หัวหน้าดูแลฟาร์ม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS060",
+      "nameEn": "Slaughterhouse Worker / Meat Cutter",
+      "nameTh": "คนงานฆ่าสัตว์ / คนงานตัดเนื้อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS061",
+      "nameEn": "Milk Delivery Driver (Car)",
+      "nameTh": "คนส่งนมสด ใช้รถยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS062",
+      "nameEn": "Milk Delivery Rider (Motorcycle)",
+      "nameTh": "คนส่งนมสด ใช้จักรยานยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS063",
+      "nameEn": "Snake Handler",
+      "nameTh": "คนเลี้ยงและจับงู",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS064",
+      "nameEn": "Concession Owner",
+      "nameTh": "เจ้าของสัมปทาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS065",
+      "nameEn": "Island Caretaker",
+      "nameTh": "คนเฝ้าสถานที่บนเกาะ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS066",
+      "nameEn": "Swiftlet Nest Collector",
+      "nameTh": "คนเก็บรังนก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS067",
+      "nameEn": "Beauty Salon Owner / Staff",
+      "nameTh": "ร้านเสริมสวย / เจ้าของ / พนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS068",
+      "nameEn": "Tailor Shop Owner / Staff / Fashion Designer",
+      "nameTh": "ร้านตัดเสื้อผ้า / เจ้าของ / พนักงาน / ช่างออกแบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS069",
+      "nameEn": "Entertainment Venue Owner (Massage / Bar / Nightclub)",
+      "nameTh": "เจ้าของธุรกิจสถานบริการ เช่น อาบอบนวด บาร์ ไนท์คลับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS070",
+      "nameEn": "Traditional Thai Massage Therapist",
+      "nameTh": "นวดแผนโบราณ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS071",
+      "nameEn": "Massage Shop Owner / Manager (Non-Manual)",
+      "nameTh": "เจ้าของร้านนวด / ผู้จัดการร้าน (ไม่ได้ลงมือนวด)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS072",
+      "nameEn": "Owner (Non-Operational)",
+      "nameTh": "เจ้าของ ไม่ได้ลงมือทำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS073",
+      "nameEn": "Laundry / Dry Cleaning Staff",
+      "nameTh": "พนักงานซักรีด / ซักแห้ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS074",
+      "nameEn": "Pest Control Technician",
+      "nameTh": "ฉีด / พ่นยาฆ่าแมลง / กำจัดปลวก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS075",
+      "nameEn": "Locksmith",
+      "nameTh": "ซ่อม ทำกุญแจ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS076",
+      "nameEn": "Plumber (Residential)",
+      "nameTh": "ซ่อมประปา ตามบ้านเรือน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS077",
+      "nameEn": "Gardener / Landscaping Staff",
+      "nameTh": "คนบริการรับจัดสวน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS078",
+      "nameEn": "Car Rental Business Owner",
+      "nameTh": "เจ้าของบริษัทรถเช่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS079",
+      "nameEn": "Administrative Staff",
+      "nameTh": "พนักงานด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS080",
+      "nameEn": "Driver",
+      "nameTh": "พนักงานขับรถ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS081",
+      "nameEn": "Boxing Gym Owner / Referee",
+      "nameTh": "เจ้าของค่ายมวย / กรรมการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS082",
+      "nameEn": "Boxing Trainer / Sparring Partner",
+      "nameTh": "ผู้ฝึกสอน / คู่ซ้อมนักมวย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS083",
+      "nameEn": "Muay Thai Boxer",
+      "nameTh": "นักมวยไทย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS084",
+      "nameEn": "Football Player",
+      "nameTh": "นักฟุตบอล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS085",
+      "nameEn": "Swimming Instructor / Swimmer",
+      "nameTh": "ครูสอนว่ายน้ำ / นักว่ายน้ำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS086",
+      "nameEn": "Badminton / Table Tennis Player",
+      "nameTh": "นักแบดมินตัน / ปิงปอง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS087",
+      "nameEn": "Golf Course Owner",
+      "nameTh": "เจ้าของสนามกอล์ฟ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS088",
+      "nameEn": "Golf Caddy",
+      "nameTh": "แคดดี้ / คนถืออุปกรณ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS089",
+      "nameEn": "Coach / Trainer",
+      "nameTh": "ผู้ฝึกสอน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS090",
+      "nameEn": "Groundskeeper",
+      "nameTh": "ดูแลรักษาสนาม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS091",
+      "nameEn": "Tennis Court Owner",
+      "nameTh": "เจ้าของสนามเทนนิส",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS092",
+      "nameEn": "Fitness Trainer",
+      "nameTh": "เทรนเนอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS093",
+      "nameEn": "Owner / Manager",
+      "nameTh": "เจ้าของ / ผู้จัดการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS094",
+      "nameEn": "Receptionist / Front Desk Staff",
+      "nameTh": "พนักงานต้อนรับ / พนักงานเอกสารหน้าเคาน์เตอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS095",
+      "nameEn": "Doorman",
+      "nameTh": "คนเฝ้าประตู",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS096",
+      "nameEn": "Captain / Head Chef / Bartender",
+      "nameTh": "กัปตัน / หัวหน้าคนครัว / คนผสมเหล้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS097",
+      "nameEn": "Waiter / Housekeeper / Cook",
+      "nameTh": "พนักงานรับใช้ / แม่บ้าน / คนครัว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS098",
+      "nameEn": "Laundry / Cleaning Staff",
+      "nameTh": "คนซักรีด / ทำความสะอาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS099",
+      "nameEn": "Security Guard",
+      "nameTh": "พนักงานรักษาความปลอดภัย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS100",
+      "nameEn": "Electrician / Maintenance Technician",
+      "nameTh": "ช่างไฟฟ้า / ช่างซ่อมบำรุง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS101",
+      "nameEn": "Manager / Office Staff",
+      "nameTh": "ผู้จัดการ / พนักงานในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS102",
+      "nameEn": "Tour Company Owner",
+      "nameTh": "เจ้าของบริษัทนำเที่ยว ทัวร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS103",
+      "nameEn": "Tour Guide / Assistant Guide",
+      "nameTh": "มัคคุเทศน์ / ผู้ช่วยมัคคุเทศน์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS104",
+      "nameEn": "Tour Driver / Onboard Service Staff",
+      "nameTh": "คนขับรถนำเที่ยว / พนักงานบริการบนรถ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS105",
+      "nameEn": "Actor / Actress / Celebrity",
+      "nameTh": "นักแสดงชายหญิง / ดารา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS106",
+      "nameEn": "Cameraman / Technician",
+      "nameTh": "ช่างกล้อง / ช่างเทคนิค",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS107",
+      "nameEn": "Producer / Director",
+      "nameTh": "ผู้อำนวยการสร้าง / ผู้กำกับการแสดง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS108",
+      "nameEn": "Extra / Supporting Actor",
+      "nameTh": "ตัวประกอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS109",
+      "nameEn": "Artist Manager / Talent Manager",
+      "nameTh": "ผู้จัดการดารา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS110",
+      "nameEn": "Ticketing / Administrative Staff",
+      "nameTh": "ขายตั๋ว / ด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS111",
+      "nameEn": "Ticket Checker / Projectionist",
+      "nameTh": "เดินตั๋ว / คนฉายภาพยนตร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS112",
+      "nameEn": "Cleaner / Janitor",
+      "nameTh": "คนทำความสะอาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS113",
+      "nameEn": "Mechanic / Maintenance Technician",
+      "nameTh": "ช่างเครื่อง / ช่างบำรุง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS114",
+      "nameEn": "Mobile Cinema Owner",
+      "nameTh": "เจ้าของภาพยนตร์เร่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS115",
+      "nameEn": "Program Coordinator",
+      "nameTh": "คนจัดโปรแกรม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS116",
+      "nameEn": "Chief Engineer",
+      "nameTh": "หัวหน้าวิศวกร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS117",
+      "nameEn": "Broadcast Control Engineer",
+      "nameTh": "นายช่างดูแลแผงควบคุมและออกอากาศ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS118",
+      "nameEn": "Radio/TV Installer & Repair Technician",
+      "nameTh": "ติดตั้งวิทยุ / โทรทัศน์ / ช่างซ่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS119",
+      "nameEn": "Antenna Installer (Residential/Office)",
+      "nameTh": "ติดตั้งเสาอากาศในบ้าน / สำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS120",
+      "nameEn": "Performer / Actor",
+      "nameTh": "นักแสดง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS121",
+      "nameEn": "Voice-over Artist / Music Performer",
+      "nameTh": "คนให้เสียงดนตรี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS122",
+      "nameEn": "Singer / Musician",
+      "nameTh": "นักร้อง นักดนตรี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS123",
+      "nameEn": "Music Artist Manager",
+      "nameTh": "ผู้จัดการนักร้อง นักดนตรี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS124",
+      "nameEn": "Songwriter / Composer",
+      "nameTh": "นักแต่งเพลง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS125",
+      "nameEn": "Casino / Gambling Venue Owner",
+      "nameTh": "เจ้าของคาสิโน / บ่อนการพนัน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS126",
+      "nameEn": "Registration Officer",
+      "nameTh": "เจ้าหน้าที่จดทะเบียน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS127",
+      "nameEn": "Title Transfer / Mortgage Officer",
+      "nameTh": "โอนกรรมสิทธิ์ / จดจำนอง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS128",
+      "nameEn": "Surveyor",
+      "nameTh": "ช่างรังวัด / สำรวจ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS129",
+      "nameEn": "Appraiser / Valuer",
+      "nameTh": "ประเมินราคา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS130",
+      "nameEn": "Announcer / Manager",
+      "nameTh": "ผู้ประกาศ / ผู้จัดการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS131",
+      "nameEn": "Chief Meteorological Observer",
+      "nameTh": "หัวหน้าผู้สังเกตการณ์อากาศ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS132",
+      "nameEn": "Aircraft Inspector",
+      "nameTh": "ผู้ตรวจสอบเครื่องบิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS133",
+      "nameEn": "Ground Hostess / Ground Staff",
+      "nameTh": "กราวนด์โอสเตส (Ground Hostess)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS134",
+      "nameEn": "Engineer",
+      "nameTh": "วิศวกร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS135",
+      "nameEn": "Aviation Department Head",
+      "nameTh": "หัวหน้าฝ่ายการบิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS136",
+      "nameEn": "Baggage Handler",
+      "nameTh": "พนักงานขนและยกกระเป๋าเดินทาง / ขนถ่ายพัสดุ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS137",
+      "nameEn": "Aircraft Mechanic / Maintenance Technician",
+      "nameTh": "ช่างเครื่อง / ช่างซ่อมบำรุง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS138",
+      "nameEn": "Cleaning Staff",
+      "nameTh": "พนักงานทำความสะอาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS139",
+      "nameEn": "Flight Attendant / Cabin Crew",
+      "nameTh": "สจ๊วต / แอร์ โฮสเตส (Air Hostess)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS140",
+      "nameEn": "Commercial Airline Pilot",
+      "nameTh": "นักบิน ของสายการบินพาณิชย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS141",
+      "nameEn": "Company Owner / Executive",
+      "nameTh": "เจ้าของบริษัท / ผู้บริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS142",
+      "nameEn": "Administrative / Front Counter Staff",
+      "nameTh": "พนักงานด้านเอกสาร / พนักงานหน้าเคาน์เตอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS143",
+      "nameEn": "Public Relations Officer",
+      "nameTh": "ประชาสัมพันธ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS144",
+      "nameEn": "Ticket Seller",
+      "nameTh": "คนขายตั๋ว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS145",
+      "nameEn": "Bus Driver",
+      "nameTh": "คนขับรถประจำทาง / รถบัส",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS146",
+      "nameEn": "Bus Conductor / Fare Collector",
+      "nameTh": "คนเก็บค่าโดยสารบนรถ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS147",
+      "nameEn": "Private / Company Driver",
+      "nameTh": "คนขับรถยนต์ส่วนบุคคล / ส่วนกลาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS148",
+      "nameEn": "Taxi / Tuk-Tuk / Light Truck Driver",
+      "nameTh": "คนขับรถแท๊กซี่ / รถสามล้อ / รถบรรทุกเล็ก 4 ล้อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS149",
+      "nameEn": "Motorcycle Courier",
+      "nameTh": "คนส่งของด้วยจักรยานยนต์ / จักรยานยนต์รับจ้าง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS150",
+      "nameEn": "Medium Truck Driver",
+      "nameTh": "คนขับรถบรรทุก 6 ล้อ ถึง 10 ล้อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS151",
+      "nameEn": "Administrative Officer",
+      "nameTh": "เจ้าหน้าที่บริหาร / พนักงานด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS152",
+      "nameEn": "Expressway Traffic Officer",
+      "nameTh": "เจ้าหน้าที่จราจรทางด่วน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS153",
+      "nameEn": "Toll Collector",
+      "nameTh": "เจ้าหน้าที่เก็บเงินทางด่วน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS154",
+      "nameEn": "Station Master / Ticket Seller",
+      "nameTh": "นายสถานี / คนขายตั๋ว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS155",
+      "nameEn": "Train Driver / Ticket Inspector / Signalman",
+      "nameTh": "คนขับรถไฟ / คนตรวจตั๋วบนรถ / คนส่งสัญญาณ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS156",
+      "nameEn": "Porter / Baggage Handler",
+      "nameTh": "คนยกสัมภาระ / คนตรวจสอบความเรียบร้อย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS157",
+      "nameEn": "Railway Gate Operator / Switch Operator",
+      "nameTh": "คนเปิดปิดที่กั้น / สับราง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS158",
+      "nameEn": "Rail Maintenance Worker",
+      "nameTh": "คนซ่อมราง วางราง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS159",
+      "nameEn": "Train Mechanic",
+      "nameTh": "คนซ่อมรถไฟ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS160",
+      "nameEn": "Ferry / Tugboat Driver",
+      "nameTh": "คนขับเรือข้ามฟาก / เรือลากจูง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS161",
+      "nameEn": "Pilot Boat Guide / Navigator",
+      "nameTh": "คนนำร่อง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS162",
+      "nameEn": "Cargo Laborer / Loader",
+      "nameTh": "กรรมกร / ขนถ่ายสินค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS163",
+      "nameEn": "Forklift Operator",
+      "nameTh": "คนขับรถยก / รถขนถ่ายสินค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS164",
+      "nameEn": "Management / Office Staff",
+      "nameTh": "ฝ่ายบริหาร / พนักงานในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS165",
+      "nameEn": "Member of Parliament (MP)",
+      "nameTh": "สมาชิกสภาผู้แทนราษฎร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS166",
+      "nameEn": "Senator",
+      "nameTh": "สมาชิกวุฒิสภา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS167",
+      "nameEn": "Politician",
+      "nameTh": "นักการเมือง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS168",
+      "nameEn": "District Chief Officer",
+      "nameTh": "นายอำเภอ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS169",
+      "nameEn": "Assistant District Chief Officer",
+      "nameTh": "ปลัดอำเภอ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS170",
+      "nameEn": "Deputy Assistant District Chief",
+      "nameTh": "รองปลัดอำเภอ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS171",
+      "nameEn": "Subdistrict / Village Headman",
+      "nameTh": "กำนัน ผู้ใหญ่บ้าน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS172",
+      "nameEn": "Subdistrict Administrative Organization Chief",
+      "nameTh": "นายกอบต.",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS173",
+      "nameEn": "SAO Officer",
+      "nameTh": "เจ้าหน้าที่อบต.",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS174",
+      "nameEn": "Municipal Enforcement Officer",
+      "nameTh": "เจ้าหน้าที่เทศกิจ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS175",
+      "nameEn": "Customs Officer (Port/Airport Area)",
+      "nameTh": "ศุลการักษ์ในเขตท่าเรือ/ท่าอากาศยาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS176",
+      "nameEn": "Customs Officer (Provincial Area)",
+      "nameTh": "ศุลการักษ์ นอกเขตกรุงเทพ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS177",
+      "nameEn": "Excise Enforcement Officer",
+      "nameTh": "สรรพสามิต ตรวจจับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS178",
+      "nameEn": "Corrections Officer / Prison Officer",
+      "nameTh": "เจ้าหน้าที่ราชทัณฑ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS179",
+      "nameEn": "Civil Servant (Office-based)",
+      "nameTh": "ข้าราชการพลเรือน ประจำสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS180",
+      "nameEn": "Office Employee (Permanent/Temporary)",
+      "nameTh": "ลูกจ้างประจำ ลูกจ้างชั่วคราว ประจำสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS181",
+      "nameEn": "Community Development Officer",
+      "nameTh": "นักพัฒนาชุมชน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS182",
+      "nameEn": "Geologist",
+      "nameTh": "นักธรณีวิทยา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS183",
+      "nameEn": "Retired Civil Servant",
+      "nameTh": "ข้าราชการบำนาญ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS184",
+      "nameEn": "Street Sweeper / Sanitation Worker",
+      "nameTh": "คนกวาดขยะ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS185",
+      "nameEn": "Driver",
+      "nameTh": "คนขับรถ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS186",
+      "nameEn": "Executive / Management Staff",
+      "nameTh": "บริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS187",
+      "nameEn": "Academic Officer (Office-based)",
+      "nameTh": "นักวิชาการ (เฉพาะในสำนักงาน)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS188",
+      "nameEn": "Field Academic Officer",
+      "nameTh": "นักวิชาการ (ออกปฏิบัติการ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS189",
+      "nameEn": "Forest Inspection Officer",
+      "nameTh": "พนักงานตรวจป่า,ตรวจสอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS190",
+      "nameEn": "Reforestation Supervisor",
+      "nameTh": "หัวหน้าฝ่ายปลูกป่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS191",
+      "nameEn": "Forestry Team Supervisor",
+      "nameTh": "หัวหน้าพนักงานปลูกป่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS192",
+      "nameEn": "Security / Protection Staff",
+      "nameTh": "เจ้าหน้าที่รักษาทุกลำดับชั้น พนักงานทุกระดับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS193",
+      "nameEn": "Pharmacist / Drug Seller",
+      "nameTh": "คนขายยา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS194",
+      "nameEn": "Restaurant Owner (Supervisory Only)",
+      "nameTh": "เจ้าของร้านอาหาร (ดูแลและเก็บเงินเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS195",
+      "nameEn": "Restaurant Worker / Cook / Seller",
+      "nameTh": "ลูกจ้าง / คนขาย / คนปรุงอาหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS196",
+      "nameEn": "Owner / Supervisor",
+      "nameTh": "เจ้าของ ควบคุมดูแล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS197",
+      "nameEn": "Service Staff",
+      "nameTh": "พนักงานบริการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS198",
+      "nameEn": "Business Owner (Management Only)",
+      "nameTh": "เจ้าของบริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS199",
+      "nameEn": "Marketing Manager",
+      "nameTh": "ผู้จัดการด้านการตลาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS200",
+      "nameEn": "Mall Promoter / Sales Promoter",
+      "nameTh": "พนักงานแนะนำในศูนย์การค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS201",
+      "nameEn": "Exhibition Sales Staff",
+      "nameTh": "ร้านค้าในงานแสดงต่างๆ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS202",
+      "nameEn": "Administrative Staff",
+      "nameTh": "เจ้าหน้าที่ทำงานด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS203",
+      "nameEn": "Shop Owner",
+      "nameTh": "เจ้าของร้าน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS204",
+      "nameEn": "Glass Installer / Glass Engraver",
+      "nameTh": "ติดตั้งกระจก / แกะลวดลายบนกระจก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS205",
+      "nameEn": "Owner / Salesperson",
+      "nameTh": "เจ้าของ / คนขาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS206",
+      "nameEn": "Repair Technician / Craftsman",
+      "nameTh": "คนทำ / ซ่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS207",
+      "nameEn": "Owner (Non-operational)",
+      "nameTh": "เจ้าของ อยู่ประจำที่ ไม่ลงมือทำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS208",
+      "nameEn": "Door-to-door Buyer / Collector",
+      "nameTh": "รับซื้อตามบ้าน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS209",
+      "nameEn": "Material Sorter",
+      "nameTh": "คัดประเภทวัสดุ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS210",
+      "nameEn": "Amulet Trader / Rental Service",
+      "nameTh": "แลกเปลี่ยนพระ / ให้เช่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS211",
+      "nameEn": "Gardener / Tree Trimmer",
+      "nameTh": "ลูกจ้าง ตัดกิ่ง / ตกแต่งประดับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS212",
+      "nameEn": "Fruit Shop Owner",
+      "nameTh": "เจ้าของร้านผลไม้",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS213",
+      "nameEn": "Fruit Vendor / Sales Staff",
+      "nameTh": "ลูกจ้างขายผลไม้",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS214",
+      "nameEn": "Market Stall Owner",
+      "nameTh": "เจ้าของร้านขายของในตลาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS215",
+      "nameEn": "Market Stall Worker",
+      "nameTh": "ลูกจ้างร้านขายของในตลาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS216",
+      "nameEn": "LPG Retail Shop Owner",
+      "nameTh": "เจ้าของขายก๊าซหุงต้ม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS217",
+      "nameEn": "LPG Delivery Rider (Motorcycle)",
+      "nameTh": "คนส่งตามบ้าน (ใช้รถจักรยานยนต์)ขายก๊าซหุงต้ม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS218",
+      "nameEn": "Chinese Fortune Teller / Feng Shui Master",
+      "nameTh": "ซินแสจีน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS219",
+      "nameEn": "Pharmacy Owner",
+      "nameTh": "เจ้าของร้านขายยา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS220",
+      "nameEn": "Antique Dealer / Antique Business Owner",
+      "nameTh": "เจ้าของกิจการค้าของเก่า(โบราณวัตถุ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS221",
+      "nameEn": "Arms & Ammunition Dealer",
+      "nameTh": "เจ้าของกิจการค้าอาวุธยุทธภัณฑ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS222",
+      "nameEn": "Watch Shop Owner / Watch Repairer",
+      "nameTh": "ขายนาฬิกา ซ่อม เจ้าของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS223",
+      "nameEn": "Operations Supervisor",
+      "nameTh": "ผู้จัดการควบคุม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS224",
+      "nameEn": "Warehouse Receiving & Dispatch Staff",
+      "nameTh": "รับ / เก็บ / จ่ายสินค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS225",
+      "nameEn": "Inspector / Quality Checker",
+      "nameTh": "ตรวจสอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS226",
+      "nameEn": "Inventory Planner / Layout Planner",
+      "nameTh": "วางแผนการจัดวางสิ่งของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS227",
+      "nameEn": "Material Handler (Forklift/Trolley)",
+      "nameTh": "คนเคลื่อนย้าย ใช้รถยก / รถเข็น",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS228",
+      "nameEn": "Goods Sorter",
+      "nameTh": "คัดแยกประเภทสินค้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS229",
+      "nameEn": "Packaging Box Maker",
+      "nameTh": "ทำลัง / ภาชนะในการบรรจุ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS230",
+      "nameEn": "Maintenance Technician",
+      "nameTh": "บำรุงรักษาซ่อมแซม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS231",
+      "nameEn": "Owner / Sales Staff",
+      "nameTh": "เจ้าของ / พนักงานขาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS232",
+      "nameEn": "Packer / Loader",
+      "nameTh": "พนักงานยกของ / หีบห่อ / จัดของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS233",
+      "nameEn": "Cashier",
+      "nameTh": "คนเก็บเงิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS234",
+      "nameEn": "Sales Staff",
+      "nameTh": "พนักงานขาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS235",
+      "nameEn": "Production Line Worker",
+      "nameTh": "คนงานสายการผลิต (ทุกหน้าที่)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS236",
+      "nameEn": "Boiler Operator",
+      "nameTh": "คนคุมหม้อต้มน้ำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS237",
+      "nameEn": "Truck Driver (Urban)",
+      "nameTh": "ขับรถบรรทุกส่งในกทม./ปริมณฑล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS238",
+      "nameEn": "Truck Driver (Upcountry)",
+      "nameTh": "ขับรถบรรทุกส่งต่างจังหวัด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS239",
+      "nameEn": "Accountant / Clerk",
+      "nameTh": "นักบัญชี / เสมียน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS240",
+      "nameEn": "Chemist",
+      "nameTh": "นักเคมี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS241",
+      "nameEn": "Sales & Cashier",
+      "nameTh": "คนขาย / เก็บเงิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS242",
+      "nameEn": "Plant Engineer",
+      "nameTh": "วิศวกรประจำเครื่อง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS243",
+      "nameEn": "HVAC Technician",
+      "nameTh": "ช่างซ่อม / ปรับอุณหภูมิ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS244",
+      "nameEn": "Distillation / Brewing Operator",
+      "nameTh": "คนต้ม / กลั่น / ดองเหล้า / อบแห้ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS245",
+      "nameEn": "Packing Operator",
+      "nameTh": "บรรจุถัง / ปิดและบรรจุ / เก็บของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS246",
+      "nameEn": "General Laborer",
+      "nameTh": "กรรมกรทั่วไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS247",
+      "nameEn": "Advertising Manager / Assistant",
+      "nameTh": "ผู้จัดการ / ผู้ช่วยฝ่ายโฆษณา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS248",
+      "nameEn": "Copywriter",
+      "nameTh": "คนเขียนบทโฆษณา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS249",
+      "nameEn": "Graphic Designer",
+      "nameTh": "นักเขียนแบบโฆษณา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS250",
+      "nameEn": "Sign Painter (Indoor)",
+      "nameTh": "วาดแผ่นป้าย / ทำแผ่นป้าย ในสถานที่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS251",
+      "nameEn": "Sign Painter (Outdoor)",
+      "nameTh": "วาดแผ่นป้าย / ทำแผ่นป้าย นอกสถานที่ เช่นตึกแถว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS252",
+      "nameEn": "High-rise Sign Installer",
+      "nameTh": "ติดแผ่นป้าย ทำโครง ติดตั้งที่สูง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS253",
+      "nameEn": "Owner (Sales Only)",
+      "nameTh": "เจ้าของ (ขายเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS254",
+      "nameEn": "Installation Technician",
+      "nameTh": "ติดตั้ง / บริการอัด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS255",
+      "nameEn": "Owner (Management Only)",
+      "nameTh": "เจ้าของ (บริหารงานเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS256",
+      "nameEn": "Electrician",
+      "nameTh": "ช่างไฟ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS257",
+      "nameEn": "Glass Blower",
+      "nameTh": "เป่าแก้ว / จัดวางรูปแบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS258",
+      "nameEn": "Outdoor Sign Installer",
+      "nameTh": "ติดตั้งป้าย บำรุง นอกสถานที่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS259",
+      "nameEn": "Post Office Director",
+      "nameTh": "ผู้อำนวยการไปรษณีย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS260",
+      "nameEn": "Postal Counter Officer",
+      "nameTh": "เจ้าหน้าที่ประจำเคาน์เตอร์ไปรษณีย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS261",
+      "nameEn": "Postal Office Messenger",
+      "nameTh": "พนักงานเดินเอกสาร (ในสำนักงาน) ไปรษณีย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS262",
+      "nameEn": "Parcel Inspection Staff",
+      "nameTh": "เจ้าหน้าที่ตรวจสอบพัสดุ / จัดหีบห่อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS263",
+      "nameEn": "Boat Mail Carrier",
+      "nameTh": "บุรุษไปรษณีย์ใช้เรือ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS264",
+      "nameEn": "Van Mail Carrier",
+      "nameTh": "บุรุษไปรษณีย์รถตู้",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS265",
+      "nameEn": "Motorcycle Mail Carrier",
+      "nameTh": "บุรุษไปรษณีย์ จักรยานยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS266",
+      "nameEn": "Auto Accessories Shop Owner",
+      "nameTh": "เจ้าของร้านประดับยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS267",
+      "nameEn": "Equipment Installer",
+      "nameTh": "พนักงานติดตั้งอุปกรณ์ต่างๆ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS268",
+      "nameEn": "Office Management Staff",
+      "nameTh": "บริหาร ในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS269",
+      "nameEn": "Ground Testing Station Staff",
+      "nameTh": "ทำหน้าที่ในสถานีทดลองบนพื้นดิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS270",
+      "nameEn": "Offshore Worker",
+      "nameTh": "ทำหน้าที่นอกชายฝั่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS271",
+      "nameEn": "Inland Fisherman",
+      "nameTh": "ประมงในทะเลสาป แม่น้ำ หนองน้ำ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS272",
+      "nameEn": "Offshore Fisherman (Daily Return)",
+      "nameTh": "ประมงนอกชายฝั่งทะเล กลับฝั่งทุกวัน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS273",
+      "nameEn": "Deep Sea Fisherman",
+      "nameTh": "ประมงนอกชายฝั่งทะเล ไม่กลับฝั่งทุกวัน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS274",
+      "nameEn": "Fishing Vessel Owner (Shore-based)",
+      "nameTh": "เจ้าของเรือประมง (ทำงานบนฝั่งเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS275",
+      "nameEn": "Aquaculture Farmer",
+      "nameTh": "เพาะพันธุ์ปลา กุ้ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS276",
+      "nameEn": "Fish Wholesale Platform Owner",
+      "nameTh": "เจ้าของแพปลา - ขายส่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS277",
+      "nameEn": "Fishery Clerk",
+      "nameTh": "เสมียนแพปลา - ขายส่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS278",
+      "nameEn": "Retail Vendor (Market Stall)",
+      "nameTh": "ขายปลีก (ในบ้าน / ตลาดแผงลอย)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS279",
+      "nameEn": "Machine Operator",
+      "nameTh": "คุมเครื่องจักร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS280",
+      "nameEn": "Mold Maker / Mixer",
+      "nameTh": "คนผสม / ทำแม่พิมพ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS281",
+      "nameEn": "Silica Brick Specialist",
+      "nameTh": "คนชำนาญทำ Silica Fine brick",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS282",
+      "nameEn": "Brick & Clay Worker",
+      "nameTh": "ผสมอิฐและดินเหนียว / เรียงอิฐ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS283",
+      "nameEn": "Supervisor",
+      "nameTh": "หัวหน้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS284",
+      "nameEn": "Skilled Worker",
+      "nameTh": "คนงานฝีมือ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS285",
+      "nameEn": "Designer / Contractor (Office-based)",
+      "nameTh": "ออกแบบ / รับเหมา (เฉพาะในสำนักงาน)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS286",
+      "nameEn": "Electrical Equipment Officer",
+      "nameTh": "จัดการเกี่ยวกับอุปกรณ์ไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS287",
+      "nameEn": "Site Inspector",
+      "nameTh": "ตรวจสอบ / คุมงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS288",
+      "nameEn": "Meter Installer / Meter Reader",
+      "nameTh": "ติดตั้งมาตร / อ่านมาตรไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS289",
+      "nameEn": "Electrical Line Technician",
+      "nameTh": "เดินสายไฟ / ซ่อมแซม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS290",
+      "nameEn": "Administrative Management",
+      "nameTh": "ฝ่ายบริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS291",
+      "nameEn": "Chief Engineer (Non-operational)",
+      "nameTh": "หัวหน้าวิศวกร (ไม่ต้องลงมือทำ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS292",
+      "nameEn": "Foreman",
+      "nameTh": "หัวหน้างาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS293",
+      "nameEn": "Power Distribution Operator",
+      "nameTh": "ปล่อยกระแสไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS294",
+      "nameEn": "Generator Operator",
+      "nameTh": "คุมเครื่องกำเนิดไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS295",
+      "nameEn": "Mechanical Engineer",
+      "nameTh": "วิศวกร / ผู้คุม ประจำเครื่องยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS296",
+      "nameEn": "Power Line Technician (Pole Climber)",
+      "nameTh": "คนพาดสายบนเสาไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS297",
+      "nameEn": "Utility Pole Worker",
+      "nameTh": "คนงานบนพื้นดิน / ตั้งเสา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS298",
+      "nameEn": "Steel Tower Installer",
+      "nameTh": "ติดตั้งโครงเสาเหล็กไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS299",
+      "nameEn": "Underground Cable Worker",
+      "nameTh": "วางสายใต้ดิน / ทำงานในอุโมงค์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS300",
+      "nameEn": "Counter Service Staff",
+      "nameTh": "เจ้าหน้าที่ประจำเคาน์เตอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS301",
+      "nameEn": "Residential Line Installer",
+      "nameTh": "คนเดินสายตามบ้าน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS302",
+      "nameEn": "Field Installer",
+      "nameTh": "คนติดตั้งภายนอก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS303",
+      "nameEn": "Service Technician",
+      "nameTh": "ช่างซ่อม ตรวจสอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS304",
+      "nameEn": "Telecom Line Worker (High Pole)",
+      "nameTh": "ดำเนินงานสายโทรศัพท์บนเสาสูง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS305",
+      "nameEn": "Pole Climbing Inspector",
+      "nameTh": "ผู้ตรวจสอบต้องปีนเสา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS306",
+      "nameEn": "Ground Inspector",
+      "nameTh": "ผู้ตรวจสอบไม่ต้องปีนเสา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS307",
+      "nameEn": "Pole Installer",
+      "nameTh": "คนติดตั้งเสา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS308",
+      "nameEn": "Cable Handling Worker",
+      "nameTh": "คนม้วนสาย ส่งสาย ทำงานบนพื้นดิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS309",
+      "nameEn": "Housekeeper",
+      "nameTh": "แม่บ้าน / พ่อบ้าน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS310",
+      "nameEn": "Domestic Helper",
+      "nameTh": "แม่บ้านรับจ้าง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS311",
+      "nameEn": "Monk / Clergy",
+      "nameTh": "พระภิกษุ / นักบวช",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS312",
+      "nameEn": "Recruitment Agency Owner",
+      "nameTh": "เจ้าของกิจการนายหน้าจัดหางาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS313",
+      "nameEn": "Undertaker",
+      "nameTh": "สัปเหร่อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS314",
+      "nameEn": "Fortune Teller",
+      "nameTh": "หมอดู",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS315",
+      "nameEn": "Owner / Staff",
+      "nameTh": "เจ้าของ / พนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS316",
+      "nameEn": "General Broker / Agent",
+      "nameTh": "นายหน้าทั่วไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS317",
+      "nameEn": "Firefighter",
+      "nameTh": "พนักงานดับเพลิง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS318",
+      "nameEn": "Clearance Worker",
+      "nameTh": "คนเคลียร์พื้นที่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS319",
+      "nameEn": "Call Center Dispatcher",
+      "nameTh": "เจ้าหน้าที่รับแจ้งเหตุ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS320",
+      "nameEn": "Female Officer (Office-based)",
+      "nameTh": "สตรีทุกยศทุกตำแหน่ง ในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS321",
+      "nameEn": "Police Major General & Above",
+      "nameTh": "พลตำรวจตรีขึ้นไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS322",
+      "nameEn": "Non-Commissioned Police Officer",
+      "nameTh": "ต่ำกว่าสัญญาบัตร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS323",
+      "nameEn": "Police Major & Above",
+      "nameTh": "พันตำรวจตรีขึ้นไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS324",
+      "nameEn": "Police Captain & Below",
+      "nameTh": "ร้อยตำรวจเอกและต่ำกว่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS325",
+      "nameEn": "Border Patrol Officer",
+      "nameTh": "ประจำการใกล้ชายแดน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS326",
+      "nameEn": "Office Officer",
+      "nameTh": "เจ้าหน้าที่ในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS327",
+      "nameEn": "Administrative Officer",
+      "nameTh": "เจ้าหน้าที่ธุรการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS328",
+      "nameEn": "Military Conscription Officer",
+      "nameTh": "สัสดี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS329",
+      "nameEn": "Female Personnel (All Ranks)",
+      "nameTh": "สตรีทุกยศทุกตำแหน่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS330",
+      "nameEn": "Enlisted Personnel (Below Commissioned Rank)",
+      "nameTh": "บุรุษต่ำกว่าสัญญาบัตร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS331",
+      "nameEn": "Commissioned Military Officer",
+      "nameTh": "นายทหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS332",
+      "nameEn": "Non-Officer Military Personnel",
+      "nameTh": "ตำแหน่งอื่นที่ไม่ใช่นายทหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS333",
+      "nameEn": "Ordnance Specialist",
+      "nameTh": "ผู้เชี่ยวชาญสรรพาวุธ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS334",
+      "nameEn": "Patrol Vessel Crew",
+      "nameTh": "เรือลาดตระเวณ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS335",
+      "nameEn": "Pilot (All Ages)",
+      "nameTh": "นักบิน ทุกอายุ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS336",
+      "nameEn": "Aircrew",
+      "nameTh": "พลประจำเครื่องบิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS337",
+      "nameEn": "Pilot (Age <27)",
+      "nameTh": "นักบิน อายุ < 27 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS338",
+      "nameEn": "Aircrew (Age <27)",
+      "nameTh": "พลประจำเครื่องบิน อายุ < 27 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS339",
+      "nameEn": "Pilot (Age 27–39)",
+      "nameTh": "นักบิน อายุ 27-39 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS340",
+      "nameEn": "Aircrew (Age 27–39)",
+      "nameTh": "พลประจำเครื่องบิน อายุ 27-39 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS341",
+      "nameEn": "Pilot (Age >39)",
+      "nameTh": "นักบิน อายุ > 39 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS342",
+      "nameEn": "Aircrew (Age >39)",
+      "nameTh": "พลประจำเครื่องบิน อายุ > 39 ปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS343",
+      "nameEn": "Jewelry / Gold Shop Owner",
+      "nameTh": "เจ้าของร้านทอง อัญมณี เครื่องประดับ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS344",
+      "nameEn": "Gem Cutter",
+      "nameTh": "คนเจียระไนพลอย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS345",
+      "nameEn": "Gem Sorter",
+      "nameTh": "คัดพลอย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS346",
+      "nameEn": "Goldsmith",
+      "nameTh": "ทำทอง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS347",
+      "nameEn": "Salesperson",
+      "nameTh": "คนขาย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS348",
+      "nameEn": "Owner / Seller (Non-Repair)",
+      "nameTh": "เจ้าของ / คนขาย (ไม่ต้องซ่อม)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS349",
+      "nameEn": "Repair / Assembly Technician",
+      "nameTh": "คนซ่อม / ประกอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS350",
+      "nameEn": "Owner / Seller (Supervisory Only)",
+      "nameTh": "เจ้าของ / คนขาย (ดูแลควบคุมเท่านั้น)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS351",
+      "nameEn": "Mechanic",
+      "nameTh": "ช่างเครื่อง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS352",
+      "nameEn": "Owner (Non-Operational)",
+      "nameTh": "เจ้าของ (ไม่ได้ลงมือทำ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS353",
+      "nameEn": "Site / Work Supervisor",
+      "nameTh": "หัวหน้าคุมงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS354",
+      "nameEn": "Rice Miller / Bagging Worker",
+      "nameTh": "คนสีข้าว / บรรจุกระสอบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS355",
+      "nameEn": "Architect (Drafting)",
+      "nameTh": "สถาปนิกเขียนแบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS356",
+      "nameEn": "Architect (Site Survey/Inspection)",
+      "nameTh": "สถาปนิก สำรวจ / ออกตรวจแบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS357",
+      "nameEn": "Interior Designer",
+      "nameTh": "มัณฑนากร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS358",
+      "nameEn": "Painter / Artist",
+      "nameTh": "จิตรกร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS359",
+      "nameEn": "Sculptor / Mural Artist",
+      "nameTh": "ช่างแกะสลัก / เขียนภาพฝาผนัง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS360",
+      "nameEn": "Researcher (Experimental)",
+      "nameTh": "นักวิจัยทดลอง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS361",
+      "nameEn": "Scientist",
+      "nameTh": "นักวิทยาศาสตร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS362",
+      "nameEn": "Archaeologist",
+      "nameTh": "นักโบราณคดี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS363",
+      "nameEn": "Accountant / Auditor",
+      "nameTh": "นักบัญชี ผู้ตรวจสอบบัญชี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS364",
+      "nameEn": "Actuary",
+      "nameTh": "นักคณิตศาสตร์ประกันภัย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS365",
+      "nameEn": "Statistician",
+      "nameTh": "นักสถิติ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS366",
+      "nameEn": "Lawyer / Attorney",
+      "nameTh": "นักกฏหมาย / ทนายความ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS367",
+      "nameEn": "Judge / Prosecutor",
+      "nameTh": "ผู้พิพากษา / อัยการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS368",
+      "nameEn": "Librarian",
+      "nameTh": "บรรณารักษ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS369",
+      "nameEn": "Programmer / System Analyst",
+      "nameTh": "โปรแกรมเมอร์ / นักวิเคราะห์ระบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS370",
+      "nameEn": "Owner / Manager / Clerk",
+      "nameTh": "เจ้าของ / ผู้จัดการ / เสมียน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS371",
+      "nameEn": "Gas Station Attendant",
+      "nameTh": "เด็กปั๊ม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS372",
+      "nameEn": "Car Service Worker",
+      "nameTh": "ล้างรถ / เติมลม / ปะยาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS373",
+      "nameEn": "Facility Owner",
+      "nameTh": "เจ้าของสถานที่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS374",
+      "nameEn": "Childcare Worker",
+      "nameTh": "พนักงานเลี้ยงเด็ก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS375",
+      "nameEn": "Domestic Helper / Cleaner",
+      "nameTh": "คนเตรียมอาหาร / ซักผ้า / ทำความสะอาด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS376",
+      "nameEn": "Documentation Officer",
+      "nameTh": "เจ้าหน้าที่ในสำนักงานด้านเอกสาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS377",
+      "nameEn": "Wheel Operation Controller",
+      "nameTh": "ควบคุมการหมุนวงล้อ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS378",
+      "nameEn": "Lottery Production Controller",
+      "nameTh": "ควบคุมการผลิตสลาก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS379",
+      "nameEn": "Wheel Installation / Repair Technician",
+      "nameTh": "ซ่อม / ติดตั้งวงล้อหมุน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS380",
+      "nameEn": "Wholesale Shop Owner",
+      "nameTh": "เจ้าของร้าน / ยี่ปั๊ว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS381",
+      "nameEn": "Septic Tank Cleaner",
+      "nameTh": "สูบส้วม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS382",
+      "nameEn": "Waste / Sanitation Worker",
+      "nameTh": "คนเก็บขยะและปฏิกูล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS383",
+      "nameEn": "Editor",
+      "nameTh": "บรรณาธิการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS384",
+      "nameEn": "Clerk",
+      "nameTh": "เสมียน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS385",
+      "nameEn": "Large Printing House Owner",
+      "nameTh": "เจ้าของโรงพิมพ์ขนาดใหญ่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS386",
+      "nameEn": "Small Printing Shop Owner",
+      "nameTh": "เจ้าของโรงพิมพ์เล็กๆ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS387",
+      "nameEn": "Typesetter / Printing Machine Operator",
+      "nameTh": "ช่างเรียงพิมพ์ / คุมเครื่องพิมพ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS388",
+      "nameEn": "Rubber Stamp Maker",
+      "nameTh": "ทำบล็อก ตรายาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS389",
+      "nameEn": "Draftsman / Design Checker",
+      "nameTh": "ช่างเขียนแบบ ตรวจแบบ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS390",
+      "nameEn": "Journalist / Photographer",
+      "nameTh": "ผู้สื่อข่าว ช่างภาพ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS391",
+      "nameEn": "Writer / Author",
+      "nameTh": "นักเขียน นักประพันธ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS392",
+      "nameEn": "Cold Storage Worker",
+      "nameTh": "พนักงานที่เข้าไปในห้องเย็น",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS393",
+      "nameEn": "Ice Maker",
+      "nameTh": "คนทำน้ำแข็ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS394",
+      "nameEn": "Finance Officer (Office-based)",
+      "nameTh": "เจ้าของ / เจ้าหน้าที่การเงิน ทำงานเฉพาะในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS395",
+      "nameEn": "Supervisor (Non-Technical)",
+      "nameTh": "หัวหน้าคนงาน (ไม่ต้องซ่อม)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS396",
+      "nameEn": "Body Repair / Welding Technician",
+      "nameTh": "ช่างสี / เคาะ / เชื่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS397",
+      "nameEn": "Maintenance / Fitter",
+      "nameTh": "ช่างซ่อม / ช่างฟิต",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS398",
+      "nameEn": "Business Owner",
+      "nameTh": "เจ้าของกิจการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS399",
+      "nameEn": "Laundry Worker",
+      "nameTh": "คนซักรีด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS400",
+      "nameEn": "General Caretaker",
+      "nameTh": "ดูแลทั่วไป",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS401",
+      "nameEn": "Rental Property Owner",
+      "nameTh": "เจ้าของบ้านเช่า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS402",
+      "nameEn": "Installer / Repair Technician",
+      "nameTh": "คนติดตั้ง ซ่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS403",
+      "nameEn": "Aircon Refrigerant Technician",
+      "nameTh": "เติมน้ำยาแอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS404",
+      "nameEn": "Aircon Cleaning Technician",
+      "nameTh": "ล้างตู้แอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS405",
+      "nameEn": "Counter Sales Staff",
+      "nameTh": "คนขายหน้าเคาน์เตอร์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS406",
+      "nameEn": "Stock Clerk / Merchandiser",
+      "nameTh": "คนจัดของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS407",
+      "nameEn": "Heavy Laborer / Material Handler",
+      "nameTh": "คนงานแบกของ ยกของหนัก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS408",
+      "nameEn": "Administrative / Recordkeeping Staff (Office-based)",
+      "nameTh": "บริหารและจดบันทึกเท่านั้น",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS409",
+      "nameEn": "Skilled Worker (Non-Explosive Tasks)",
+      "nameTh": "ผู้ชำนาญงาน (ไม่ต้องใช้วัตถุระเบิด)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS410",
+      "nameEn": "Offshore Drilling Engineer",
+      "nameTh": "วิศวกรทำงานบนฐานเจาะนอกชายฝั่ง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS411",
+      "nameEn": "Oil Drilling Worker",
+      "nameTh": "คนขุดหาน้ำมัน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS412",
+      "nameEn": "Director / Specialist",
+      "nameTh": "ผู้อำนวยการ / ผู้ชำนาญการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS413",
+      "nameEn": "Office-based Engineer",
+      "nameTh": "วิศวกรทำงานภายในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS414",
+      "nameEn": "Chemist / Lab Assistant",
+      "nameTh": "นักเคมี / ผู้ช่วย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS415",
+      "nameEn": "Department Head",
+      "nameTh": "หัวหน้าแผนก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS416",
+      "nameEn": "Skilled Laborer",
+      "nameTh": "คนงานใช้ฝีมือ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS417",
+      "nameEn": "Owner / Manager / Executive",
+      "nameTh": "เจ้าของ / ผู้จัดการ /ฝ่ายบริหาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS418",
+      "nameEn": "Sales / Product Demonstrator",
+      "nameTh": "พนักงานขาย / แสดงผลิตภัณฑ์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS419",
+      "nameEn": "Mechanic / Assembler / Spray Painter / Welder",
+      "nameTh": "ช่างเครื่อง / ประกอบ / ช่างพ่น /ช่างเชื่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS420",
+      "nameEn": "Grinding / Polishing Technician",
+      "nameTh": "ช่างบด / ขัดเงา",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS421",
+      "nameEn": "Painter / Electroplating Technician",
+      "nameTh": "ช่างทาสี / อาบโลหะด้วยไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS422",
+      "nameEn": "Road Test Technician",
+      "nameTh": "ช่างลองเครื่องบนถนน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS423",
+      "nameEn": "Workshop Test Technician",
+      "nameTh": "ช่างลองเครื่องในอู่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS424",
+      "nameEn": "Speed Test Technician",
+      "nameTh": "ทดสอบความเร็ว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS425",
+      "nameEn": "Owner / Executive / Manager",
+      "nameTh": "เจ้าของ / ฝ่ายบริหาร / ผู้จัดการ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS426",
+      "nameEn": "Tire Shop Owner",
+      "nameTh": "เจ้าของร้านขายยางรถยนต์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS427",
+      "nameEn": "General Supervisor",
+      "nameTh": "หัวหน้าทุกหน้าที่",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS428",
+      "nameEn": "Tire Retreading / Curing Machine Operator",
+      "nameTh": "ช่างคุมเครื่อง / หล่อดอก / อบยาง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS429",
+      "nameEn": "Assembly Worker",
+      "nameTh": "คนประกอบชิ้นส่วน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS430",
+      "nameEn": "Consulting Engineer (Office-based)",
+      "nameTh": "วิศวกร / ให้คำแนะนำในสำนักงาน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS431",
+      "nameEn": "Supervising / Inspection Engineer",
+      "nameTh": "วิศวกรดูแล / ตรวจสอบ / ควบคุม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS432",
+      "nameEn": "Installer / Repair Technician",
+      "nameTh": "คนติดตั้ง / ซ่อมแซม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS433",
+      "nameEn": "Owner / Manager (Non-Operational)",
+      "nameTh": "เจ้าของ / ผู้จัดการ (ไม่ได้ลงมือทำ)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS434",
+      "nameEn": "Welder",
+      "nameTh": "ช่างเชื่อม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS435",
+      "nameEn": "Mold Maker / Saw Operator",
+      "nameTh": "คนทำแม่พิมพ์ / เลื่อย",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS436",
+      "nameEn": "Drilling / Excavation / Lathe Machine Operator",
+      "nameTh": "คุมเครื่องจักรเพื่อเจาะ / ขุด / กลึง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS437",
+      "nameEn": "Owner (Non-Forest Operations)",
+      "nameTh": "เจ้าของ (ไม่เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS438",
+      "nameEn": "Staff (Non-Forest Operations)",
+      "nameTh": "เจ้าหน้าที่ (ไม่เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS439",
+      "nameEn": "Administrative Contractor (Non-Forest)",
+      "nameTh": "ผู้รับเหมาด้านบริหาร (ไม่เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS440",
+      "nameEn": "Owner (Forest Operations)",
+      "nameTh": "เจ้าของ (เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS441",
+      "nameEn": "Forest Field Staff",
+      "nameTh": "เจ้าหน้าที่ (เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS442",
+      "nameEn": "Forest Operations Contractor",
+      "nameTh": "ผู้รับเหมาด้านบริหาร (เข้าป่า)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS443",
+      "nameEn": "Warehouse Worker",
+      "nameTh": "คนงานห้องเก็บของ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS444",
+      "nameEn": "Logger / Chainsaw Operator",
+      "nameTh": "คนตัดไม้ / คนใช้เลื่อยไฟฟ้า",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS445",
+      "nameEn": "Tractor / Grader Operator",
+      "nameTh": "ขับรถแทรกเตอร์ / รถเกลี่ยดิน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS446",
+      "nameEn": "Timber Processing / Material Transport Worker",
+      "nameTh": "แปรรูปไม้ / ลำเลียง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "OCPOS447",
+      "nameEn": "Forklift / Tow Truck Operator",
+      "nameTh": "ขับรถยก / รถลาก",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "occupation": [],
+  "distribution_channel": [
+    {
+      "codeId": "CHN01",
+      "nameEn": "Agent",
+      "nameTh": "ตัวแทนของบริษัท",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN02",
+      "nameEn": "Broker",
+      "nameTh": "นายหน้าประกันชีวิต",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN03",
+      "nameEn": "Bancassurance",
+      "nameTh": "ธนาคาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN04",
+      "nameEn": "Direct Online",
+      "nameTh": "ลูกค้าติดต่อโดยตรงกับบริษัททางอิเล็กทรอนิกส์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN05",
+      "nameEn": "Direct Marketing",
+      "nameTh": "ขายตรง",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN06",
+      "nameEn": "Work Site",
+      "nameTh": "การขายผ่านองค์กร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN07",
+      "nameEn": "Agent Online",
+      "nameTh": "ตัวแทนของบริษัท (ขายช่องทางออนไลน์)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN08",
+      "nameEn": "Broker Online",
+      "nameTh": "นายหน้าประกันชีวิต (ขายช่องทางออนไลน์)",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN09",
+      "nameEn": "Partnership",
+      "nameTh": "ช่องทางจัดจำหน่าย/ขยายธุรกิจผ่านพันธมิตร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN10",
+      "nameEn": "Telesale",
+      "nameTh": "ติดต่อลูกค้าผ่านทางโทรศัพท์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN11",
+      "nameEn": "DTS",
+      "nameTh": "DTS",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN12",
+      "nameEn": "IBANK",
+      "nameTh": "ธนาคารอิสลาม",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN13",
+      "nameEn": "MOM",
+      "nameTh": "MOM",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "CHN14",
+      "nameEn": "TELEID",
+      "nameTh": "บริษัท ไอไดเร็คท์ โบรกเกอร์ จำกัด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "payment_mode": [
+    {
+      "codeId": "PMM01",
+      "nameEn": "Single Premium",
+      "nameTh": "เบี้ยประกันภัยชำระครั้งเดียว",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMM05",
+      "nameEn": "Monthly",
+      "nameTh": "ชำระเบี้ยรายเดือน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMM03",
+      "nameEn": "Semi-Annual",
+      "nameTh": "ชำระเบี้ยราย 6 เดือน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMM02",
+      "nameEn": "Annual",
+      "nameTh": "ชำระเบี้ยรายปี",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMM04",
+      "nameEn": "Quarterly",
+      "nameTh": "ชำระเบี้ยราย 3 เดือน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ],
+  "payment_method": [
+    {
+      "codeId": "PMT01",
+      "nameEn": "Cheque",
+      "nameTh": "เช็ค",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT02",
+      "nameEn": "Credit Card",
+      "nameTh": "บัตรเครดิต",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT03",
+      "nameEn": "Bill Payment",
+      "nameTh": "ชำระบิล",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT04",
+      "nameEn": "Direct Debit",
+      "nameTh": "หักผ่านบัญชีธนาคาร",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT05",
+      "nameEn": "QR/Promptpay",
+      "nameTh": "คิวอาร์/พร้อมเพย์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT06",
+      "nameEn": "Pay in Installment",
+      "nameTh": "ผ่อนชำระ",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT07",
+      "nameEn": "Internet Banking",
+      "nameTh": "ชำระผ่านระบบธนาคารออนไลน์",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT08",
+      "nameEn": "Cash",
+      "nameTh": "เงินสด",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    },
+    {
+      "codeId": "PMT09",
+      "nameEn": "Payroll Deduction",
+      "nameTh": "หักจากเงินเดือน",
+      "parentName": null,
+      "updatedAt": "2026-09-10",
+      "updatedBy": "Claude"
+    }
+  ]
+}
