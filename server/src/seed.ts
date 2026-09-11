@@ -13,18 +13,28 @@ import masterData from "./masterDataSeed.json" with { type: "json" };
 //    that source file; the extraction script swapped them back.
 //
 //    channel_group (F2F/ONLINE/UNMAPPED) is a TESLA_Management-only addition on top of
-//    distribution_channel — not part of GIO's own table. Only CHN01 (F2F) and
-//    CHN04/07/08 (ONLINE) are confirmed; everything else starts UNMAPPED, editable from
-//    the Master Setup screen. CHN10 is "Telesale" per this file — earlier we had (wrongly)
-//    assumed CHN10 was "Online" based on the ENN001 payload alone; this master export is
-//    the more authoritative source, so ENN001's channel list below has been corrected.
+//    distribution_channel — not part of GIO's own table. Confirmed 2026-09-11 by the
+//    business (via the Master Setup screen, then baked in here so it survives the free
+//    Render instance's ephemeral filesystem — see the "start:demo re-seeds on every boot"
+//    note in README): CHN01/02/03/06/09/10 = F2F, CHN04/07/08 = ONLINE. CHN05 (Direct
+//    Marketing) is still unconfirmed. CHN10 is "Telesale" per this file — earlier we had
+//    (wrongly) assumed CHN10 was "Online" based on the ENN001 payload alone; this master
+//    export is the more authoritative source, so ENN001's channel list below was corrected.
+//    CHN11-14 (DTS, IBANK, MOM, TELEID) were removed from Distribution Channel by the
+//    business — excluded from seeding below, not just left UNMAPPED.
 // ---------------------------------------------------------------------------
 const CONFIRMED_CHANNEL_GROUPS: Record<string, string> = {
   CHN01: "F2F",
+  CHN02: "F2F",
+  CHN03: "F2F",
   CHN04: "ONLINE",
+  CHN06: "F2F",
   CHN07: "ONLINE",
   CHN08: "ONLINE",
+  CHN09: "F2F",
+  CHN10: "F2F",
 };
+const EXCLUDED_DISTRIBUTION_CHANNELS = new Set(["CHN11", "CHN12", "CHN13", "CHN14"]);
 
 db.exec(`DELETE FROM master_codes`);
 const insertMasterCode = db.prepare(
@@ -34,6 +44,7 @@ type MasterDataRow = { codeId: string; nameEn: string; nameTh: string; parentNam
 const typedMasterData = masterData as Record<string, MasterDataRow[]>;
 for (const [category, rows] of Object.entries(typedMasterData)) {
   for (const row of rows) {
+    if (category === "distribution_channel" && EXCLUDED_DISTRIBUTION_CHANNELS.has(row.codeId)) continue;
     const channelGroup = category === "distribution_channel" ? CONFIRMED_CHANNEL_GROUPS[row.codeId] ?? "UNMAPPED" : null;
     insertMasterCode.run(nanoid(10), category, row.codeId, row.nameEn, row.nameTh, row.parentName, channelGroup);
   }
