@@ -5,6 +5,7 @@ import wln001Payload from "./rawProductPayloads/WLN001.json" with { type: "json"
 import enn002Payload from "./rawProductPayloads/ENN002.json" with { type: "json" };
 import enn001Payload from "./rawProductPayloads/ENN001.json" with { type: "json" };
 import wln003Payload from "./rawProductPayloads/WLN003.json" with { type: "json" };
+import wln002Payload from "./rawProductPayloads/WLN002.json" with { type: "json" };
 
 // Full original TESLA_MASTER payloads, for products where the business actually gave us
 // one — powers the read-only "Package" viewer in Master Setup.
@@ -13,6 +14,7 @@ const RAW_PAYLOADS: Record<string, unknown> = {
   ENN002: enn002Payload,
   ENN001: enn001Payload,
   WLN003: wln003Payload,
+  WLN002: wln002Payload,
 };
 
 // ---------------------------------------------------------------------------
@@ -146,6 +148,27 @@ const products: ProductSeed[] = [
       { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
       { code: "CHN09", nameEn: "Partnership", nameTh: "ช่องทางจัดจำหน่าย/ขยายธุรกิจผ่านพันธมิตร" },
       { code: "CHN11", nameEn: "DTS", nameTh: "DTS" },
+    ],
+  },
+  {
+    // Real payload: "Happy Wealthy 90/6" (WLN002) — new 2026-09-11, the "6-year premium"
+    // variant alongside WLN003 (90/15). All 5 channels (CHN01/02/03/05/06) were already
+    // known/classified — no new channel-code surprises this time. Full payload:
+    // rawProductPayloads/WLN002.json.
+    planCode: "WLN002", nameTh: "แฮปปี้ เวลธ์ตี้ 90/6 ชนิดไม่มีเงินปันผล", nameEn: "Happy Wealthy 90/6",
+    category: "ประกันชีวิตตลอดชีพ",
+    productTypeCode: "PTY01", productTypeNameEn: "Ordinary Life Insurance",
+    subProductTypeCode: "SPT02", subProductTypeNameEn: "Whole Life",
+    insuranceTypeCode: "INSTYPNRM", insuranceTypeNameEn: "Normal", hasSubPlan: false,
+    startDate: "2018-06-01", endDate: null,
+    additionalRiders: ["ประกันภัยอุบัติเหตุ", "ประกันโรคร้ายแรง", "ค่าชดเชยรายวันจากการเข้าพักรักษาตัวในโรงพยาบาล", "ประกันสุขภาพ", "สัญญาเพิ่มการประกันภัยชั่วระยะเวลา", "คุ้มครองผู้ชำระเบี้ยประกันภัย", "ทุพพลภาพสิ้นเชิงถาวร", "ยกเว้นเบี้ยประกันภัย"],
+    flags: { contractualPayouts: "Y", maturity: "Y", deathBenefit: "Y", cashSurrender: "Y", extendedTerm: "Y", reducedPaidup: "Y" },
+    channels: [
+      { code: "CHN01", nameEn: "Agent", nameTh: "ตัวแทนของบริษัท" },
+      { code: "CHN02", nameEn: "Broker", nameTh: "นายหน้าประกันชีวิต" },
+      { code: "CHN03", nameEn: "Bancassurance", nameTh: "ธนาคาร" },
+      { code: "CHN05", nameEn: "Direct Marketing", nameTh: "ขายตรง" },
+      { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
     ],
   },
 ];
