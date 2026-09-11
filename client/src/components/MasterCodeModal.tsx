@@ -64,7 +64,11 @@ export function MasterCodeModal({
           {isDistributionChannel && (
             <div className="field">
               <label className="label">Group (F2F / Online)</label>
-              <select className="select" value={channelGroup ?? "UNMAPPED"} onChange={(e) => setChannelGroup(e.target.value)}>
+              <select
+                className="select"
+                value={channelGroup ?? "UNMAPPED"}
+                onChange={(e) => setChannelGroup(e.target.value as "F2F" | "ONLINE" | "UNMAPPED")}
+              >
                 <option value="F2F">F2F</option>
                 <option value="ONLINE">ONLINE</option>
                 <option value="UNMAPPED">UNMAPPED (ยังไม่ยืนยัน)</option>
