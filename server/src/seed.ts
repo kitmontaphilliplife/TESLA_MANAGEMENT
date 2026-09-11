@@ -99,6 +99,27 @@ const products: ProductSeed[] = [
       { code: "CHN09", nameEn: "Partnership", nameTh: "ช่องทางจัดจำหน่าย/ขยายธุรกิจผ่านพันธมิตร" },
     ],
   },
+  {
+    // Real payload: "Max Ten One 10/1 Xtra" (ENN002) — re-confirmed 2026-09-11, identical
+    // to what was provided before the reset. Full payload: rawProductPayloads/ENN002.json.
+    planCode: "ENN002", nameTh: "แม็กซ์ เท็น วัน 10/1 เอ็กซ์ตร้า ชนิดไม่มีเงินปันผล", nameEn: "Max Ten One 10/1 Xtra",
+    category: "ประกันแบบสะสมทรัพย์",
+    productTypeCode: "PTY01", productTypeNameEn: "Ordinary Life Insurance",
+    subProductTypeCode: "SPT03", subProductTypeNameEn: "Endowment",
+    insuranceTypeCode: "INSTYPNRM", insuranceTypeNameEn: "Normal", hasSubPlan: false,
+    startDate: "2024-11-25", endDate: null, additionalRiders: [],
+    flags: { contractualPayouts: "Y", maturity: "Y", deathBenefit: "Y", cashSurrender: "Y", extendedTerm: "N", reducedPaidup: "N" },
+    channels: [
+      { code: "CHN01", nameEn: "Agent", nameTh: "ตัวแทนของบริษัท" },
+      { code: "CHN02", nameEn: "Broker", nameTh: "นายหน้าประกันชีวิต" },
+      { code: "CHN03", nameEn: "Bancassurance", nameTh: "ธนาคาร" },
+      { code: "CHN04", nameEn: "Direct Online", nameTh: "ลูกค้าติดต่อโดยตรงกับบริษัททางอิเล็กทรอนิกส์" },
+      { code: "CHN05", nameEn: "Direct Marketing", nameTh: "ขายตรง" },
+      { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
+      { code: "CHN07", nameEn: "Agent Online", nameTh: "ตัวแทนของบริษัท (ขายช่องทางออนไลน์)" },
+      { code: "CHN08", nameEn: "Broker Online", nameTh: "นายหน้าประกันชีวิต (ขายช่องทางออนไลน์)" },
+    ],
+  },
 ];
 
 const insertProduct = db.prepare(`
