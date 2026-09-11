@@ -174,4 +174,71 @@ export interface ProductListItem {
   channels: { code: string; nameEn: string; group: ChannelGroup }[];
   channelGroups: ChannelGroup[];
   hasPackage: boolean;
+  hasRawPayload: boolean;
+}
+
+// Full original TESLA_MASTER payload, as given by the business — loosely typed since it's
+// a pass-through of whatever the master API returns, not our own normalized shape.
+export interface RawProductPayload {
+  plan_Code: string;
+  plan_Name_En: string;
+  plan_Name_Th: string;
+  description: string | null;
+  class_Of_Business_Name_En: string;
+  class_Of_Business_Name_Th: string;
+  line_Of_Business_Name_En: string;
+  line_Of_Business_Name_Th: string;
+  coverage_Type_Name_En: string;
+  coverage_Type_Name_Th: string;
+  product_Type_Name_En: string;
+  product_Type_Name_Th: string;
+  sub_Product_Type_Name_En: string;
+  sub_Product_Type_Name_Th: string;
+  insurance_Type_Name_En: string;
+  insurance_Type_Name_Th: string;
+  type_Of_Rider_Name_En: string | null;
+  currency_Code: string;
+  country_Code: string;
+  start_Date: string;
+  end_Date: string | null;
+  participation_Flag: string;
+  free_Look_Flag: string;
+  client_Coverage_Type_Code: string;
+  min_Sum_Assurance: number;
+  max_Sum_Assurance: number;
+  plan_Channel_Code: { channel_Code: string; name_En: string; name_Th: string }[];
+  coverage_Duration_Method_Code: string;
+  coverage_Duration_Value: number | null;
+  premium_Duration_Method_Code: string;
+  premium_Duration_Value: number | null;
+  tax_Exempts: {
+    gender_Name_En: string; min_Age: number; max_Age: number;
+    min_Sum_Assurance: number; max_Sum_Assurance: number;
+    occupation_Class_Name_En: string | null; tax_Percent: number;
+  }[];
+  waiting_Period: number | null;
+  plan_Additional_Rider: { product_Type_Name_En: string; product_Type_Name_Th: string }[];
+  plan_Coverage_Benefit: Record<string, unknown>[];
+  min_Issue_Age_Method_Code: string;
+  min_Issue_Age_Value: number;
+  max_Issue_Age_Method_Code: string;
+  max_Issue_Age_Value: number;
+  plan_Gender_Code: { name_En: string; name_Th: string }[];
+  plan_Occupation_Class_Code: { name_En: string; name_Th: string }[];
+  plan_Type_Of_Underwrite_Code: { name_En: string; name_Th: string }[];
+  plan_Payment_Modes: { name_En: string; name_Th: string; premium_Interest_Factor: number }[];
+  plan_Payment_Method_Code: { payment_Collection_Code: string; payment_Collection_Name_En: string; payment_Method_Name_En: string; payment_Method_Name_Th: string }[];
+  policy_Grace_Period: number | null;
+  premium_Cal_Method_Code: string;
+  age_Cal_Method_Code: string;
+  csV_Cal_Method_Code: string | null;
+  premium_Max_Discount: number;
+  premium_Rate_Per_Unit: number;
+  interest_Rate: number;
+  loan_Interest_Rate: number;
+  apL_Interest_Rate: number;
+  oiC_Approval_No: string;
+  oiC_Approval_Date: string;
+  oiC_Expired_Date: string;
+  status_Name_En: string;
 }

@@ -29,7 +29,18 @@ productsRouter.get("/", (_req, res) => {
         channels,
         channelGroups,
         hasPackage: !!r.package_id,
+        hasRawPayload: !!r.raw_payload,
       };
     })
   );
+});
+
+// Full original TESLA_MASTER payload for one product, for the read-only "Package" viewer
+// under Master Setup. Only products the business actually gave us a real payload for
+// carry one — everything else responds 404 here (they still appear in the list above).
+productsRouter.get("/:planCode/raw", (req, res) => {
+  const row = db.prepare(`SELECT plan_code, name_th, name_en, raw_payload FROM products WHERE plan_code = ?`).get(req.params.planCode) as any;
+  if (!row) return res.status(404).json({ error: "not_found" });
+  if (!row.raw_payload) return res.status(404).json({ error: "no_raw_payload" });
+  res.json({ planCode: row.plan_code, nameTh: row.name_th, nameEn: row.name_en, payload: JSON.parse(row.raw_payload) });
 });

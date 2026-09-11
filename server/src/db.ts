@@ -40,7 +40,11 @@ CREATE TABLE IF NOT EXISTS products (
   cash_surrender_value_flag TEXT,
   extended_term_flag TEXT,
   reduced_paidup_flag TEXT,
-  channel_codes TEXT NOT NULL DEFAULT '[]'
+  channel_codes TEXT NOT NULL DEFAULT '[]',
+  -- Full original TESLA_MASTER payload (as given), for products where we have it.
+  -- Powers the read-only "Package" viewer in Master Setup — every field the master API
+  -- returns, not just the subset we've mapped to columns above.
+  raw_payload TEXT
 );
 
 -- Generic master/reference code tables, modeled on GIO's "Product Setup" screen

@@ -2,6 +2,18 @@ import { db } from "./db.js";
 import { nanoid } from "nanoid";
 import { createPackageForProduct } from "./packageFactory.js";
 import masterData from "./masterDataSeed.json" with { type: "json" };
+import wln001Payload from "./rawProductPayloads/WLN001.json" with { type: "json" };
+import enn002Payload from "./rawProductPayloads/ENN002.json" with { type: "json" };
+import enn001Payload from "./rawProductPayloads/ENN001.json" with { type: "json" };
+
+// Full original TESLA_MASTER payloads, for products where the business actually gave us
+// one — powers the read-only "Package" viewer in Master Setup. ENN019 and PA0231 have no
+// real payload (see notes on those products below), so they're left out of this map.
+const RAW_PAYLOADS: Record<string, unknown> = {
+  WLN001: wln001Payload,
+  ENN002: enn002Payload,
+  ENN001: enn001Payload,
+};
 
 // ---------------------------------------------------------------------------
 // 1. Master / reference codes — mirrors GIO's "Product Setup" screen structure
@@ -158,11 +170,13 @@ const insertProduct = db.prepare(`
   INSERT INTO products (plan_code, name_th, name_en, category, product_type_code, product_type_name_en,
     sub_product_type_code, sub_product_type_name_en, insurance_type_code, insurance_type_name_en,
     has_sub_plan, start_date, end_date, additional_riders, contractual_payouts_flag, maturity_flag,
-    death_benefit_flag, cash_surrender_value_flag, extended_term_flag, reduced_paidup_flag, channel_codes)
+    death_benefit_flag, cash_surrender_value_flag, extended_term_flag, reduced_paidup_flag, channel_codes,
+    raw_payload)
   VALUES (@planCode, @nameTh, @nameEn, @category, @productTypeCode, @productTypeNameEn,
     @subProductTypeCode, @subProductTypeNameEn, @insuranceTypeCode, @insuranceTypeNameEn,
     @hasSubPlan, @startDate, @endDate, @additionalRiders, @contractualPayouts, @maturity,
-    @deathBenefit, @cashSurrender, @extendedTerm, @reducedPaidup, @channelCodes)
+    @deathBenefit, @cashSurrender, @extendedTerm, @reducedPaidup, @channelCodes,
+    @rawPayload)
 `);
 
 // packages.plan_code references products.plan_code without ON DELETE CASCADE, so packages
@@ -180,6 +194,7 @@ for (const p of products) {
     contractualPayouts: p.flags.contractualPayouts, maturity: p.flags.maturity, deathBenefit: p.flags.deathBenefit,
     cashSurrender: p.flags.cashSurrender, extendedTerm: p.flags.extendedTerm, reducedPaidup: p.flags.reducedPaidup,
     channelCodes: JSON.stringify(p.channels.map((c) => ({ code: c.code, nameEn: c.nameEn, nameTh: c.nameTh }))),
+    rawPayload: RAW_PAYLOADS[p.planCode] ? JSON.stringify(RAW_PAYLOADS[p.planCode]) : null,
   });
 }
 

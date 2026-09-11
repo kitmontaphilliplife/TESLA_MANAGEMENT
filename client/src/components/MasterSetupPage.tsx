@@ -3,10 +3,13 @@ import { MASTER_CODE_CATEGORIES, MASTER_CODE_CATEGORY_LABEL } from "../types";
 import type { MasterCode, MasterCodeCategory } from "../types";
 import { api } from "../api";
 import { MasterCodeModal } from "./MasterCodeModal";
+import { PackageMasterViewer } from "./PackageMasterViewer";
 import { IconTrash } from "../icons";
 
+type SidebarCategory = MasterCodeCategory | "package";
+
 export function MasterSetupPage() {
-  const [category, setCategory] = useState<MasterCodeCategory>("class_of_business");
+  const [category, setCategory] = useState<SidebarCategory>("class_of_business");
   const [codes, setCodes] = useState<MasterCode[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +23,7 @@ export function MasterSetupPage() {
   const [editing, setEditing] = useState<MasterCode | null>(null);
 
   function reload() {
+    if (category === "package") return;
     api
       .listMasterCodes(category)
       .then(setCodes)
@@ -55,6 +59,7 @@ export function MasterSetupPage() {
   const extraCols = (isDistributionChannel ? 1 : 0) + (hasParent ? 1 : 0);
 
   async function handleSave(data: { codeId: string; nameEn: string; nameTh: string; channelGroup?: string }) {
+    if (category === "package") return;
     if (editing) {
       await api.updateMasterCode(category, editing.id, { nameEn: data.nameEn, nameTh: data.nameTh, channelGroup: data.channelGroup });
     } else {
@@ -66,6 +71,7 @@ export function MasterSetupPage() {
   }
 
   async function handleDelete(code: MasterCode) {
+    if (category === "package") return;
     if (!confirm(`ลบ ${code.codeId} — ${code.nameEn} ?`)) return;
     await api.deleteMasterCode(category, code.id).catch((e) => setError(String(e.message ?? e)));
     reload();
@@ -89,8 +95,16 @@ export function MasterSetupPage() {
               {MASTER_CODE_CATEGORY_LABEL[c]}
             </div>
           ))}
+          <div className={`master-setup-nav-item ${category === "package" ? "active" : ""}`} onClick={() => setCategory("package")}>
+            Package
+          </div>
         </div>
 
+        {category === "package" ? (
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <PackageMasterViewer />
+          </div>
+        ) : (
         <div className="list-page-table card" style={{ margin: 0, flex: 1 }}>
           <div className="card-head">
             <div className="card-head-left">
@@ -209,9 +223,10 @@ export function MasterSetupPage() {
             </>
           )}
         </div>
+        )}
       </div>
 
-      {modalOpen && (
+      {modalOpen && category !== "package" && (
         <MasterCodeModal
           category={category}
           editing={editing}

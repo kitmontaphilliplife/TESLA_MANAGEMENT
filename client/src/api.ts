@@ -1,4 +1,4 @@
-import type { ChannelType, MasterCode, MasterCodeCategory, PackageDetail, PackageSummary, ProductListItem, RecommendedPackage } from "./types";
+import type { ChannelType, MasterCode, MasterCodeCategory, PackageDetail, PackageSummary, ProductListItem, RawProductPayload, RecommendedPackage } from "./types";
 
 async function req<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(path, {
@@ -68,6 +68,9 @@ export const api = {
 
   setStatus: (planCode: string, status: PackageDetail["status"] | "pending_approval") =>
     req<PackageDetail>(`/api/packages/${planCode}/status`, { method: "POST", body: JSON.stringify({ status }) }),
+
+  getProductRaw: (planCode: string) =>
+    req<{ planCode: string; nameTh: string; nameEn: string; payload: RawProductPayload }>(`/api/products/${planCode}/raw`),
 
   listMasterCodes: (category: MasterCodeCategory) => req<MasterCode[]>(`/api/master-codes/${category}`),
   createMasterCode: (

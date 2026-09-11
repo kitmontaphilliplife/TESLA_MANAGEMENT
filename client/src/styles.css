@@ -162,6 +162,15 @@ button{font-family:inherit;}
 .master-setup-nav-item{padding:10px 14px; border-radius:8px; font-size:13px; font-weight:500; color:var(--gray-600); cursor:pointer;}
 .master-setup-nav-item:hover{background:var(--gray-100);}
 .master-setup-nav-item.active{background:var(--navy); color:#fff; font-weight:700;}
+
+/* Package (TESLA_MASTER payload viewer) */
+.wizard-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; padding:12px; background:#fff; border:1px solid var(--gray-200); border-radius:12px;}
+.wizard-tab{border:1px solid var(--gray-300); background:#fff; color:var(--gray-600); font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:100px; cursor:pointer;}
+.wizard-tab.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+.detail-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:14px;}
+.detail-field{display:flex; flex-direction:column; gap:3px;}
+.detail-field-label{font-size:11px; font-weight:600; color:var(--gray-500); text-transform:uppercase; letter-spacing:.02em;}
+.detail-field-value{font-size:13.5px; color:var(--ink); font-weight:600;}
 .stat-card{flex:1; min-width:150px; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:16px 18px; display:flex; flex-direction:column; gap:6px;}
 .stat-card-active{border-color:var(--blue); background:var(--blue-50);}
 .stat-label{font-size:12px; color:var(--gray-500); font-weight:600;}
