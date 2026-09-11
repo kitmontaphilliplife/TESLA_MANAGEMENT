@@ -4,14 +4,15 @@ import masterData from "./masterDataSeed.json" with { type: "json" };
 import wln001Payload from "./rawProductPayloads/WLN001.json" with { type: "json" };
 import enn002Payload from "./rawProductPayloads/ENN002.json" with { type: "json" };
 import enn001Payload from "./rawProductPayloads/ENN001.json" with { type: "json" };
+import wln003Payload from "./rawProductPayloads/WLN003.json" with { type: "json" };
 
 // Full original TESLA_MASTER payloads, for products where the business actually gave us
-// one — powers the read-only "Package" viewer in Master Setup. ENN019 and PA0231 have no
-// real payload (see notes on those products below), so they're left out of this map.
+// one — powers the read-only "Package" viewer in Master Setup.
 const RAW_PAYLOADS: Record<string, unknown> = {
   WLN001: wln001Payload,
   ENN002: enn002Payload,
   ENN001: enn001Payload,
+  WLN003: wln003Payload,
 };
 
 // ---------------------------------------------------------------------------
@@ -32,7 +33,11 @@ const RAW_PAYLOADS: Record<string, unknown> = {
 //    (wrongly) assumed CHN10 was "Online" based on the ENN001 payload alone; this master
 //    export is the more authoritative source, so ENN001's channel list below was corrected.
 //    CHN11-14 (DTS, IBANK, MOM, TELEID) were removed from Distribution Channel by the
-//    business — excluded from seeding below, not just left UNMAPPED.
+//    business — except CHN11 got reinstated (UNMAPPED) on 2026-09-11 because a real
+//    product (WLN003) actually references it, contradicting the earlier "delete" call.
+//    Its own payload gives no name for CHN11 (name_En/name_Th both null) — using the
+//    "DTS" name from Master data.xlsx since that's the only real name on record for it.
+//    Flagged back to the business; CHN12-14 stay removed (no product has referenced them).
 // ---------------------------------------------------------------------------
 const CONFIRMED_CHANNEL_GROUPS: Record<string, string> = {
   CHN01: "F2F",
@@ -45,7 +50,7 @@ const CONFIRMED_CHANNEL_GROUPS: Record<string, string> = {
   CHN09: "F2F",
   CHN10: "F2F",
 };
-const EXCLUDED_DISTRIBUTION_CHANNELS = new Set(["CHN11", "CHN12", "CHN13", "CHN14"]);
+const EXCLUDED_DISTRIBUTION_CHANNELS = new Set(["CHN12", "CHN13", "CHN14"]);
 
 db.exec(`DELETE FROM master_codes`);
 const insertMasterCode = db.prepare(
@@ -118,6 +123,29 @@ const products: ProductSeed[] = [
       { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
       { code: "CHN07", nameEn: "Agent Online", nameTh: "ตัวแทนของบริษัท (ขายช่องทางออนไลน์)" },
       { code: "CHN08", nameEn: "Broker Online", nameTh: "นายหน้าประกันชีวิต (ขายช่องทางออนไลน์)" },
+    ],
+  },
+  {
+    // Real payload: "Happy Wealthy 90/15" (WLN003) — new 2026-09-11. NOTE: its channel list
+    // includes CHN11, which the business had asked to delete from Distribution Channel
+    // (see comment on EXCLUDED_DISTRIBUTION_CHANNELS above) — reinstated as UNMAPPED since
+    // a real product actually references it. Full payload: rawProductPayloads/WLN003.json.
+    planCode: "WLN003", nameTh: "แฮปปี้ เวลธ์ตี้ 90/15 ชนิดไม่มีเงินปันผล", nameEn: "Happy Wealthy 90/15",
+    category: "ประกันชีวิตตลอดชีพ",
+    productTypeCode: "PTY01", productTypeNameEn: "Ordinary Life Insurance",
+    subProductTypeCode: "SPT02", subProductTypeNameEn: "Whole Life",
+    insuranceTypeCode: "INSTYPNRM", insuranceTypeNameEn: "Normal", hasSubPlan: false,
+    startDate: "2017-06-07", endDate: null,
+    additionalRiders: ["ประกันภัยอุบัติเหตุ", "ประกันโรคร้ายแรง", "ค่าชดเชยรายวันจากการเข้าพักรักษาตัวในโรงพยาบาล", "ประกันสุขภาพ", "สัญญาเพิ่มการประกันภัยชั่วระยะเวลา", "คุ้มครองผู้ชำระเบี้ยประกันภัย", "ทุพพลภาพสิ้นเชิงถาวร", "ยกเว้นเบี้ยประกันภัย"],
+    flags: { contractualPayouts: "Y", maturity: "Y", deathBenefit: "Y", cashSurrender: "Y", extendedTerm: "Y", reducedPaidup: "Y" },
+    channels: [
+      { code: "CHN01", nameEn: "Agent", nameTh: "ตัวแทนของบริษัท" },
+      { code: "CHN02", nameEn: "Broker", nameTh: "นายหน้าประกันชีวิต" },
+      { code: "CHN03", nameEn: "Bancassurance", nameTh: "ธนาคาร" },
+      { code: "CHN05", nameEn: "Direct Marketing", nameTh: "ขายตรง" },
+      { code: "CHN06", nameEn: "Work Site", nameTh: "การขายผ่านองค์กร" },
+      { code: "CHN09", nameEn: "Partnership", nameTh: "ช่องทางจัดจำหน่าย/ขยายธุรกิจผ่านพันธมิตร" },
+      { code: "CHN11", nameEn: "DTS", nameTh: "DTS" },
     ],
   },
 ];
