@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ProductListItem } from "../types";
 import { api } from "../api";
-import { IconClose } from "../icons";
+import { IconClose, IconRefresh, IconSave, IconPackage } from "../icons";
 
 function formatDate(iso: string | null): string {
   if (!iso) return "-";
@@ -93,7 +93,7 @@ export function AddPackageModal({
       <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
         <div className="card-head">
           <div className="card-head-left">
-            <div className="card-title">Add Package</div>
+            <div className="card-title"><IconPackage /> Add Package</div>
           </div>
           <button className="icon-btn" onClick={onClose} title="ปิด">
             <IconClose />
@@ -203,13 +203,13 @@ export function AddPackageModal({
         </div>
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={onClose}>
-            Cancel
+            <IconClose /> Cancel
           </button>
           <button className="btn btn-secondary" onClick={handleReset}>
-            Reset
+            <IconRefresh /> Reset
           </button>
           <button className="btn btn-primary" disabled={!planCode || saving} onClick={handleSave}>
-            {saving ? "กำลังบันทึก…" : "Save"}
+            <IconSave /> {saving ? "กำลังบันทึก…" : "Save"}
           </button>
         </div>
       </div>

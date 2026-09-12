@@ -1,5 +1,6 @@
 import type { KeyAdvantageCard as Card } from "../types";
 import { DebouncedInput } from "./DebouncedInput";
+import { IconStar } from "../icons";
 
 export function KeyAdvantagesCard({
   enabled,
@@ -20,7 +21,7 @@ export function KeyAdvantagesCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Key Advantages</div>
+          <div className="card-title"><IconStar /> Key Advantages</div>
           <div className="card-sub">Section นี้เปิด/ปิดได้ต่อ Package (Optional)</div>
         </div>
         <div className="toggle-row">

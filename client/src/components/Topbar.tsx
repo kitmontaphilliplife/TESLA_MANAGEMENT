@@ -1,4 +1,5 @@
 import type { PackageDetail } from "../types";
+import { IconArrowLeft, IconSave, IconSend, IconClock, IconEye } from "../icons";
 
 const STATUS_LABEL: Record<PackageDetail["status"], string> = {
   draft: "Draft",
@@ -32,8 +33,8 @@ export function Topbar({
     <div className="topbar">
       <div className="crumb">
         <a href="#" onClick={(e) => { e.preventDefault(); onBack(); }}>
-          Package List
-        </a>{" "}
+          <IconArrowLeft /> Package List
+        </a>
         / <b>Package Configuration</b>
       </div>
       <div className="title-row">
@@ -45,14 +46,15 @@ export function Topbar({
         </div>
         <div className="title-actions">
           {readOnly ? (
-            <span className="read-only-badge">อ่านอย่างเดียว</span>
+            <span className="read-only-badge"><IconEye /> อ่านอย่างเดียว</span>
           ) : (
             <>
               {saving ? <span className="save-status">กำลังบันทึก…</span> : <span className="save-status">บันทึกอัตโนมัติแล้ว</span>}
               <button className="btn btn-secondary" onClick={onSaveDraft}>
-                บันทึกฉบับร่าง
+                <IconSave /> บันทึกฉบับร่าง
               </button>
               <button className="btn btn-primary" onClick={onSubmit} disabled={pkg.status === "pending_approval"}>
+                {pkg.status === "pending_approval" ? <IconClock /> : <IconSend />}
                 {pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
               </button>
             </>

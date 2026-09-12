@@ -18,6 +18,7 @@ export function Sidebar({
         <div className="side-logo-mark">P</div>
         <div className="side-logo-text">TESLA Management</div>
       </div>
+      <div className="side-eyebrow">Menu</div>
       <div className="side-nav">
         <div className="side-item">
           <IconDashboard />

@@ -15,6 +15,7 @@ import { DocumentCard } from "./components/DocumentCard";
 import { CampaignPanel, ApprovalHistoryPanel } from "./components/SidePanels";
 import { PackageListPage } from "./components/PackageListPage";
 import { MasterSetupPage } from "./components/MasterSetupPage";
+import { IconArrowLeft } from "./icons";
 
 export default function App() {
   const [view, setView] = useState<"list" | "detail" | "master">("list");
@@ -92,7 +93,7 @@ export default function App() {
             <div className="loading-screen">
               เกิดข้อผิดพลาด: {error}{" "}
               <button className="btn btn-secondary" onClick={backToList}>
-                กลับไป Package List
+                <IconArrowLeft /> กลับไป Package List
               </button>
             </div>
           )}

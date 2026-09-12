@@ -1,6 +1,6 @@
 import type { ChannelContent, ProductInfoItem } from "../types";
 import { DebouncedInput } from "./DebouncedInput";
-import { IconTrash } from "../icons";
+import { IconTrash, IconInfo } from "../icons";
 
 type GroupType = "insurance_type" | "additional_coverage" | "highlight";
 
@@ -66,7 +66,7 @@ export function ProductInformationCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Product information</div>
+          <div className="card-title"><IconInfo /> Product information</div>
           <div className="card-sub">ข้อมูลสำหรับตัวแทนใช้ประกอบการเสนอขาย (เฉพาะช่องทาง F2F)</div>
         </div>
       </div>

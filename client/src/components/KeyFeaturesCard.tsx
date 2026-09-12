@@ -1,5 +1,5 @@
 import type { ChannelContent, KeyFeature } from "../types";
-import { FeatureIcon, IconTrash } from "../icons";
+import { FeatureIcon, IconTrash, IconShieldOutline } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
 
 export function KeyFeaturesCard({
@@ -24,7 +24,7 @@ export function KeyFeaturesCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Key Features of the Insurance Plan</div>
+          <div className="card-title"><IconShieldOutline /> Key Features of the Insurance Plan</div>
           <div className="card-sub">จุดเด่นของแบบประกันภัย — จำนวนแถวปรับได้ตามสินค้า (Dynamic)</div>
         </div>
         <span className="badge badge-blue">{features.length} แถว</span>

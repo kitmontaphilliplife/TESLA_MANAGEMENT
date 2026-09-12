@@ -1,5 +1,5 @@
 import type { ChannelContent } from "../types";
-import { IconUpload } from "../icons";
+import { IconUpload, IconImage } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
 
 export function ThumbnailCard({
@@ -21,7 +21,7 @@ export function ThumbnailCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Thumbnail</div>
+          <div className="card-title"><IconImage /> Thumbnail</div>
           <div className="card-sub">รูปและข้อความสรุปที่แสดงในการ์ดหน้ารายการสินค้า</div>
         </div>
       </div>

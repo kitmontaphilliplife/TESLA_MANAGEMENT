@@ -15,7 +15,7 @@ export function DocumentCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Document — General Terms &amp; Conditions</div>
+          <div className="card-title"><IconDoc /> Document — General Terms &amp; Conditions</div>
           <div className="card-sub">เอกสารแนบและข้อความเงื่อนไขทั่วไป</div>
         </div>
       </div>

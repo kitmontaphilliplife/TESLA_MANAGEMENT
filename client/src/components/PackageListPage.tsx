@@ -3,6 +3,7 @@ import type { PackageSummary } from "../types";
 import { api } from "../api";
 import { AddPackageModal } from "./AddPackageModal";
 import { RowActionsMenu } from "./RowActionsMenu";
+import { IconPackage, IconPlus, IconLayers, IconCheckCircle, IconEdit, IconClock, IconArchive } from "../icons";
 
 const STATUS_LABEL: Record<PackageSummary["status"], string> = {
   draft: "Draft",
@@ -112,37 +113,57 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
   return (
     <div className="list-page">
       <div className="list-page-head">
-        <div>
-          <div className="title" style={{ fontSize: 22 }}>
-            Package List
+        <div className="page-title-row">
+          <div className="page-title-icon">
+            <IconPackage />
           </div>
-          <div className="card-sub">รวม Package ที่เคย Set ไว้ทั้งหมด — Search / View / Create / Edit</div>
+          <div>
+            <div className="title" style={{ fontSize: 22 }}>
+              Package List
+            </div>
+            <div className="card-sub">รวม Package ที่เคย Set ไว้ทั้งหมด — Search / View / Create / Edit</div>
+          </div>
         </div>
         <button className="btn btn-primary" onClick={() => setShowAddModal(true)}>
-          + Add Package
+          <IconPlus /> Add Package
         </button>
       </div>
 
       <div className="stat-cards">
         <div className="stat-card stat-card-active">
-          <div className="stat-label">Total Package</div>
-          <div className="stat-value">{counts.total}</div>
+          <div className="stat-icon"><IconLayers /></div>
+          <div className="stat-body">
+            <div className="stat-label">Total Package</div>
+            <div className="stat-value">{counts.total}</div>
+          </div>
         </div>
         <div className="stat-card">
-          <div className="stat-label">Active</div>
-          <div className="stat-value">{counts.active}</div>
+          <div className="stat-icon"><IconCheckCircle /></div>
+          <div className="stat-body">
+            <div className="stat-label">Active</div>
+            <div className="stat-value">{counts.active}</div>
+          </div>
         </div>
         <div className="stat-card">
-          <div className="stat-label">Draft</div>
-          <div className="stat-value">{counts.draft}</div>
+          <div className="stat-icon"><IconEdit /></div>
+          <div className="stat-body">
+            <div className="stat-label">Draft</div>
+            <div className="stat-value">{counts.draft}</div>
+          </div>
         </div>
         <div className="stat-card">
-          <div className="stat-label">Pending Approval</div>
-          <div className="stat-value">{counts.pending_approval}</div>
+          <div className="stat-icon"><IconClock /></div>
+          <div className="stat-body">
+            <div className="stat-label">Pending Approval</div>
+            <div className="stat-value">{counts.pending_approval}</div>
+          </div>
         </div>
         <div className="stat-card">
-          <div className="stat-label">Inactive</div>
-          <div className="stat-value">{counts.inactive}</div>
+          <div className="stat-icon"><IconArchive /></div>
+          <div className="stat-body">
+            <div className="stat-label">Inactive</div>
+            <div className="stat-value">{counts.inactive}</div>
+          </div>
         </div>
       </div>
 

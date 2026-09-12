@@ -1,9 +1,10 @@
 import type { AuditEntry, Campaign } from "../types";
+import { IconCampaign, IconClock } from "../icons";
 
 export function CampaignPanel({ campaign }: { campaign: Campaign | null }) {
   return (
     <>
-      <div className="side-title">Campaign</div>
+      <div className="side-title"><IconCampaign /> Campaign</div>
       <div className="card">
         <div className="card-body campaign-card">
           {campaign ? (
@@ -31,7 +32,7 @@ export function ApprovalHistoryPanel({ auditLog }: { auditLog: AuditEntry[] }) {
     <div className="card">
       <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <div className="side-title" style={{ padding: 0 }}>
-          Approval History
+          <IconClock /> Approval History
         </div>
         <div className="timeline">
           {auditLog.length === 0 && <div className="campaign-meta">ยังไม่มีประวัติ</div>}

@@ -1,5 +1,5 @@
 import type { ChannelContent } from "../types";
-import { IconUpload } from "../icons";
+import { IconUpload, IconImage } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
 
 export function BannerCard({
@@ -13,7 +13,7 @@ export function BannerCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Banner display</div>
+          <div className="card-title"><IconImage /> Banner display</div>
           <div className="card-sub">แบนเนอร์บนสุดของหน้าโปรดักส์</div>
         </div>
       </div>

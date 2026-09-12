@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ProductListItem, RawProductPayload } from "../types";
 import { api } from "../api";
+import { IconArrowLeft, IconEye, IconPackage } from "../icons";
 
 const TABS = [
   { key: "main", label: "Main Info" },
@@ -344,7 +345,7 @@ export function PackageMasterViewer() {
         <div className="list-page-table card" style={{ margin: "0 0 16px 0", padding: 16 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
             <button className="btn btn-secondary" onClick={() => setSelected(null)}>
-              ← กลับ
+              <IconArrowLeft /> กลับ
             </button>
             <span className="badge badge-blue">
               Product Code {selected} {detail ? `| ${detail.nameEn}` : ""}
@@ -383,7 +384,7 @@ export function PackageMasterViewer() {
     <div className="list-page-table card" style={{ margin: 0 }}>
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Package (TESLA_MASTER payload viewer)</div>
+          <div className="card-title"><IconPackage /> Package (TESLA_MASTER payload viewer)</div>
           <div className="card-sub">อ่านอย่างเดียว — ดูข้อมูล payload เต็มของแต่ละ Product ที่มีการส่งมาจริง</div>
         </div>
       </div>
@@ -417,7 +418,7 @@ export function PackageMasterViewer() {
                   </td>
                   <td>
                     <button className="btn btn-secondary" disabled={!p.hasRawPayload} onClick={() => setSelected(p.planCode)}>
-                      View
+                      <IconEye /> View
                     </button>
                   </td>
                 </tr>

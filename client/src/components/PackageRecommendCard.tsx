@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { RecommendedPackage } from "../types";
 import { api } from "../api";
-import { IconClose, IconSearch } from "../icons";
+import { IconClose, IconSearch, IconStar } from "../icons";
 
 export function PackageRecommendCard({
   code,
@@ -52,7 +52,7 @@ export function PackageRecommendCard({
     <div className="card">
       <div className="card-head">
         <div className="card-head-left">
-          <div className="card-title">Package recommend</div>
+          <div className="card-title"><IconStar /> Package recommend</div>
           <div className="card-sub">ค้นหาและเลือกสินค้าที่เกี่ยวข้อง (เลือกได้ 1 รายการขึ้นไป)</div>
         </div>
       </div>

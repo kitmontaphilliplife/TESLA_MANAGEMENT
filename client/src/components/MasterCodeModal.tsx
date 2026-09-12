@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { MasterCode, MasterCodeCategory } from "../types";
-import { IconClose } from "../icons";
+import { IconClose, IconSave, IconTag } from "../icons";
 
 export function MasterCodeModal({
   category,
@@ -42,7 +42,7 @@ export function MasterCodeModal({
       <div className="modal-panel" style={{ maxWidth: 440 }} onClick={(e) => e.stopPropagation()}>
         <div className="card-head">
           <div className="card-head-left">
-            <div className="card-title">{editing ? "Edit" : "Add"} Code</div>
+            <div className="card-title"><IconTag /> {editing ? "Edit" : "Add"} Code</div>
           </div>
           <button className="icon-btn" onClick={onClose} title="ปิด">
             <IconClose />
@@ -79,10 +79,10 @@ export function MasterCodeModal({
         </div>
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={onClose}>
-            Cancel
+            <IconClose /> Cancel
           </button>
           <button className="btn btn-primary" disabled={saving} onClick={handleSave}>
-            {saving ? "กำลังบันทึก…" : "Save"}
+            <IconSave /> {saving ? "กำลังบันทึก…" : "Save"}
           </button>
         </div>
       </div>

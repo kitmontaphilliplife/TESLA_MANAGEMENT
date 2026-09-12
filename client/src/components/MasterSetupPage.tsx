@@ -4,9 +4,38 @@ import type { MasterCode, MasterCodeCategory } from "../types";
 import { api } from "../api";
 import { MasterCodeModal } from "./MasterCodeModal";
 import { PackageMasterViewer } from "./PackageMasterViewer";
-import { IconTrash } from "../icons";
+import {
+  IconTrash,
+  IconEdit,
+  IconPlus,
+  IconMaster,
+  IconLayers,
+  IconBriefcase,
+  IconShieldOutline,
+  IconTag,
+  IconUser,
+  IconBroadcast,
+  IconCard,
+  IconPackage,
+} from "../icons";
 
 type SidebarCategory = MasterCodeCategory | "package";
+
+const CATEGORY_ICON: Record<SidebarCategory, () => JSX.Element> = {
+  class_of_business: IconLayers,
+  line_of_business: IconBriefcase,
+  coverage_type: IconShieldOutline,
+  product_type: IconTag,
+  sub_product_type: IconTag,
+  occupation_class: IconUser,
+  occupation_group: IconUser,
+  occupation_position: IconUser,
+  occupation: IconUser,
+  distribution_channel: IconBroadcast,
+  payment_mode: IconCard,
+  payment_method: IconCard,
+  package: IconPackage,
+};
 
 export function MasterSetupPage() {
   const [category, setCategory] = useState<SidebarCategory>("class_of_business");
@@ -80,23 +109,31 @@ export function MasterSetupPage() {
   return (
     <div className="list-page">
       <div className="list-page-head">
-        <div>
-          <div className="title" style={{ fontSize: 22 }}>
-            Master Setup
+        <div className="page-title-row">
+          <div className="page-title-icon">
+            <IconMaster />
           </div>
-          <div className="card-sub">ข้อมูลอ้างอิง/รหัสมาตรฐาน — โครงตาม GIO Product Setup</div>
+          <div>
+            <div className="title" style={{ fontSize: 22 }}>
+              Master Setup
+            </div>
+            <div className="card-sub">ข้อมูลอ้างอิง/รหัสมาตรฐาน — โครงตาม GIO Product Setup</div>
+          </div>
         </div>
       </div>
 
       <div className="master-setup-layout">
         <div className="master-setup-nav">
-          {MASTER_CODE_CATEGORIES.map((c) => (
-            <div key={c} className={`master-setup-nav-item ${c === category ? "active" : ""}`} onClick={() => setCategory(c)}>
-              {MASTER_CODE_CATEGORY_LABEL[c]}
-            </div>
-          ))}
+          {MASTER_CODE_CATEGORIES.map((c) => {
+            const Icon = CATEGORY_ICON[c];
+            return (
+              <div key={c} className={`master-setup-nav-item ${c === category ? "active" : ""}`} onClick={() => setCategory(c)}>
+                <Icon /> {MASTER_CODE_CATEGORY_LABEL[c]}
+              </div>
+            );
+          })}
           <div className={`master-setup-nav-item ${category === "package" ? "active" : ""}`} onClick={() => setCategory("package")}>
-            Package
+            <IconPackage /> Package
           </div>
         </div>
 
@@ -108,7 +145,13 @@ export function MasterSetupPage() {
         <div className="list-page-table card" style={{ margin: 0, flex: 1 }}>
           <div className="card-head">
             <div className="card-head-left">
-              <div className="card-title">{MASTER_CODE_CATEGORY_LABEL[category]}</div>
+              <div className="card-title">
+                {(() => {
+                  const Icon = CATEGORY_ICON[category];
+                  return <Icon />;
+                })()}
+                {MASTER_CODE_CATEGORY_LABEL[category]}
+              </div>
             </div>
             <button
               className="btn btn-primary"
@@ -117,7 +160,7 @@ export function MasterSetupPage() {
                 setModalOpen(true);
               }}
             >
-              + Add
+              <IconPlus /> Add
             </button>
           </div>
 
@@ -180,7 +223,7 @@ export function MasterSetupPage() {
                                 setModalOpen(true);
                               }}
                             >
-                              Edit
+                              <IconEdit /> Edit
                             </button>
                             <button className="icon-btn" onClick={() => handleDelete(c)} title="ลบ">
                               <IconTrash />
