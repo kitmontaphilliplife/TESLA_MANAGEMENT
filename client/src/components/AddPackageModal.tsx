@@ -128,7 +128,6 @@ export function AddPackageModal({
                   setPlanCode("");
                 }}
                 placeholder="Distribution Channel *"
-                showClear
               />
               <Dropdown
                 className="select"
@@ -141,7 +140,6 @@ export function AddPackageModal({
                   setPlanCode("");
                 }}
                 placeholder="Product Type *"
-                showClear
               />
               <Dropdown
                 className="select"
@@ -153,7 +151,6 @@ export function AddPackageModal({
                   setPlanCode("");
                 }}
                 placeholder="Sub Product Type *"
-                showClear
               />
             </div>
 

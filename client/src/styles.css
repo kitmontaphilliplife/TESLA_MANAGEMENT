@@ -299,4 +299,5 @@ button{font-family:inherit;}
 .p-tag{border-radius:100px;}
 .p-tag.p-tag-info{background:var(--blue-50); color:var(--navy);}
 .p-dialog .p-dialog-header{border-bottom:1px solid var(--gray-200);}
+.p-dialog .p-dialog-content{padding:30px 20px !important;}
 .p-menu.p-component{border-radius:12px;}
