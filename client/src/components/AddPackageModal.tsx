@@ -139,7 +139,8 @@ export function AddPackageModal({
                   setSubProductType("");
                   setPlanCode("");
                 }}
-                placeholder="Product Type *"
+                disabled={!channelCode}
+                placeholder={channelCode ? "Product Type *" : "เลือก Distribution Channel ก่อน"}
               />
               <Dropdown
                 className="select"
@@ -150,7 +151,8 @@ export function AddPackageModal({
                   setSubProductType(e.value);
                   setPlanCode("");
                 }}
-                placeholder="Sub Product Type *"
+                disabled={!productType}
+                placeholder={productType ? "Sub Product Type *" : "เลือก Product Type ก่อน"}
               />
             </div>
 
