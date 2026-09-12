@@ -18,6 +18,11 @@ export const api = {
   createPackage: (planCode: string) => req<PackageDetail>(`/api/packages`, { method: "POST", body: JSON.stringify({ planCode }) }),
   deletePackage: (planCode: string) => req<{ ok: true }>(`/api/packages/${planCode}`, { method: "DELETE" }),
   listProducts: () => req<ProductListItem[]>("/api/products"),
+  createProductFromPayload: (payload: unknown) =>
+    req<{ planCode: string }>("/api/products", { method: "POST", body: JSON.stringify({ payload }) }),
+  updateProductPayload: (planCode: string, payload: unknown) =>
+    req<{ planCode: string }>(`/api/products/${planCode}`, { method: "PUT", body: JSON.stringify({ payload }) }),
+  deleteProduct: (planCode: string) => req<{ ok: true }>(`/api/products/${planCode}`, { method: "DELETE" }),
 
   updateContent: (
     planCode: string,

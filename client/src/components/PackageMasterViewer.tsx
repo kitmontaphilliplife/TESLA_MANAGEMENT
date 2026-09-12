@@ -3,7 +3,9 @@ import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 import type { ProductListItem, RawProductPayload } from "../types";
 import { api } from "../api";
-import { IconArrowLeft, IconEye, IconPackage } from "../icons";
+import { IconArrowLeft, IconPackage, IconPlus } from "../icons";
+import { RowActionsMenu } from "./RowActionsMenu";
+import { PayloadModal } from "./PayloadModal";
 
 const TABS = [
   { key: "main", label: "Main Info" },
@@ -321,10 +323,37 @@ export function PackageMasterViewer() {
   const [selected, setSelected] = useState<string | null>(null);
   const [detail, setDetail] = useState<{ planCode: string; nameTh: string; nameEn: string; payload: RawProductPayload } | null>(null);
   const [tab, setTab] = useState<TabKey>("main");
+  const [payloadModal, setPayloadModal] = useState<{ mode: "add" | "edit"; planCode?: string; initialText: string } | null>(null);
 
-  useEffect(() => {
+  function reload() {
     api.listProducts().then(setProducts).catch((e) => setError(String(e.message ?? e)));
-  }, []);
+  }
+
+  useEffect(reload, []);
+
+  async function handleEdit(p: ProductListItem) {
+    if (!p.hasRawPayload) {
+      setPayloadModal({ mode: "edit", planCode: p.planCode, initialText: "" });
+      return;
+    }
+    try {
+      const raw = await api.getProductRaw(p.planCode);
+      setPayloadModal({ mode: "edit", planCode: p.planCode, initialText: JSON.stringify(raw.payload, null, 2) });
+    } catch (e: any) {
+      setError(String(e.message ?? e));
+    }
+  }
+
+  async function handleDelete(p: ProductListItem) {
+    if (!confirm(`ลบ Product ${p.planCode} — ${p.nameEn} ?`)) return;
+    try {
+      await api.deleteProduct(p.planCode);
+      reload();
+    } catch (e: any) {
+      const msg = String(e.message ?? e);
+      setError(msg === "has_package" ? `ลบไม่ได้ — ${p.planCode} มี Package อยู่แล้ว กรุณาลบ Package ก่อน` : msg);
+    }
+  }
 
   useEffect(() => {
     if (!selected) {
@@ -383,8 +412,13 @@ export function PackageMasterViewer() {
       <div className="card-head">
         <div className="card-head-left">
           <div className="card-title"><IconPackage /> Package (TESLA_MASTER payload viewer)</div>
-          <div className="card-sub">อ่านอย่างเดียว — ดูข้อมูล payload เต็มของแต่ละ Product ที่มีการส่งมาจริง</div>
+          <div className="card-sub">ดูข้อมูล payload เต็มของแต่ละ Product — เพิ่ม/แก้ไข ได้โดยวาง payload ใหม่</div>
         </div>
+        <Button
+          label="Add Package"
+          icon={<IconPlus />}
+          onClick={() => setPayloadModal({ mode: "add", initialText: "" })}
+        />
       </div>
       {products === null && !error && <div className="search-empty" style={{ padding: 20 }}>กำลังโหลด…</div>}
       {error && <div className="readonly-note" style={{ margin: 16 }}>{error}</div>}
@@ -413,13 +447,31 @@ export function PackageMasterViewer() {
                     <Tag severity={p.hasRawPayload ? "success" : "secondary"} value={p.hasRawPayload ? "มี payload จริง" : "ไม่มี payload"} />
                   </td>
                   <td>
-                    <Button label="View" icon={<IconEye />} outlined severity="secondary" disabled={!p.hasRawPayload} onClick={() => setSelected(p.planCode)} />
+                    <RowActionsMenu
+                      onView={() => setSelected(p.planCode)}
+                      onEdit={() => handleEdit(p)}
+                      onDelete={() => handleDelete(p)}
+                      canDelete={!p.hasPackage}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+
+      {payloadModal && (
+        <PayloadModal
+          mode={payloadModal.mode}
+          planCode={payloadModal.planCode}
+          initialText={payloadModal.initialText}
+          onClose={() => setPayloadModal(null)}
+          onSaved={() => {
+            setPayloadModal(null);
+            reload();
+          }}
+        />
       )}
     </div>
   );
