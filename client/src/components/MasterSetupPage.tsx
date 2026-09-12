@@ -106,7 +106,7 @@ export function MasterSetupPage() {
             <IconMaster />
           </div>
           <div>
-            <div className="title" style={{ fontSize: 22 }}>
+            <div className="title">
               Master Setup
             </div>
             <div className="card-sub">ข้อมูลอ้างอิง/รหัสมาตรฐาน — โครงตาม GIO Product Setup</div>

@@ -108,7 +108,7 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
             <IconPackage />
           </div>
           <div>
-            <div className="title" style={{ fontSize: 22 }}>
+            <div className="title">
               Package List
             </div>
             <div className="card-sub">รวม Package ที่เคย Set ไว้ทั้งหมด — Search / View / Create / Edit</div>
