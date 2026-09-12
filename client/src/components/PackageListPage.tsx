@@ -9,7 +9,7 @@ import type { PackageSummary } from "../types";
 import { api } from "../api";
 import { AddPackageModal } from "./AddPackageModal";
 import { RowActionsMenu } from "./RowActionsMenu";
-import { IconPackage, IconPlus, IconLayers, IconCheckCircle, IconEdit, IconClock, IconArchive } from "../icons";
+import { IconPackage, IconPlus, IconLayers, IconCheckCircle, IconEdit, IconClock, IconArchive, IconSend } from "../icons";
 
 const STATUS_LABEL: Record<PackageSummary["status"], string> = {
   draft: "Draft",
@@ -246,9 +246,10 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
                 onView={() => onOpenPackage(p.planCode, "view")}
                 onEdit={() => onOpenPackage(p.planCode, "edit")}
                 onDelete={() => handleDelete(p)}
-                onSubmit={() => handleSubmit(p)}
                 canDelete={p.status === "draft" || p.status === "pending_approval"}
-                canSubmit={p.status === "draft"}
+                extraActions={[
+                  { label: "Submit", icon: <IconSend />, onClick: () => handleSubmit(p), disabled: p.status !== "draft" },
+                ]}
               />
             )}
           />

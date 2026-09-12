@@ -2,22 +2,29 @@ import { useRef } from "react";
 import { Menu } from "primereact/menu";
 import { Button } from "primereact/button";
 import type { MenuItem } from "primereact/menuitem";
-import { IconKebab, IconEye, IconEdit, IconTrash, IconSend } from "../icons";
+import { IconKebab, IconEye, IconEdit, IconTrash } from "../icons";
 
+export interface RowExtraAction {
+  label: string;
+  icon: JSX.Element;
+  onClick: () => void;
+  disabled?: boolean;
+}
+
+// Base row action menu used across every table in the app — View / Edit / Delete
+// always come first, with per-table extras (e.g. Package List's "Submit") appended.
 export function RowActionsMenu({
   onView,
   onEdit,
   onDelete,
-  onSubmit,
-  canDelete,
-  canSubmit,
+  canDelete = true,
+  extraActions = [],
 }: {
   onView: () => void;
   onEdit: () => void;
   onDelete: () => void;
-  onSubmit: () => void;
-  canDelete: boolean;
-  canSubmit: boolean;
+  canDelete?: boolean;
+  extraActions?: RowExtraAction[];
 }) {
   const menuRef = useRef<Menu>(null);
 
@@ -25,7 +32,7 @@ export function RowActionsMenu({
     { label: "View", icon: <IconEye />, command: onView },
     { label: "Edit", icon: <IconEdit />, command: onEdit },
     { label: "Delete", icon: <IconTrash />, command: onDelete, disabled: !canDelete },
-    { label: "Submit", icon: <IconSend />, command: onSubmit, disabled: !canSubmit },
+    ...extraActions.map((a) => ({ label: a.label, icon: a.icon, command: a.onClick, disabled: a.disabled })),
   ];
 
   return (

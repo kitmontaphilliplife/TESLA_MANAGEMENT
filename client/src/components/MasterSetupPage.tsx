@@ -9,9 +9,8 @@ import type { MasterCode, MasterCodeCategory } from "../types";
 import { api } from "../api";
 import { MasterCodeModal } from "./MasterCodeModal";
 import { PackageMasterViewer } from "./PackageMasterViewer";
+import { RowActionsMenu } from "./RowActionsMenu";
 import {
-  IconTrash,
-  IconEdit,
   IconPlus,
   IconMaster,
   IconLayers,
@@ -55,6 +54,7 @@ export function MasterSetupPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<MasterCode | null>(null);
+  const [viewOnly, setViewOnly] = useState(false);
 
   function reload() {
     if (category === "package") return;
@@ -150,6 +150,7 @@ export function MasterSetupPage() {
               icon={<IconPlus />}
               onClick={() => {
                 setEditing(null);
+                setViewOnly(false);
                 setModalOpen(true);
               }}
             />
@@ -189,19 +190,19 @@ export function MasterSetupPage() {
               <Column
                 header="Actions"
                 body={(c: MasterCode) => (
-                  <div style={{ display: "flex", gap: 6 }}>
-                    <Button
-                      label="Edit"
-                      icon={<IconEdit />}
-                      outlined
-                      severity="secondary"
-                      onClick={() => {
-                        setEditing(c);
-                        setModalOpen(true);
-                      }}
-                    />
-                    <Button icon={<IconTrash />} outlined severity="secondary" rounded onClick={() => handleDelete(c)} title="ลบ" />
-                  </div>
+                  <RowActionsMenu
+                    onView={() => {
+                      setEditing(c);
+                      setViewOnly(true);
+                      setModalOpen(true);
+                    }}
+                    onEdit={() => {
+                      setEditing(c);
+                      setViewOnly(false);
+                      setModalOpen(true);
+                    }}
+                    onDelete={() => handleDelete(c)}
+                  />
                 )}
               />
             </DataTable>
@@ -214,9 +215,11 @@ export function MasterSetupPage() {
         <MasterCodeModal
           category={category}
           editing={editing}
+          readOnly={viewOnly}
           onClose={() => {
             setModalOpen(false);
             setEditing(null);
+            setViewOnly(false);
           }}
           onSave={handleSave}
         />
