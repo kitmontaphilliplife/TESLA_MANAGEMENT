@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { PackageSummary } from "../types";
 import { api } from "../api";
 import { AddPackageModal } from "./AddPackageModal";
+import { RowActionsMenu } from "./RowActionsMenu";
 
 const STATUS_LABEL: Record<PackageSummary["status"], string> = {
   draft: "Draft",
@@ -18,7 +19,7 @@ const STATUS_CLASS: Record<PackageSummary["status"], string> = {
 
 type SortKey = "planCode" | "nameTh" | "category" | "status" | "updatedAt";
 
-export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: string) => void }) {
+export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: string, mode: "view" | "edit") => void }) {
   const [packages, setPackages] = useState<PackageSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
@@ -41,6 +42,25 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
   }
 
   useEffect(reload, []);
+
+  async function handleDelete(p: PackageSummary) {
+    if (!confirm(`ลบ Package ${p.planCode} — ${p.nameEn} ?`)) return;
+    try {
+      await api.deletePackage(p.planCode);
+      reload();
+    } catch (e: any) {
+      setError(String(e.message ?? e));
+    }
+  }
+
+  async function handleSubmit(p: PackageSummary) {
+    try {
+      await api.setStatus(p.planCode, "pending_approval");
+      reload();
+    } catch (e: any) {
+      setError(String(e.message ?? e));
+    }
+  }
 
   const filtered = useMemo(() => {
     if (!packages) return [];
@@ -192,9 +212,14 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
                     <div className="upload-sub">{p.updatedBy}</div>
                   </td>
                   <td>
-                    <button className="btn btn-secondary" onClick={() => onOpenPackage(p.planCode)}>
-                      Edit
-                    </button>
+                    <RowActionsMenu
+                      onView={() => onOpenPackage(p.planCode, "view")}
+                      onEdit={() => onOpenPackage(p.planCode, "edit")}
+                      onDelete={() => handleDelete(p)}
+                      onSubmit={() => handleSubmit(p)}
+                      canDelete={p.status === "draft" || p.status === "pending_approval"}
+                      canSubmit={p.status === "draft"}
+                    />
                   </td>
                 </tr>
               ))}
@@ -237,7 +262,7 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
           onCreated={(planCode) => {
             setShowAddModal(false);
             reload();
-            onOpenPackage(planCode);
+            onOpenPackage(planCode, "edit");
           }}
         />
       )}

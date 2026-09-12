@@ -18,6 +18,7 @@ import { MasterSetupPage } from "./components/MasterSetupPage";
 
 export default function App() {
   const [view, setView] = useState<"list" | "detail" | "master">("list");
+  const [mode, setMode] = useState<"view" | "edit">("edit");
   const [planCode, setPlanCode] = useState<string | null>(null);
   const [pkg, setPkg] = useState<PackageDetail | null>(null);
   const [activeChannel, setActiveChannel] = useState<ChannelType>("ONLINE");
@@ -36,8 +37,9 @@ export default function App() {
       .catch((e) => setError(String(e.message ?? e)));
   }, [view, planCode]);
 
-  function openPackage(code: string) {
+  function openPackage(code: string, openMode: "view" | "edit" = "edit") {
     setPlanCode(code);
+    setMode(openMode);
     setError(null);
     setView("detail");
   }
@@ -64,6 +66,7 @@ export default function App() {
     setView("list");
     setPkg(null);
     setPlanCode(null);
+    setMode("edit");
     setError(null);
   }
 
@@ -101,12 +104,13 @@ export default function App() {
               <Topbar
                 pkg={pkg}
                 saving={saving}
+                readOnly={mode === "view"}
                 onBack={backToList}
                 onSaveDraft={() => withSaving(() => api.setStatus(planCode!, "draft"))}
                 onSubmit={() => withSaving(() => api.setStatus(planCode!, "pending_approval"))}
               />
               <ChannelTabs available={availableChannels} active={activeChannel} onSelect={setActiveChannel} />
-              <div className="body-scroll">
+              <div className={`body-scroll ${mode === "view" ? "read-only-lock" : ""}`}>
                 <div className="col-main">
                   <InfoBar pkg={pkg} />
 

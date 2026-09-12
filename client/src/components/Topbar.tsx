@@ -16,12 +16,14 @@ const STATUS_CLASS: Record<PackageDetail["status"], string> = {
 export function Topbar({
   pkg,
   saving,
+  readOnly,
   onSaveDraft,
   onSubmit,
   onBack,
 }: {
   pkg: PackageDetail;
   saving: boolean;
+  readOnly: boolean;
   onSaveDraft: () => void;
   onSubmit: () => void;
   onBack: () => void;
@@ -42,13 +44,19 @@ export function Topbar({
           <span className={`badge ${STATUS_CLASS[pkg.status]}`}>{STATUS_LABEL[pkg.status]}</span>
         </div>
         <div className="title-actions">
-          {saving ? <span className="save-status">กำลังบันทึก…</span> : <span className="save-status">บันทึกอัตโนมัติแล้ว</span>}
-          <button className="btn btn-secondary" onClick={onSaveDraft}>
-            บันทึกฉบับร่าง
-          </button>
-          <button className="btn btn-primary" onClick={onSubmit} disabled={pkg.status === "pending_approval"}>
-            {pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
-          </button>
+          {readOnly ? (
+            <span className="read-only-badge">อ่านอย่างเดียว</span>
+          ) : (
+            <>
+              {saving ? <span className="save-status">กำลังบันทึก…</span> : <span className="save-status">บันทึกอัตโนมัติแล้ว</span>}
+              <button className="btn btn-secondary" onClick={onSaveDraft}>
+                บันทึกฉบับร่าง
+              </button>
+              <button className="btn btn-primary" onClick={onSubmit} disabled={pkg.status === "pending_approval"}>
+                {pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

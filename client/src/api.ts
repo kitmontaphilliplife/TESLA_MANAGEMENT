@@ -16,6 +16,7 @@ export const api = {
   listPackages: () => req<PackageSummary[]>("/api/packages"),
   getPackage: (planCode: string) => req<PackageDetail>(`/api/packages/${planCode}`),
   createPackage: (planCode: string) => req<PackageDetail>(`/api/packages`, { method: "POST", body: JSON.stringify({ planCode }) }),
+  deletePackage: (planCode: string) => req<{ ok: true }>(`/api/packages/${planCode}`, { method: "DELETE" }),
   listProducts: () => req<ProductListItem[]>("/api/products"),
 
   updateContent: (

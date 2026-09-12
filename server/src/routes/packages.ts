@@ -456,6 +456,20 @@ packagesRouter.post("/:planCode/:channelType/document", upload.single("file"), (
   res.json(serializePackage(req.params.planCode));
 });
 
+// Delete a Package — only while it hasn't been approved yet (draft or pending_approval).
+// packages.plan_code has no ON DELETE CASCADE (see seed.ts), but every child table cascades
+// off packages.id (package_channel_content -> its own children, audit_log), so this one
+// DELETE is enough with foreign_keys pragma ON.
+packagesRouter.delete("/:planCode", (req, res) => {
+  const pkgRow = findPackageRow(req.params.planCode);
+  if (!pkgRow) return res.status(404).json({ error: "not_found" });
+  if (pkgRow.status === "active" || pkgRow.status === "inactive") {
+    return res.status(409).json({ error: "already_approved" });
+  }
+  db.prepare(`DELETE FROM packages WHERE id = ?`).run(pkgRow.id);
+  res.json({ ok: true });
+});
+
 // Save Draft / Submit for Approval (Package-level status)
 packagesRouter.post("/:planCode/status", (req, res) => {
   const pkgRow = findPackageRow(req.params.planCode);
