@@ -257,8 +257,9 @@ button{font-family:inherit;}
 .modal-panel .card-body{overflow-y:auto;}
 .modal-footer{display:flex; justify-content:flex-end; gap:10px; padding:16px 20px; border-top:1px solid var(--gray-200);}
 
-.package-preview{position:relative; margin-top:14px; background:var(--blue-50); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:6px;}
-.package-preview-badge{position:absolute; top:0; right:0; border-radius:0 10px 0 10px; background:var(--navy); color:#fff;}
+.package-preview{position:relative; margin-top:14px; background:var(--blue-50); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:8px; overflow:hidden;}
+.package-preview-badge{position:absolute; top:0; right:0; border-radius:0 10px 0 10px; background:var(--gradient-navy); color:#fff; padding:7px 16px; font-size:var(--fs-body-sm); font-weight:500;}
+.package-preview-code{border:1px solid var(--blue-100); width:fit-content;}
 .package-preview-title{font-size:var(--fs-body1); font-weight:500; color:var(--navy);}
 
 /* ---------------------------------------------------------------------------
