@@ -270,6 +270,12 @@ button{font-family:inherit;}
 .p-component{font-family:inherit;}
 .p-button{font-size:var(--fs-btn-m); font-weight:var(--fw-btn-m);}
 .p-inputtext, .p-dropdown .p-dropdown-label{font-size:var(--fs-body2);}
+.p-inputtext{padding:9px 11px;}
+.p-dropdown, .p-multiselect{border-radius:8px;}
+.p-dropdown .p-dropdown-label{padding:9px 11px;}
+.p-dropdown .p-dropdown-trigger{width:2.25rem; color:var(--gray-500);}
+.p-dropdown.p-dropdown-clearable .p-dropdown-label{padding-right:2.75rem;}
+.p-dropdown .p-dropdown-clear-icon{right:calc(2.25rem + 10px); color:var(--gray-500);}
 .p-datatable .p-datatable-thead > tr > th{font-size:var(--fs-table-h); font-weight:var(--fw-table-h);}
 .p-datatable .p-datatable-tbody > tr > td{font-size:var(--fs-table-d); font-weight:var(--fw-table-d);}
 .p-paginator{font-size:var(--fs-body2);}

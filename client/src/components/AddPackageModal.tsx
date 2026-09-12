@@ -129,7 +129,7 @@ export function AddPackageModal({
                     setSubProductType("");
                     setPlanCode("");
                   }}
-                  placeholder="เลือก Distribution Channel"
+                  placeholder="เลือก"
                   showClear
                 />
               </div>
@@ -144,7 +144,7 @@ export function AddPackageModal({
                     setSubProductType("");
                     setPlanCode("");
                   }}
-                  placeholder="เลือก Product Type"
+                  placeholder="เลือก"
                   showClear
                 />
               </div>
@@ -158,7 +158,7 @@ export function AddPackageModal({
                     setSubProductType(e.value);
                     setPlanCode("");
                   }}
-                  placeholder="เลือก Sub Product Type"
+                  placeholder="เลือก"
                   showClear
                 />
               </div>
@@ -174,7 +174,7 @@ export function AddPackageModal({
                 options={afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode }))}
                 onChange={(e) => setPlanCode(e.value)}
                 disabled={afterSubProductType.length === 0}
-                placeholder={afterSubProductType.length === 0 ? "ไม่พบ Package ที่ตรงเงื่อนไข" : "เลือก Package"}
+                placeholder={afterSubProductType.length === 0 ? "ไม่พบ Package ที่ตรงเงื่อนไข" : "เลือก"}
               />
 
               {selectedProduct && (
