@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import type { ProductListItem } from "../types";
+import type { MasterCode, ProductListItem } from "../types";
 import { api } from "../api";
 import { IconClose, IconRefresh, IconSave, IconPackage, IconClock } from "../icons";
 
@@ -21,6 +21,7 @@ export function AddPackageModal({
   onCreated: (planCode: string) => void;
 }) {
   const [products, setProducts] = useState<ProductListItem[] | null>(null);
+  const [channels, setChannels] = useState<MasterCode[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -31,16 +32,14 @@ export function AddPackageModal({
 
   useEffect(() => {
     api.listProducts().then(setProducts).catch((e) => setError(String(e.message ?? e)));
+    api.listMasterCodes("distribution_channel").then(setChannels).catch((e) => setError(String(e.message ?? e)));
   }, []);
 
   const available = useMemo(() => (products ?? []).filter((p) => !p.hasPackage), [products]);
 
-  // Distinct channels across all products still available to add.
-  const channelOptions = useMemo(() => {
-    const map = new Map<string, string>();
-    available.forEach((p) => p.channels.forEach((c) => map.set(c.code, c.nameEn)));
-    return Array.from(map.entries()).map(([code, nameEn]) => ({ code, nameEn }));
-  }, [available]);
+  // The full Distribution Channel reference list from Master Setup — not just the
+  // channels that happen to appear on products still available to add a package for.
+  const channelOptions = useMemo(() => (channels ?? []).map((c) => ({ code: c.codeId, nameEn: c.nameEn })), [channels]);
 
   const afterChannel = useMemo(
     () => (channelCode ? available.filter((p) => p.channels.some((c) => c.code === channelCode)) : available),
@@ -67,6 +66,7 @@ export function AddPackageModal({
     [afterProductType, subProductType]
   );
 
+  const allThreeSelected = Boolean(channelCode && productType && subProductType);
   const selectedProduct = afterSubProductType.find((p) => p.planCode === planCode) ?? null;
   const previewChannel = selectedProduct?.channels.find((c) => c.code === channelCode) ?? selectedProduct?.channels[0] ?? null;
 
@@ -110,10 +110,10 @@ export function AddPackageModal({
       }
     >
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {products === null && !error && <div className="search-empty">กำลังโหลด…</div>}
-        {products === null && error && <div className="readonly-note">{error}</div>}
+        {(products === null || channels === null) && !error && <div className="search-empty">กำลังโหลด…</div>}
+        {(products === null || channels === null) && error && <div className="readonly-note">{error}</div>}
 
-        {products !== null && (
+        {products !== null && channels !== null && (
           <>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <Dropdown
@@ -162,10 +162,16 @@ export function AddPackageModal({
                 className="select"
                 style={{ width: "100%" }}
                 value={planCode}
-                options={afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode }))}
+                options={allThreeSelected ? afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode })) : []}
                 onChange={(e) => setPlanCode(e.value)}
-                disabled={afterSubProductType.length === 0}
-                placeholder={afterSubProductType.length === 0 ? "ไม่พบ Package ที่ตรงเงื่อนไข" : "Package *"}
+                disabled={!allThreeSelected || afterSubProductType.length === 0}
+                placeholder={
+                  !allThreeSelected
+                    ? "เลือก Distribution Channel, Product Type, Sub Product Type ก่อน"
+                    : afterSubProductType.length === 0
+                    ? "ไม่พบ Package ที่ตรงเงื่อนไข"
+                    : "Package *"
+                }
               />
 
               {selectedProduct && (
