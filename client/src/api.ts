@@ -12,6 +12,17 @@ async function req<T>(path: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
+async function reqUpload<T>(path: string, file: File): Promise<T> {
+  const form = new FormData();
+  form.append("file", file);
+  const res = await fetch(path, { method: "POST", body: form });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error ?? `upload_failed_${res.status}`);
+  }
+  return res.json();
+}
+
 export const api = {
   listPackages: () => req<PackageSummary[]>("/api/packages"),
   getPackage: (planCode: string) => req<PackageDetail>(`/api/packages/${planCode}`),
@@ -64,13 +75,18 @@ export const api = {
   removeProductInfoItem: (planCode: string, id: string) =>
     req<PackageDetail>(`/api/packages/${planCode}/F2F/product-info-items/${id}`, { method: "DELETE" }),
 
-  uploadDocument: async (planCode: string, channel: ChannelType, file: File) => {
-    const form = new FormData();
-    form.append("file", file);
-    const res = await fetch(`/api/packages/${planCode}/${channel}/document`, { method: "POST", body: form });
-    if (!res.ok) throw new Error("upload_failed");
-    return (await res.json()) as PackageDetail;
-  },
+  uploadDocument: (planCode: string, channel: ChannelType, file: File) =>
+    reqUpload<PackageDetail>(`/api/packages/${planCode}/${channel}/document`, file),
+
+  uploadThumbnailImage: (planCode: string, channel: ChannelType, file: File) =>
+    reqUpload<PackageDetail>(`/api/packages/${planCode}/${channel}/thumbnail-image`, file),
+  removeThumbnailImage: (planCode: string, channel: ChannelType) =>
+    req<PackageDetail>(`/api/packages/${planCode}/${channel}/thumbnail-image`, { method: "DELETE" }),
+
+  uploadBannerImage: (planCode: string, channel: ChannelType, slot: "desktop" | "mobile", file: File) =>
+    reqUpload<PackageDetail>(`/api/packages/${planCode}/${channel}/banner-image/${slot}`, file),
+  removeBannerImage: (planCode: string, channel: ChannelType, slot: "desktop" | "mobile") =>
+    req<PackageDetail>(`/api/packages/${planCode}/${channel}/banner-image/${slot}`, { method: "DELETE" }),
 
   setStatus: (planCode: string, status: PackageDetail["status"] | "pending_approval") =>
     req<PackageDetail>(`/api/packages/${planCode}/status`, { method: "POST", body: JSON.stringify({ status }) }),

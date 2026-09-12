@@ -24,6 +24,19 @@ const upload = multer({
   },
 });
 
+const IMAGE_MIMETYPES = ["image/jpeg", "image/png", "image/webp"];
+const uploadImage = multer({
+  storage: multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, uploadsDir),
+    filename: (_req, file, cb) => cb(null, `${Date.now()}_${file.originalname.replace(/[^a-zA-Z0-9._-]/g, "_")}`),
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    if (!IMAGE_MIMETYPES.includes(file.mimetype)) return cb(new Error("Image only (JPG/PNG/WEBP)"));
+    cb(null, true);
+  },
+});
+
 export const packagesRouter = Router();
 
 type ChannelType = "F2F" | "ONLINE";
@@ -452,6 +465,48 @@ packagesRouter.post("/:planCode/:channelType/document", upload.single("file"), (
     .run(req.file.filename, row.id);
   const pkgRow = findPackageRow(req.params.planCode);
   log(pkgRow.id, `[${req.params.channelType}] อัปโหลดเอกสาร: ${req.file.originalname}`);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+// --- Thumbnail image (per channel) ---
+packagesRouter.post("/:planCode/:channelType/thumbnail-image", uploadImage.single("file"), (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  if (!req.file) return res.status(400).json({ error: "file_required" });
+  db.prepare(`UPDATE package_channel_content SET thumbnail_image = ? WHERE id = ?`).run(req.file.filename, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.delete("/:planCode/:channelType/thumbnail-image", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  db.prepare(`UPDATE package_channel_content SET thumbnail_image = NULL WHERE id = ?`).run(row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+// --- Banner image (per channel, slot = "desktop" | "mobile") ---
+packagesRouter.post("/:planCode/:channelType/banner-image/:slot", uploadImage.single("file"), (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  if (!req.file) return res.status(400).json({ error: "file_required" });
+  const slot = req.params.slot;
+  if (slot !== "desktop" && slot !== "mobile") return res.status(400).json({ error: "invalid_slot" });
+  const column = slot === "desktop" ? "banner_desktop_image" : "banner_mobile_image";
+  db.prepare(`UPDATE package_channel_content SET ${column} = ? WHERE id = ?`).run(req.file.filename, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.delete("/:planCode/:channelType/banner-image/:slot", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  const slot = req.params.slot;
+  if (slot !== "desktop" && slot !== "mobile") return res.status(400).json({ error: "invalid_slot" });
+  const column = slot === "desktop" ? "banner_desktop_image" : "banner_mobile_image";
+  db.prepare(`UPDATE package_channel_content SET ${column} = NULL WHERE id = ?`).run(row.id);
   touch(req.params.planCode);
   res.json(serializePackage(req.params.planCode));
 });

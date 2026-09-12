@@ -1,13 +1,18 @@
 import type { ChannelContent } from "../types";
-import { IconUpload, IconImage } from "../icons";
+import { IconImage } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
+import { ImageUploadBox } from "./ImageUploadBox";
 
 export function ThumbnailCard({
   content,
   onCommit,
+  onUploadImage,
+  onRemoveImage,
 }: {
   content: ChannelContent;
   onCommit: (captions: [string, string, string]) => void;
+  onUploadImage: (file: File) => Promise<void>;
+  onRemoveImage: () => Promise<void>;
 }) {
   const [c1, c2, c3] = content.thumbnail.captions;
 
@@ -26,11 +31,14 @@ export function ThumbnailCard({
         </div>
       </div>
       <div className="card-body" style={{ display: "flex", gap: 16 }}>
-        <div className="upload-box" style={{ width: 140, height: 120, flexShrink: 0 }}>
-          <IconUpload />
-          <div className="upload-sub">Click to upload Banner</div>
-          <div className="upload-sub">Recommended 800x600px (JPG/PNG)</div>
-        </div>
+        <ImageUploadBox
+          image={content.thumbnail.image}
+          width={140}
+          height={120}
+          sublabel="Recommended 800x600px (JPG/PNG)"
+          onUpload={onUploadImage}
+          onRemove={onRemoveImage}
+        />
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
           <div className="field">
             <label className="label">1st Thumbnail</label>

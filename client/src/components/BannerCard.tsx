@@ -1,13 +1,18 @@
 import type { ChannelContent } from "../types";
-import { IconUpload, IconImage } from "../icons";
+import { IconImage } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
+import { ImageUploadBox } from "./ImageUploadBox";
 
 export function BannerCard({
   content,
   onCommit,
+  onUploadImage,
+  onRemoveImage,
 }: {
   content: ChannelContent;
   onCommit: (patch: Partial<Pick<ChannelContent["banner"], "title" | "subtitle">>) => void;
+  onUploadImage: (slot: "desktop" | "mobile", file: File) => Promise<void>;
+  onRemoveImage: (slot: "desktop" | "mobile") => Promise<void>;
 }) {
   return (
     <div className="card">
@@ -19,16 +24,22 @@ export function BannerCard({
       </div>
       <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         <div className="field-grid">
-          <div className="upload-box" style={{ height: 96 }}>
-            <IconUpload />
-            <div className="upload-title">Desktop Banner</div>
-            <div className="upload-sub">แนะนำ 1600×520px</div>
-          </div>
-          <div className="upload-box" style={{ height: 96 }}>
-            <IconUpload />
-            <div className="upload-title">Mobile Banner</div>
-            <div className="upload-sub">แนะนำ 750×900px</div>
-          </div>
+          <ImageUploadBox
+            image={content.banner.desktopImage}
+            height={96}
+            label="Desktop Banner"
+            sublabel="แนะนำ 1600×520px"
+            onUpload={(file) => onUploadImage("desktop", file)}
+            onRemove={() => onRemoveImage("desktop")}
+          />
+          <ImageUploadBox
+            image={content.banner.mobileImage}
+            height={96}
+            label="Mobile Banner"
+            sublabel="แนะนำ 750×900px"
+            onUpload={(file) => onUploadImage("mobile", file)}
+            onRemove={() => onRemoveImage("mobile")}
+          />
         </div>
         <div className="field-grid">
           <div className="field">
