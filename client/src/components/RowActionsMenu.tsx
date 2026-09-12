@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useRef } from "react";
+import { Menu } from "primereact/menu";
+import { Button } from "primereact/button";
+import type { MenuItem } from "primereact/menuitem";
 import { IconKebab, IconEye, IconEdit, IconTrash, IconSend } from "../icons";
 
 export function RowActionsMenu({
@@ -17,65 +19,28 @@ export function RowActionsMenu({
   canDelete: boolean;
   canSubmit: boolean;
 }) {
-  const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<Menu>(null);
 
-  useEffect(() => {
-    if (!open) return;
-    function place() {
-      const r = btnRef.current?.getBoundingClientRect();
-      if (!r) return;
-      setPos({ top: r.bottom + 4, left: r.right - 150 });
-    }
-    place();
-    function onDocMouseDown(e: MouseEvent) {
-      if (btnRef.current?.contains(e.target as Node)) return;
-      if (menuRef.current?.contains(e.target as Node)) return;
-      setOpen(false);
-    }
-    function onScrollOrResize() {
-      setOpen(false);
-    }
-    document.addEventListener("mousedown", onDocMouseDown);
-    window.addEventListener("scroll", onScrollOrResize, true);
-    window.addEventListener("resize", onScrollOrResize);
-    return () => {
-      document.removeEventListener("mousedown", onDocMouseDown);
-      window.removeEventListener("scroll", onScrollOrResize, true);
-      window.removeEventListener("resize", onScrollOrResize);
-    };
-  }, [open]);
-
-  function pick(fn: () => void) {
-    setOpen(false);
-    fn();
-  }
+  const items: MenuItem[] = [
+    { label: "View", icon: <IconEye />, command: onView },
+    { label: "Edit", icon: <IconEdit />, command: onEdit },
+    { label: "Delete", icon: <IconTrash />, command: onDelete, disabled: !canDelete },
+    { label: "Submit", icon: <IconSend />, command: onSubmit, disabled: !canSubmit },
+  ];
 
   return (
     <>
-      <button ref={btnRef} className="icon-btn kebab-btn" onClick={() => setOpen((v) => !v)} title="ตัวเลือก">
-        <IconKebab />
-      </button>
-      {open &&
-        createPortal(
-          <div className="row-actions-menu" ref={menuRef} style={{ position: "fixed", top: pos.top, left: pos.left }}>
-            <button className="row-actions-item" onClick={() => pick(onView)}>
-              <IconEye /> View
-            </button>
-            <button className="row-actions-item" onClick={() => pick(onEdit)}>
-              <IconEdit /> Edit
-            </button>
-            <button className="row-actions-item" disabled={!canDelete} onClick={() => canDelete && pick(onDelete)}>
-              <IconTrash /> Delete
-            </button>
-            <button className="row-actions-item" disabled={!canSubmit} onClick={() => canSubmit && pick(onSubmit)}>
-              <IconSend /> Submit
-            </button>
-          </div>,
-          document.body
-        )}
+      <Button
+        icon={<IconKebab />}
+        rounded
+        outlined
+        severity="secondary"
+        className="kebab-btn"
+        onClick={(e) => menuRef.current?.toggle(e)}
+        aria-haspopup
+        title="ตัวเลือก"
+      />
+      <Menu model={items} popup ref={menuRef} className="row-actions-menu" popupAlignment="right" />
     </>
   );
 }

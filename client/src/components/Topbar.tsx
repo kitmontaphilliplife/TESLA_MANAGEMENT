@@ -1,3 +1,5 @@
+import { Button } from "primereact/button";
+import { Tag } from "primereact/tag";
 import type { PackageDetail } from "../types";
 import { IconArrowLeft, IconSave, IconSend, IconClock, IconEye } from "../icons";
 
@@ -7,11 +9,11 @@ const STATUS_LABEL: Record<PackageDetail["status"], string> = {
   active: "Active",
   inactive: "Inactive",
 };
-const STATUS_CLASS: Record<PackageDetail["status"], string> = {
-  draft: "badge-gray",
-  pending_approval: "badge-amber",
-  active: "badge-green",
-  inactive: "badge-gray",
+const STATUS_SEVERITY: Record<PackageDetail["status"], "secondary" | "warning" | "success"> = {
+  draft: "secondary",
+  pending_approval: "warning",
+  active: "success",
+  inactive: "secondary",
 };
 
 export function Topbar({
@@ -42,7 +44,7 @@ export function Topbar({
           <div className="title">
             {pkg.product.planCode} · {pkg.product.nameTh}
           </div>
-          <span className={`badge ${STATUS_CLASS[pkg.status]}`}>{STATUS_LABEL[pkg.status]}</span>
+          <Tag value={STATUS_LABEL[pkg.status]} severity={STATUS_SEVERITY[pkg.status]} />
         </div>
         <div className="title-actions">
           {readOnly ? (
@@ -50,13 +52,13 @@ export function Topbar({
           ) : (
             <>
               {saving ? <span className="save-status">กำลังบันทึก…</span> : <span className="save-status">บันทึกอัตโนมัติแล้ว</span>}
-              <button className="btn btn-secondary" onClick={onSaveDraft}>
-                <IconSave /> บันทึกฉบับร่าง
-              </button>
-              <button className="btn btn-primary" onClick={onSubmit} disabled={pkg.status === "pending_approval"}>
-                {pkg.status === "pending_approval" ? <IconClock /> : <IconSend />}
-                {pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
-              </button>
+              <Button label="บันทึกฉบับร่าง" icon={<IconSave />} outlined severity="secondary" onClick={onSaveDraft} />
+              <Button
+                label={pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
+                icon={pkg.status === "pending_approval" ? <IconClock /> : <IconSend />}
+                onClick={onSubmit}
+                disabled={pkg.status === "pending_approval"}
+              />
             </>
           )}
         </div>

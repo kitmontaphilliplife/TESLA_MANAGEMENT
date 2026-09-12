@@ -1,3 +1,4 @@
+import { Tag } from "primereact/tag";
 import type { AuditEntry, Campaign } from "../types";
 import { IconCampaign, IconClock } from "../icons";
 
@@ -9,9 +10,7 @@ export function CampaignPanel({ campaign }: { campaign: Campaign | null }) {
         <div className="card-body campaign-card">
           {campaign ? (
             <>
-              <span className="badge badge-blue" style={{ width: "fit-content" }}>
-                Linked Campaign
-              </span>
+              <Tag severity="info" value="Linked Campaign" style={{ width: "fit-content" }} />
               <div className="campaign-name">{campaign.name}</div>
               <div className="campaign-meta">
                 {campaign.startDate} – {campaign.endDate} · {campaign.discountLabel}

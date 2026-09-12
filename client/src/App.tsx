@@ -16,6 +16,7 @@ import { CampaignPanel, ApprovalHistoryPanel } from "./components/SidePanels";
 import { PackageListPage } from "./components/PackageListPage";
 import { MasterSetupPage } from "./components/MasterSetupPage";
 import { IconArrowLeft } from "./icons";
+import { Button } from "primereact/button";
 
 export default function App() {
   const [view, setView] = useState<"list" | "detail" | "master">("list");
@@ -92,9 +93,7 @@ export default function App() {
           {view === "detail" && error && (
             <div className="loading-screen">
               เกิดข้อผิดพลาด: {error}{" "}
-              <button className="btn btn-secondary" onClick={backToList}>
-                <IconArrowLeft /> กลับไป Package List
-              </button>
+              <Button label="กลับไป Package List" icon={<IconArrowLeft />} outlined severity="secondary" onClick={backToList} />
             </div>
           )}
 

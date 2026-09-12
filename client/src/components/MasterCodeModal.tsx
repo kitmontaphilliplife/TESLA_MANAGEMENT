@@ -1,6 +1,16 @@
 import { useState } from "react";
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
 import type { MasterCode, MasterCodeCategory } from "../types";
 import { IconClose, IconSave, IconTag } from "../icons";
+
+const CHANNEL_GROUP_OPTIONS = [
+  { label: "F2F", value: "F2F" },
+  { label: "ONLINE", value: "ONLINE" },
+  { label: "UNMAPPED (ยังไม่ยืนยัน)", value: "UNMAPPED" },
+];
 
 export function MasterCodeModal({
   category,
@@ -38,54 +48,48 @@ export function MasterCodeModal({
   }
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-panel" style={{ maxWidth: 440 }} onClick={(e) => e.stopPropagation()}>
-        <div className="card-head">
-          <div className="card-head-left">
-            <div className="card-title"><IconTag /> {editing ? "Edit" : "Add"} Code</div>
-          </div>
-          <button className="icon-btn" onClick={onClose} title="ปิด">
-            <IconClose />
-          </button>
+    <Dialog
+      visible
+      onHide={onClose}
+      header={
+        <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <IconTag /> {editing ? "Edit" : "Add"} Code
+        </span>
+      }
+      style={{ width: 440 }}
+      footer={
+        <>
+          <Button label="Cancel" icon={<IconClose />} outlined severity="secondary" onClick={onClose} />
+          <Button label={saving ? "กำลังบันทึก…" : "Save"} icon={<IconSave />} disabled={saving} onClick={handleSave} />
+        </>
+      }
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div className="field">
+          <label className="label">Code ID *</label>
+          <InputText className="input" value={codeId} onChange={(e) => setCodeId(e.target.value)} disabled={!!editing} />
         </div>
-        <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <div className="field">
-            <label className="label">Code ID *</label>
-            <input className="input" value={codeId} onChange={(e) => setCodeId(e.target.value)} disabled={!!editing} />
-          </div>
-          <div className="field">
-            <label className="label">Name EN *</label>
-            <input className="input" value={nameEn} onChange={(e) => setNameEn(e.target.value)} />
-          </div>
-          <div className="field">
-            <label className="label">Name TH *</label>
-            <input className="input" value={nameTh} onChange={(e) => setNameTh(e.target.value)} />
-          </div>
-          {isDistributionChannel && (
-            <div className="field">
-              <label className="label">Group (F2F / Online)</label>
-              <select
-                className="select"
-                value={channelGroup ?? "UNMAPPED"}
-                onChange={(e) => setChannelGroup(e.target.value as "F2F" | "ONLINE" | "UNMAPPED")}
-              >
-                <option value="F2F">F2F</option>
-                <option value="ONLINE">ONLINE</option>
-                <option value="UNMAPPED">UNMAPPED (ยังไม่ยืนยัน)</option>
-              </select>
-            </div>
-          )}
-          {error && <div className="readonly-note">{error}</div>}
+        <div className="field">
+          <label className="label">Name EN *</label>
+          <InputText className="input" value={nameEn} onChange={(e) => setNameEn(e.target.value)} />
         </div>
-        <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={onClose}>
-            <IconClose /> Cancel
-          </button>
-          <button className="btn btn-primary" disabled={saving} onClick={handleSave}>
-            <IconSave /> {saving ? "กำลังบันทึก…" : "Save"}
-          </button>
+        <div className="field">
+          <label className="label">Name TH *</label>
+          <InputText className="input" value={nameTh} onChange={(e) => setNameTh(e.target.value)} />
         </div>
+        {isDistributionChannel && (
+          <div className="field">
+            <label className="label">Group (F2F / Online)</label>
+            <Dropdown
+              className="select"
+              value={channelGroup ?? "UNMAPPED"}
+              options={CHANNEL_GROUP_OPTIONS}
+              onChange={(e) => setChannelGroup(e.value)}
+            />
+          </div>
+        )}
+        {error && <div className="readonly-note">{error}</div>}
       </div>
-    </div>
+    </Dialog>
   );
 }

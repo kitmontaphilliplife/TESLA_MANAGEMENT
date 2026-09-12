@@ -14,13 +14,21 @@ const FEATURE_ICON_PATHS: Record<string, string> = {
 export function FeatureIcon({ name }: { name: string }) {
   const d = FEATURE_ICON_PATHS[name] ?? FEATURE_ICON_PATHS.shield;
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} width="1em" height="1em">
       <path d={d} />
     </svg>
   );
 }
 
-const line = (style?: CSSProperties) => ({ viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, style });
+const line = (style?: CSSProperties) => ({
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  width: "1em",
+  height: "1em",
+  style,
+});
 
 export const IconDashboard = () => (
   <svg {...line()}>
@@ -75,12 +83,12 @@ export const IconTrash = () => (
   </svg>
 );
 export const IconClose = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} width="1em" height="1em">
     <path d="M6 6l12 12M18 6L6 18" />
   </svg>
 );
 export const IconSearch = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} width="1em" height="1em">
     <circle cx="11" cy="11" r="7" />
     <path d="M21 21l-4.3-4.3" />
   </svg>
@@ -96,7 +104,7 @@ export const IconWarning = () => (
   </svg>
 );
 export const IconKebab = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em">
     <circle cx="12" cy="5" r="1.9" />
     <circle cx="12" cy="12" r="1.9" />
     <circle cx="12" cy="19" r="1.9" />
@@ -121,7 +129,7 @@ export const IconSend = () => (
   </svg>
 );
 export const IconPlus = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} width="1em" height="1em">
     <path d="M12 5v14M5 12h14" />
   </svg>
 );
@@ -132,7 +140,7 @@ export const IconSave = () => (
   </svg>
 );
 export const IconArrowLeft = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} width="1em" height="1em">
     <path d="M19 12H5M11 6l-6 6 6 6" />
   </svg>
 );

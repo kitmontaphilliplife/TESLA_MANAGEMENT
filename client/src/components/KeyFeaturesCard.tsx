@@ -1,3 +1,4 @@
+import { Tag } from "primereact/tag";
 import type { ChannelContent, KeyFeature } from "../types";
 import { FeatureIcon, IconTrash, IconShieldOutline } from "../icons";
 import { DebouncedInput } from "./DebouncedInput";
@@ -27,7 +28,7 @@ export function KeyFeaturesCard({
           <div className="card-title"><IconShieldOutline /> Key Features of the Insurance Plan</div>
           <div className="card-sub">จุดเด่นของแบบประกันภัย — จำนวนแถวปรับได้ตามสินค้า (Dynamic)</div>
         </div>
-        <span className="badge badge-blue">{features.length} แถว</span>
+        <Tag severity="info" value={`${features.length} แถว`} />
       </div>
       <div className="card-body">
         {isOnline && (

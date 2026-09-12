@@ -1,4 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
+import { Tag } from "primereact/tag";
 import type { ProductListItem } from "../types";
 import { api } from "../api";
 import { IconClose, IconRefresh, IconSave, IconPackage } from "../icons";
@@ -89,130 +93,104 @@ export function AddPackageModal({
   }
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-        <div className="card-head">
-          <div className="card-head-left">
-            <div className="card-title"><IconPackage /> Add Package</div>
-          </div>
-          <button className="icon-btn" onClick={onClose} title="ปิด">
-            <IconClose />
-          </button>
-        </div>
-        <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {products === null && <div className="search-empty">กำลังโหลด…</div>}
+    <Dialog
+      visible
+      onHide={onClose}
+      header={
+        <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <IconPackage /> Add Package
+        </span>
+      }
+      style={{ width: 600 }}
+      footer={
+        <>
+          <Button label="Cancel" icon={<IconClose />} outlined severity="secondary" onClick={onClose} />
+          <Button label="Reset" icon={<IconRefresh />} outlined severity="secondary" onClick={handleReset} />
+          <Button label={saving ? "กำลังบันทึก…" : "Save"} icon={<IconSave />} disabled={!planCode || saving} onClick={handleSave} />
+        </>
+      }
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {products === null && <div className="search-empty">กำลังโหลด…</div>}
 
-          {products !== null && (
-            <>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <div className="field-row">
-                  <label className="label">Distribution Channel *</label>
-                  <select
-                    className="select"
-                    value={channelCode}
-                    onChange={(e) => {
-                      setChannelCode(e.target.value);
-                      setProductType("");
-                      setSubProductType("");
-                      setPlanCode("");
-                    }}
-                  >
-                    <option value="">เลือก Distribution Channel</option>
-                    {channelOptions.map((c) => (
-                      <option key={c.code} value={c.code}>
-                        {c.nameEn}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="field-row">
-                  <label className="label">Product Type *</label>
-                  <select
-                    className="select"
-                    value={productType}
-                    onChange={(e) => {
-                      setProductType(e.target.value);
-                      setSubProductType("");
-                      setPlanCode("");
-                    }}
-                  >
-                    <option value="">เลือก Product Type</option>
-                    {productTypeOptions.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="field-row">
-                  <label className="label">Sub Product Type *</label>
-                  <select
-                    className="select"
-                    value={subProductType}
-                    onChange={(e) => {
-                      setSubProductType(e.target.value);
-                      setPlanCode("");
-                    }}
-                  >
-                    <option value="">เลือก Sub Product Type</option>
-                    {subProductTypeOptions.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="field" style={{ border: "1px solid var(--gray-200)", borderRadius: 12, padding: 16 }}>
-                <label className="label" style={{ color: "var(--navy)", fontSize: 13, marginBottom: 6 }}>
-                  Package
-                </label>
-                <select
+        {products !== null && (
+          <>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div className="field-row">
+                <label className="label">Distribution Channel *</label>
+                <Dropdown
                   className="select"
-                  value={planCode}
-                  onChange={(e) => setPlanCode(e.target.value)}
-                  disabled={afterSubProductType.length === 0}
-                >
-                  <option value="">
-                    {afterSubProductType.length === 0 ? "ไม่พบ Package ที่ตรงเงื่อนไข" : "เลือก Package"}
-                  </option>
-                  {afterSubProductType.map((p) => (
-                    <option key={p.planCode} value={p.planCode}>
-                      {p.nameEn} ({p.planCode})
-                    </option>
-                  ))}
-                </select>
-
-                {selectedProduct && (
-                  <div className="package-preview">
-                    {previewChannel && <span className="badge badge-blue package-preview-badge">{previewChannel.nameEn}</span>}
-                    <span className="badge badge-gray" style={{ width: "fit-content" }}>
-                      Package code : {selectedProduct.planCode}
-                    </span>
-                    <div className="package-preview-title">{selectedProduct.nameEn}</div>
-                    <div className="upload-sub">{selectedProduct.nameTh}</div>
-                    <div className="upload-sub">Sale start date : {formatDate(selectedProduct.startDate)}</div>
-                  </div>
-                )}
+                  value={channelCode}
+                  options={channelOptions.map((c) => ({ label: c.nameEn, value: c.code }))}
+                  onChange={(e) => {
+                    setChannelCode(e.value);
+                    setProductType("");
+                    setSubProductType("");
+                    setPlanCode("");
+                  }}
+                  placeholder="เลือก Distribution Channel"
+                  showClear
+                />
               </div>
+              <div className="field-row">
+                <label className="label">Product Type *</label>
+                <Dropdown
+                  className="select"
+                  value={productType}
+                  options={productTypeOptions.map((t) => ({ label: t, value: t }))}
+                  onChange={(e) => {
+                    setProductType(e.value);
+                    setSubProductType("");
+                    setPlanCode("");
+                  }}
+                  placeholder="เลือก Product Type"
+                  showClear
+                />
+              </div>
+              <div className="field-row">
+                <label className="label">Sub Product Type *</label>
+                <Dropdown
+                  className="select"
+                  value={subProductType}
+                  options={subProductTypeOptions.map((t) => ({ label: t, value: t }))}
+                  onChange={(e) => {
+                    setSubProductType(e.value);
+                    setPlanCode("");
+                  }}
+                  placeholder="เลือก Sub Product Type"
+                  showClear
+                />
+              </div>
+            </div>
 
-              {error && <div className="readonly-note">{error}</div>}
-            </>
-          )}
-        </div>
-        <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={onClose}>
-            <IconClose /> Cancel
-          </button>
-          <button className="btn btn-secondary" onClick={handleReset}>
-            <IconRefresh /> Reset
-          </button>
-          <button className="btn btn-primary" disabled={!planCode || saving} onClick={handleSave}>
-            <IconSave /> {saving ? "กำลังบันทึก…" : "Save"}
-          </button>
-        </div>
+            <div className="field" style={{ border: "1px solid var(--gray-200)", borderRadius: 12, padding: 16 }}>
+              <label className="label" style={{ color: "var(--navy)", fontSize: 13, marginBottom: 6 }}>
+                Package
+              </label>
+              <Dropdown
+                className="select"
+                value={planCode}
+                options={afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode }))}
+                onChange={(e) => setPlanCode(e.value)}
+                disabled={afterSubProductType.length === 0}
+                placeholder={afterSubProductType.length === 0 ? "ไม่พบ Package ที่ตรงเงื่อนไข" : "เลือก Package"}
+              />
+
+              {selectedProduct && (
+                <div className="package-preview">
+                  {previewChannel && <Tag value={previewChannel.nameEn} className="package-preview-badge" />}
+                  <Tag value={`Package code : ${selectedProduct.planCode}`} severity="secondary" style={{ width: "fit-content" }} />
+                  <div className="package-preview-title">{selectedProduct.nameEn}</div>
+                  <div className="upload-sub">{selectedProduct.nameTh}</div>
+                  <div className="upload-sub">Sale start date : {formatDate(selectedProduct.startDate)}</div>
+                </div>
+              )}
+            </div>
+
+            {error && <div className="readonly-note">{error}</div>}
+          </>
+        )}
       </div>
-    </div>
+    </Dialog>
   );
 }

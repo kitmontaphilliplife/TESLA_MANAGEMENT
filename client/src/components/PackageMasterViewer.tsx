@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { Button } from "primereact/button";
+import { Tag } from "primereact/tag";
 import type { ProductListItem, RawProductPayload } from "../types";
 import { api } from "../api";
 import { IconArrowLeft, IconEye, IconPackage } from "../icons";
@@ -88,13 +90,13 @@ function MainInfoTab({ p }: { p: RawProductPayload }) {
 
       <div className="field-grid-3" style={{ marginBottom: 16 }}>
         <Section title="Free Look">
-          <span className={`badge ${p.free_Look_Flag === "Y" ? "badge-green" : "badge-gray"}`}>{p.free_Look_Flag === "Y" ? "Yes" : "No"}</span>
+          <Tag value={p.free_Look_Flag === "Y" ? "Yes" : "No"} severity={p.free_Look_Flag === "Y" ? "success" : "secondary"} />
         </Section>
         <Section title="Participation">
-          <span className={`badge ${p.participation_Flag === "Y" ? "badge-green" : "badge-gray"}`}>{p.participation_Flag === "Y" ? "Yes" : "No"}</span>
+          <Tag value={p.participation_Flag === "Y" ? "Yes" : "No"} severity={p.participation_Flag === "Y" ? "success" : "secondary"} />
         </Section>
         <Section title="Client Coverage Type">
-          <span className="badge badge-blue">{p.client_Coverage_Type_Code}</span>
+          <Tag value={p.client_Coverage_Type_Code} severity="info" />
         </Section>
       </div>
 
@@ -344,13 +346,9 @@ export function PackageMasterViewer() {
       <div>
         <div className="list-page-table card" style={{ margin: "0 0 16px 0", padding: 16 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-            <button className="btn btn-secondary" onClick={() => setSelected(null)}>
-              <IconArrowLeft /> กลับ
-            </button>
-            <span className="badge badge-blue">
-              Product Code {selected} {detail ? `| ${detail.nameEn}` : ""}
-            </span>
-            {detail && <span className="badge badge-green">{detail.payload.status_Name_En}</span>}
+            <Button label="กลับ" icon={<IconArrowLeft />} outlined severity="secondary" onClick={() => setSelected(null)} />
+            <Tag severity="info" value={`Product Code ${selected} ${detail ? `| ${detail.nameEn}` : ""}`} />
+            {detail && <Tag severity="success" value={detail.payload.status_Name_En} />}
           </div>
         </div>
 
@@ -412,14 +410,10 @@ export function PackageMasterViewer() {
                   </td>
                   <td>{p.category}</td>
                   <td>
-                    <span className={`badge ${p.hasRawPayload ? "badge-green" : "badge-gray"}`}>
-                      {p.hasRawPayload ? "มี payload จริง" : "ไม่มี payload"}
-                    </span>
+                    <Tag severity={p.hasRawPayload ? "success" : "secondary"} value={p.hasRawPayload ? "มี payload จริง" : "ไม่มี payload"} />
                   </td>
                   <td>
-                    <button className="btn btn-secondary" disabled={!p.hasRawPayload} onClick={() => setSelected(p.planCode)}>
-                      <IconEye /> View
-                    </button>
+                    <Button label="View" icon={<IconEye />} outlined severity="secondary" disabled={!p.hasRawPayload} onClick={() => setSelected(p.planCode)} />
                   </td>
                 </tr>
               ))}

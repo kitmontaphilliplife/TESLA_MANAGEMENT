@@ -1,4 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
+import { Tag } from "primereact/tag";
+import { Button } from "primereact/button";
+import { FilterMatchMode } from "primereact/api";
 import type { PackageSummary } from "../types";
 import { api } from "../api";
 import { AddPackageModal } from "./AddPackageModal";
@@ -11,29 +17,43 @@ const STATUS_LABEL: Record<PackageSummary["status"], string> = {
   active: "Active",
   inactive: "Inactive",
 };
-const STATUS_CLASS: Record<PackageSummary["status"], string> = {
-  draft: "badge-gray",
-  pending_approval: "badge-amber",
-  active: "badge-green",
-  inactive: "badge-gray",
+const STATUS_SEVERITY: Record<PackageSummary["status"], "secondary" | "warning" | "success"> = {
+  draft: "secondary",
+  pending_approval: "warning",
+  active: "success",
+  inactive: "secondary",
 };
 
-type SortKey = "planCode" | "nameTh" | "category" | "status" | "updatedAt";
+const CHANNEL_OPTIONS = [
+  { label: "ทั้งหมด", value: null },
+  { label: "F2F", value: "F2F" },
+  { label: "Online", value: "ONLINE" },
+];
+const STATUS_OPTIONS = [
+  { label: "ทั้งหมด", value: null },
+  { label: "Draft", value: "draft" },
+  { label: "Pending Approval", value: "pending_approval" },
+  { label: "Active", value: "active" },
+  { label: "Inactive", value: "inactive" },
+];
+
+interface PackageRow extends PackageSummary {
+  searchName: string;
+  channelGroupsStr: string;
+}
 
 export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: string, mode: "view" | "edit") => void }) {
   const [packages, setPackages] = useState<PackageSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  const [filterCode, setFilterCode] = useState("");
-  const [filterName, setFilterName] = useState("");
-  const [filterCategory, setFilterCategory] = useState("");
-  const [filterChannel, setFilterChannel] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("updatedAt");
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [filters, setFilters] = useState({
+    planCode: { value: null as string | null, matchMode: FilterMatchMode.CONTAINS },
+    searchName: { value: null as string | null, matchMode: FilterMatchMode.CONTAINS },
+    category: { value: null as string | null, matchMode: FilterMatchMode.CONTAINS },
+    channelGroupsStr: { value: null as string | null, matchMode: FilterMatchMode.CONTAINS },
+    status: { value: null as string | null, matchMode: FilterMatchMode.EQUALS },
+  });
 
   function reload() {
     api
@@ -63,40 +83,10 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
     }
   }
 
-  const filtered = useMemo(() => {
-    if (!packages) return [];
-    return packages.filter(
-      (p) =>
-        p.planCode.toLowerCase().includes(filterCode.toLowerCase()) &&
-        (p.nameTh.includes(filterName) || p.nameEn.toLowerCase().includes(filterName.toLowerCase())) &&
-        p.category.toLowerCase().includes(filterCategory.toLowerCase()) &&
-        (!filterChannel || p.channelGroups.includes(filterChannel as "F2F" | "ONLINE")) &&
-        (!filterStatus || p.status === filterStatus)
-    );
-  }, [packages, filterCode, filterName, filterCategory, filterChannel, filterStatus]);
-
-  const sorted = useMemo(() => {
-    const copy = [...filtered];
-    copy.sort((a, b) => {
-      const av = a[sortKey];
-      const bv = b[sortKey];
-      const cmp = String(av).localeCompare(String(bv));
-      return sortDir === "asc" ? cmp : -cmp;
-    });
-    return copy;
-  }, [filtered, sortKey, sortDir]);
-
-  const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
-  const currentPage = Math.min(page, totalPages);
-  const pageItems = sorted.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-
-  function toggleSort(key: SortKey) {
-    if (sortKey === key) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    else {
-      setSortKey(key);
-      setSortDir("asc");
-    }
-  }
+  const rows: PackageRow[] = useMemo(
+    () => (packages ?? []).map((p) => ({ ...p, searchName: `${p.nameTh} ${p.nameEn}`, channelGroupsStr: p.channelGroups.join(" ") })),
+    [packages]
+  );
 
   const counts = useMemo(() => {
     const base = { total: 0, active: 0, draft: 0, pending_approval: 0, inactive: 0 };
@@ -124,9 +114,7 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
             <div className="card-sub">รวม Package ที่เคย Set ไว้ทั้งหมด — Search / View / Create / Edit</div>
           </div>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowAddModal(true)}>
-          <IconPlus /> Add Package
-        </button>
+        <Button label="Add Package" icon={<IconPlus />} onClick={() => setShowAddModal(true)} />
       </div>
 
       <div className="stat-cards">
@@ -173,108 +161,98 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
             <div className="card-title">Package List</div>
           </div>
         </div>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th onClick={() => toggleSort("planCode")}>Plan Code {sortKey === "planCode" ? (sortDir === "asc" ? "↑" : "↓") : ""}</th>
-                <th onClick={() => toggleSort("nameTh")}>Package name {sortKey === "nameTh" ? (sortDir === "asc" ? "↑" : "↓") : ""}</th>
-                <th onClick={() => toggleSort("category")}>Category {sortKey === "category" ? (sortDir === "asc" ? "↑" : "↓") : ""}</th>
-                <th>Channel</th>
-                <th onClick={() => toggleSort("status")}>Status {sortKey === "status" ? (sortDir === "asc" ? "↑" : "↓") : ""}</th>
-                <th onClick={() => toggleSort("updatedAt")}>Updated {sortKey === "updatedAt" ? (sortDir === "asc" ? "↑" : "↓") : ""}</th>
-                <th>Action</th>
-              </tr>
-              <tr className="filter-row">
-                <th>
-                  <input className="input" placeholder="Search" value={filterCode} onChange={(e) => { setFilterCode(e.target.value); setPage(1); }} />
-                </th>
-                <th>
-                  <input className="input" placeholder="Search" value={filterName} onChange={(e) => { setFilterName(e.target.value); setPage(1); }} />
-                </th>
-                <th>
-                  <input className="input" placeholder="Search" value={filterCategory} onChange={(e) => { setFilterCategory(e.target.value); setPage(1); }} />
-                </th>
-                <th>
-                  <select className="select" value={filterChannel} onChange={(e) => { setFilterChannel(e.target.value); setPage(1); }}>
-                    <option value="">ทั้งหมด</option>
-                    <option value="F2F">F2F</option>
-                    <option value="ONLINE">Online</option>
-                  </select>
-                </th>
-                <th>
-                  <select className="select" value={filterStatus} onChange={(e) => { setFilterStatus(e.target.value); setPage(1); }}>
-                    <option value="">ทั้งหมด</option>
-                    <option value="draft">Draft</option>
-                    <option value="pending_approval">Pending Approval</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                  </select>
-                </th>
-                <th />
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {pageItems.map((p) => (
-                <tr key={p.planCode}>
-                  <td>{p.planCode}</td>
-                  <td>
-                    <div>{p.nameTh}</div>
-                    <div className="upload-sub">{p.nameEn}</div>
-                  </td>
-                  <td>{p.category}</td>
-                  <td>{p.channelGroups.join(" + ") || "-"}</td>
-                  <td>
-                    <span className={`badge ${STATUS_CLASS[p.status]}`}>{STATUS_LABEL[p.status]}</span>
-                  </td>
-                  <td>
-                    <div>{p.updatedAt}</div>
-                    <div className="upload-sub">{p.updatedBy}</div>
-                  </td>
-                  <td>
-                    <RowActionsMenu
-                      onView={() => onOpenPackage(p.planCode, "view")}
-                      onEdit={() => onOpenPackage(p.planCode, "edit")}
-                      onDelete={() => handleDelete(p)}
-                      onSubmit={() => handleSubmit(p)}
-                      canDelete={p.status === "draft" || p.status === "pending_approval"}
-                      canSubmit={p.status === "draft"}
-                    />
-                  </td>
-                </tr>
-              ))}
-              {pageItems.length === 0 && (
-                <tr>
-                  <td colSpan={7} className="search-empty" style={{ textAlign: "center", padding: 20 }}>
-                    ไม่พบ Package ที่ตรงกับเงื่อนไข
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="pagination-bar">
-          <span className="upload-sub">
-            แสดง {pageItems.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}–{(currentPage - 1) * pageSize + pageItems.length} จาก {sorted.length} รายการ
-          </span>
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <button className="btn btn-secondary" disabled={currentPage <= 1} onClick={() => setPage(currentPage - 1)}>
-              ‹
-            </button>
-            <span className="upload-sub">
-              หน้า {currentPage} / {totalPages}
-            </span>
-            <button className="btn btn-secondary" disabled={currentPage >= totalPages} onClick={() => setPage(currentPage + 1)}>
-              ›
-            </button>
-            <select className="select" value={pageSize} onChange={(e) => { setPageSize(Number(e.target.value)); setPage(1); }}>
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-            </select>
-          </div>
-        </div>
+        <DataTable
+          value={rows}
+          scrollable
+          filters={filters}
+          onFilter={(e) => setFilters(e.filters as typeof filters)}
+          filterDisplay="row"
+          paginator
+          rows={10}
+          rowsPerPageOptions={[10, 25, 50]}
+          removableSort
+          sortField="updatedAt"
+          sortOrder={-1}
+          dataKey="planCode"
+          emptyMessage="ไม่พบ Package ที่ตรงกับเงื่อนไข"
+          stripedRows
+        >
+          <Column field="planCode" header="Plan Code" sortable filter filterPlaceholder="Search" showFilterMenu={false} />
+          <Column
+            field="searchName"
+            header="Package name"
+            sortable
+            filter
+            filterPlaceholder="Search"
+            showFilterMenu={false}
+            body={(p: PackageRow) => (
+              <div>
+                <div>{p.nameTh}</div>
+                <div className="upload-sub">{p.nameEn}</div>
+              </div>
+            )}
+          />
+          <Column field="category" header="Category" sortable filter filterPlaceholder="Search" showFilterMenu={false} />
+          <Column
+            field="channelGroupsStr"
+            header="Channel"
+            filter
+            showFilterMenu={false}
+            body={(p: PackageRow) => p.channelGroups.join(" + ") || "-"}
+            filterElement={(options) => (
+              <Dropdown
+                value={options.value}
+                options={CHANNEL_OPTIONS}
+                onChange={(e) => options.filterApplyCallback(e.value)}
+                placeholder="ทั้งหมด"
+                showClear
+                style={{ minWidth: 110 }}
+              />
+            )}
+          />
+          <Column
+            field="status"
+            header="Status"
+            sortable
+            filter
+            showFilterMenu={false}
+            body={(p: PackageRow) => <Tag value={STATUS_LABEL[p.status]} severity={STATUS_SEVERITY[p.status]} />}
+            filterElement={(options) => (
+              <Dropdown
+                value={options.value}
+                options={STATUS_OPTIONS}
+                onChange={(e) => options.filterApplyCallback(e.value)}
+                placeholder="ทั้งหมด"
+                showClear
+                style={{ minWidth: 140 }}
+              />
+            )}
+          />
+          <Column
+            field="updatedAt"
+            header="Updated"
+            sortable
+            body={(p: PackageRow) => (
+              <div>
+                <div>{p.updatedAt}</div>
+                <div className="upload-sub">{p.updatedBy}</div>
+              </div>
+            )}
+          />
+          <Column
+            header="Action"
+            body={(p: PackageRow) => (
+              <RowActionsMenu
+                onView={() => onOpenPackage(p.planCode, "view")}
+                onEdit={() => onOpenPackage(p.planCode, "edit")}
+                onDelete={() => handleDelete(p)}
+                onSubmit={() => handleSubmit(p)}
+                canDelete={p.status === "draft" || p.status === "pending_approval"}
+                canSubmit={p.status === "draft"}
+              />
+            )}
+          />
+        </DataTable>
       </div>
 
       {showAddModal && (
