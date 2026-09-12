@@ -111,7 +111,8 @@ export function AddPackageModal({
       }
     >
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {products === null && <div className="search-empty">กำลังโหลด…</div>}
+        {products === null && !error && <div className="search-empty">กำลังโหลด…</div>}
+        {products === null && error && <div className="readonly-note">{error}</div>}
 
         {products !== null && (
           <>
