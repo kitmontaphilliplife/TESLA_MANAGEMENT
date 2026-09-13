@@ -243,22 +243,11 @@ insertLegal.run(
 );
 
 // ---------------------------------------------------------------------------
-// 5. Campaign (SET_CAMPAIGN) — linked to one specific channel's content, per confirmed decision
+// 5. Campaigns — none seeded. Packages themselves aren't seeded either (see note above),
+//    and a campaign only makes sense linked to a real package/channel — created live via
+//    the Campaign Dashboard once a package exists.
 // ---------------------------------------------------------------------------
 db.exec(`DELETE FROM campaigns`);
 db.exec(`DELETE FROM channel_content_campaigns`);
-db.prepare(`INSERT INTO campaigns (id, type, name, start_date, end_date, discount_label) VALUES (?, ?, ?, ?, ?, ?)`).run(
-  "cmp_ny2569", "Discount", "ลดหย่อนภาษีต้อนรับปีใหม่ 2569", "2025-12-01", "2026-01-31", "ส่วนลดเบี้ยปีแรก 5%"
-);
-{
-  const onlineContentRow = db
-    .prepare(
-      `SELECT pcc.id FROM package_channel_content pcc JOIN packages p ON p.id = pcc.package_id WHERE p.plan_code = 'ENN019' AND pcc.channel_type = 'ONLINE'`
-    )
-    .get() as { id: string } | undefined;
-  if (onlineContentRow) {
-    db.prepare(`INSERT INTO channel_content_campaigns (channel_content_id, campaign_id) VALUES (?, 'cmp_ny2569')`).run(onlineContentRow.id);
-  }
-}
 
 console.log("Seed complete.");

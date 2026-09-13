@@ -7,6 +7,7 @@ import { nanoid } from "nanoid";
 import { db } from "../db.js";
 import { classifyChannel } from "../channelGroups.js";
 import { createPackageForProduct } from "../packageFactory.js";
+import { IMAGE_MIMETYPES, sanitizeIfSvg } from "../imageUpload.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const uploadsDir = process.env.UPLOADS_DIR ?? path.join(__dirname, "..", "..", "uploads");
@@ -24,7 +25,6 @@ const upload = multer({
   },
 });
 
-const IMAGE_MIMETYPES = ["image/jpeg", "image/png", "image/webp"];
 const uploadImage = multer({
   storage: multer.diskStorage({
     destination: (_req, _file, cb) => cb(null, uploadsDir),
@@ -32,7 +32,7 @@ const uploadImage = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
-    if (!IMAGE_MIMETYPES.includes(file.mimetype)) return cb(new Error("Image only (JPG/PNG/WEBP)"));
+    if (!IMAGE_MIMETYPES.includes(file.mimetype)) return cb(new Error("Image only (JPG/PNG/WEBP/SVG)"));
     cb(null, true);
   },
 });
@@ -44,10 +44,10 @@ type ChannelType = "F2F" | "ONLINE";
 function findProductRow(planCode: string) {
   return db.prepare(`SELECT * FROM products WHERE plan_code = ?`).get(planCode) as any;
 }
-function findPackageRow(planCode: string) {
+export function findPackageRow(planCode: string) {
   return db.prepare(`SELECT * FROM packages WHERE plan_code = ?`).get(planCode) as any;
 }
-function findChannelContentRow(planCode: string, channelType: ChannelType) {
+export function findChannelContentRow(planCode: string, channelType: ChannelType) {
   return db
     .prepare(
       `SELECT pcc.* FROM package_channel_content pcc
@@ -62,6 +62,9 @@ function serializeChannelContent(row: any, categoryForLegal: string) {
     .prepare(`SELECT * FROM key_features WHERE channel_content_id = ? ORDER BY sort_order ASC`)
     .all(row.id) as any[];
   const legal = db.prepare(`SELECT body FROM legal_templates WHERE category = ?`).get(categoryForLegal) as any;
+  const documents = db
+    .prepare(`SELECT * FROM package_documents WHERE channel_content_id = ? ORDER BY uploaded_at ASC`)
+    .all(row.id) as any[];
 
   const base: any = {
     channelContentId: row.id,
@@ -76,7 +79,14 @@ function serializeChannelContent(row: any, categoryForLegal: string) {
       title: row.banner_title,
       subtitle: row.banner_subtitle,
     },
-    keyFeatures: features.map((f) => ({ id: f.id, icon: f.icon, topic: f.topic, value: f.value, highlight: !!f.highlight })),
+    keyFeatures: features.map((f) => ({
+      id: f.id,
+      icon: f.icon,
+      iconImage: f.icon_image,
+      topic: f.topic,
+      value: f.value,
+      highlight: !!f.highlight,
+    })),
     iconAsset: null,
     contractualPayout: null,
     keyAdvantages: null,
@@ -84,10 +94,16 @@ function serializeChannelContent(row: any, categoryForLegal: string) {
     productType: null,
     productInformation: null,
     document: {
-      filename: row.document_filename,
-      uploadedAt: row.document_uploaded_at,
       legalText: legal?.body ?? null,
     },
+    documents: documents.map((d) => ({
+      id: d.id,
+      filename: d.filename,
+      originalName: d.original_name,
+      fileSize: d.file_size,
+      documentType: d.document_type,
+      uploadedAt: d.uploaded_at,
+    })),
     campaign: (() => {
       const c = db
         .prepare(
@@ -116,7 +132,7 @@ function serializeChannelContent(row: any, categoryForLegal: string) {
     base.keyAdvantages = {
       enabled: !!row.key_advantages_enabled,
       header: row.key_advantages_header,
-      cards: advantageCards.map((a) => ({ id: a.id, title: a.title, subtitle: a.subtitle })),
+      cards: advantageCards.map((a) => ({ id: a.id, image: a.image, title: a.title, subtitle: a.subtitle })),
     };
     base.recommends = recommends.map((r) => ({ code: r.recommended_plan_code, nameTh: r.name_th, nameEn: r.name_en, category: r.category }));
   }
@@ -191,7 +207,7 @@ function serializePackage(planCode: string) {
 function touch(planCode: string) {
   db.prepare(`UPDATE packages SET updated_at = datetime('now') WHERE plan_code = ?`).run(planCode);
 }
-function log(packageId: string, message: string) {
+export function log(packageId: string, message: string) {
   db.prepare(`INSERT INTO audit_log (id, package_id, message) VALUES (?, ?, ?)`).run(nanoid(10), packageId, message);
 }
 function requireChannelContent(res: any, planCode: string, channelType: string) {
@@ -249,18 +265,29 @@ packagesRouter.post("/", (req, res) => {
   res.status(201).json(serializePackage(planCode));
 });
 
-// Search products for the "Package recommend" picker (excludes the product itself)
+// Search products for the "Package recommend" picker (excludes the product itself).
+// Optional `group` (F2F/ONLINE) narrows results to products that have at least one
+// channel classified into that same distribution-channel group as the package being
+// configured — a package's recommend list should only ever show same-channel siblings.
 packagesRouter.get("/search", (req, res) => {
   const q = String(req.query.q ?? "").trim();
   const exclude = String(req.query.exclude ?? "");
+  const group = String(req.query.group ?? "");
   const rows = db
     .prepare(
-      `SELECT plan_code, name_th, name_en, category FROM products
+      `SELECT plan_code, name_th, name_en, category, channel_codes FROM products
        WHERE plan_code != ? AND (name_th LIKE ? OR name_en LIKE ? OR plan_code LIKE ?)
-       LIMIT 10`
+       LIMIT 50`
     )
     .all(exclude, `%${q}%`, `%${q}%`, `%${q}%`) as any[];
-  res.json(rows.map((r) => ({ code: r.plan_code, nameTh: r.name_th, nameEn: r.name_en, category: r.category })));
+  const filtered = rows.filter((r) => {
+    if (!group) return true;
+    const channelCodes = JSON.parse(r.channel_codes || "[]") as { code: string; nameEn: string }[];
+    return channelCodes.some((c) => classifyChannel(c.code, c.nameEn) === group);
+  });
+  res.json(
+    filtered.slice(0, 10).map((r) => ({ code: r.plan_code, nameTh: r.name_th, nameEn: r.name_en, category: r.category }))
+  );
 });
 
 // Get one package's full configuration (all active channel contents)
@@ -318,7 +345,8 @@ packagesRouter.patch("/:planCode/:channelType/key-features/:id", (req, res) => {
     `UPDATE key_features SET
       topic = COALESCE(@topic, topic),
       value = COALESCE(@value, value),
-      highlight = COALESCE(@highlight, highlight)
+      highlight = COALESCE(@highlight, highlight),
+      icon_image = CASE WHEN @iconImageSet = 1 THEN @iconImage ELSE icon_image END
      WHERE id = @id AND channel_content_id = @channelContentId`
   ).run({
     id: req.params.id,
@@ -326,6 +354,8 @@ packagesRouter.patch("/:planCode/:channelType/key-features/:id", (req, res) => {
     topic: b.topic ?? null,
     value: b.value ?? null,
     highlight: typeof b.highlight === "boolean" ? (b.highlight ? 1 : 0) : null,
+    iconImageSet: "iconImage" in b ? 1 : 0,
+    iconImage: b.iconImage ?? null,
   });
   touch(req.params.planCode);
   res.json(serializePackage(req.params.planCode));
@@ -365,9 +395,19 @@ packagesRouter.patch("/:planCode/ONLINE/key-advantages/:id", (req, res) => {
   if (!row) return;
   const b = req.body ?? {};
   db.prepare(
-    `UPDATE key_advantage_cards SET title = COALESCE(@title, title), subtitle = COALESCE(@subtitle, subtitle)
+    `UPDATE key_advantage_cards SET
+      title = COALESCE(@title, title),
+      subtitle = COALESCE(@subtitle, subtitle),
+      image = CASE WHEN @imageSet = 1 THEN @image ELSE image END
      WHERE id = @id AND channel_content_id = @channelContentId`
-  ).run({ id: req.params.id, channelContentId: row.id, title: b.title ?? null, subtitle: b.subtitle ?? null });
+  ).run({
+    id: req.params.id,
+    channelContentId: row.id,
+    title: b.title ?? null,
+    subtitle: b.subtitle ?? null,
+    imageSet: "image" in b ? 1 : 0,
+    image: b.image ?? null,
+  });
   touch(req.params.planCode);
   res.json(serializePackage(req.params.planCode));
 });
@@ -456,15 +496,75 @@ packagesRouter.delete("/:planCode/F2F/product-info-items/:id", (req, res) => {
   res.json(serializePackage(req.params.planCode));
 });
 
-// --- Document T&C (per channel) ---
-packagesRouter.post("/:planCode/:channelType/document", upload.single("file"), (req, res) => {
+// --- Documents (multi-file, per channel) ---
+const DOCUMENT_TYPES = ["Terms & Conditions", "Benefit Table", "Other"] as const;
+
+packagesRouter.post("/:planCode/:channelType/documents", upload.single("file"), (req, res) => {
   const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
   if (!row) return;
   if (!req.file) return res.status(400).json({ error: "file_required" });
-  db.prepare(`UPDATE package_channel_content SET document_filename = ?, document_uploaded_at = datetime('now') WHERE id = ?`)
-    .run(req.file.filename, row.id);
+  const documentType = DOCUMENT_TYPES.includes(req.body?.documentType) ? req.body.documentType : "Terms & Conditions";
+  db.prepare(
+    `INSERT INTO package_documents (id, channel_content_id, filename, original_name, file_size, document_type) VALUES (?, ?, ?, ?, ?, ?)`
+  ).run(nanoid(10), row.id, req.file.filename, req.file.originalname, req.file.size, documentType);
   const pkgRow = findPackageRow(req.params.planCode);
   log(pkgRow.id, `[${req.params.channelType}] อัปโหลดเอกสาร: ${req.file.originalname}`);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.patch("/:planCode/:channelType/documents/:id", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  const documentType = req.body?.documentType;
+  if (!DOCUMENT_TYPES.includes(documentType)) return res.status(400).json({ error: "invalid_document_type" });
+  db.prepare(`UPDATE package_documents SET document_type = ? WHERE id = ? AND channel_content_id = ?`).run(documentType, req.params.id, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.delete("/:planCode/:channelType/documents/:id", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  db.prepare(`DELETE FROM package_documents WHERE id = ? AND channel_content_id = ?`).run(req.params.id, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+// --- Icon Asset (single image, per channel — ONLINE section header banner/logo) ---
+packagesRouter.post("/:planCode/:channelType/icon-asset", uploadImage.single("file"), (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  if (!req.file) return res.status(400).json({ error: "file_required" });
+  sanitizeIfSvg(req.file.path, req.file.mimetype);
+  db.prepare(`UPDATE package_channel_content SET icon_asset = ? WHERE id = ?`).run(req.file.filename, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.delete("/:planCode/:channelType/icon-asset", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
+  if (!row) return;
+  db.prepare(`UPDATE package_channel_content SET icon_asset = NULL WHERE id = ?`).run(row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+// --- Key Advantage card image (ONLINE only) ---
+packagesRouter.post("/:planCode/ONLINE/key-advantages/:id/image", uploadImage.single("file"), (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, "ONLINE");
+  if (!row) return;
+  if (!req.file) return res.status(400).json({ error: "file_required" });
+  sanitizeIfSvg(req.file.path, req.file.mimetype);
+  db.prepare(`UPDATE key_advantage_cards SET image = ? WHERE id = ? AND channel_content_id = ?`).run(req.file.filename, req.params.id, row.id);
+  touch(req.params.planCode);
+  res.json(serializePackage(req.params.planCode));
+});
+
+packagesRouter.delete("/:planCode/ONLINE/key-advantages/:id/image", (req, res) => {
+  const row = requireChannelContent(res, req.params.planCode, "ONLINE");
+  if (!row) return;
+  db.prepare(`UPDATE key_advantage_cards SET image = NULL WHERE id = ? AND channel_content_id = ?`).run(req.params.id, row.id);
   touch(req.params.planCode);
   res.json(serializePackage(req.params.planCode));
 });
@@ -474,6 +574,7 @@ packagesRouter.post("/:planCode/:channelType/thumbnail-image", uploadImage.singl
   const row = requireChannelContent(res, req.params.planCode, req.params.channelType);
   if (!row) return;
   if (!req.file) return res.status(400).json({ error: "file_required" });
+  sanitizeIfSvg(req.file.path, req.file.mimetype);
   db.prepare(`UPDATE package_channel_content SET thumbnail_image = ? WHERE id = ?`).run(req.file.filename, row.id);
   touch(req.params.planCode);
   res.json(serializePackage(req.params.planCode));
@@ -494,6 +595,7 @@ packagesRouter.post("/:planCode/:channelType/banner-image/:slot", uploadImage.si
   if (!req.file) return res.status(400).json({ error: "file_required" });
   const slot = req.params.slot;
   if (slot !== "desktop" && slot !== "mobile") return res.status(400).json({ error: "invalid_slot" });
+  sanitizeIfSvg(req.file.path, req.file.mimetype);
   const column = slot === "desktop" ? "banner_desktop_image" : "banner_mobile_image";
   db.prepare(`UPDATE package_channel_content SET ${column} = ? WHERE id = ?`).run(req.file.filename, row.id);
   touch(req.params.planCode);
@@ -536,5 +638,21 @@ packagesRouter.post("/:planCode/status", (req, res) => {
   db.prepare(`UPDATE packages SET status = ?, updated_at = datetime('now') WHERE plan_code = ?`).run(status, req.params.planCode);
   const label = status === "pending_approval" ? "ส่งขออนุมัติ" : status === "draft" ? "บันทึกฉบับร่าง" : `เปลี่ยนสถานะเป็น ${status}`;
   log(pkgRow.id, label);
+
+  if (status === "pending_approval") {
+    db.prepare(`DELETE FROM approval_steps WHERE package_id = ?`).run(pkgRow.id);
+    const steps: [string, string, "done" | "active" | "todo", string][] = [
+      ["Submitted", pkgRow.updated_by, "done", "ส่ง Package เข้าสู่กระบวนการอนุมัติ"],
+      ["Marketing lead", "K. Praewa", "active", "ตรวจสอบเนื้อหา ภาพ และการวางตำแหน่ง"],
+      ["Compliance", "K. Nattapong", "todo", "ตรวจสอบถ้อยคำและเอกสารตามกรมธรรม์ที่ยื่นไว้"],
+      ["Publish", "Automatic", "todo", "ขึ้นระบบอัตโนมัติเมื่อถึงวันมีผล"],
+    ];
+    steps.forEach(([role, person, state, note], i) => {
+      db.prepare(
+        `INSERT INTO approval_steps (id, package_id, step_order, role, person, state, note, decided_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      ).run(nanoid(10), pkgRow.id, i, role, person, state, note, state === "done" ? new Date().toISOString() : null);
+    });
+  }
+
   res.json(serializePackage(req.params.planCode));
 });

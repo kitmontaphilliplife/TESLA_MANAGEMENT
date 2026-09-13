@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
+import { FloatLabel } from "primereact/floatlabel";
 import { Button } from "primereact/button";
 import type { MasterCode, ProductListItem } from "../types";
 import { api } from "../api";
@@ -115,66 +116,78 @@ export function AddPackageModal({
 
         {products !== null && channels !== null && (
           <>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <Dropdown
-                className="select"
-                style={{ width: "100%" }}
-                value={channelCode}
-                options={channelOptions.map((c) => ({ label: c.nameEn, value: c.code }))}
-                onChange={(e) => {
-                  setChannelCode(e.value);
-                  setProductType("");
-                  setSubProductType("");
-                  setPlanCode("");
-                }}
-                placeholder="Distribution Channel *"
-              />
-              <Dropdown
-                className="select"
-                style={{ width: "100%" }}
-                value={productType}
-                options={productTypeOptions.map((t) => ({ label: t, value: t }))}
-                onChange={(e) => {
-                  setProductType(e.value);
-                  setSubProductType("");
-                  setPlanCode("");
-                }}
-                disabled={!channelCode}
-                placeholder={channelCode ? "Product Type *" : "เลือก Distribution Channel ก่อน"}
-              />
-              <Dropdown
-                className="select"
-                style={{ width: "100%" }}
-                value={subProductType}
-                options={subProductTypeOptions.map((t) => ({ label: t, value: t }))}
-                onChange={(e) => {
-                  setSubProductType(e.value);
-                  setPlanCode("");
-                }}
-                disabled={!productType}
-                placeholder={productType ? "Sub Product Type *" : "เลือก Product Type ก่อน"}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              <FloatLabel>
+                <Dropdown
+                  inputId="addpkg-channel"
+                  className="select"
+                  style={{ width: "100%" }}
+                  value={channelCode}
+                  options={channelOptions.map((c) => ({ label: c.nameEn, value: c.code }))}
+                  onChange={(e) => {
+                    setChannelCode(e.value);
+                    setProductType("");
+                    setSubProductType("");
+                    setPlanCode("");
+                  }}
+                />
+                <label htmlFor="addpkg-channel">Distribution Channel *</label>
+              </FloatLabel>
+              <FloatLabel>
+                <Dropdown
+                  inputId="addpkg-producttype"
+                  className="select"
+                  style={{ width: "100%" }}
+                  value={productType}
+                  options={productTypeOptions.map((t) => ({ label: t, value: t }))}
+                  onChange={(e) => {
+                    setProductType(e.value);
+                    setSubProductType("");
+                    setPlanCode("");
+                  }}
+                  disabled={!channelCode}
+                  placeholder={channelCode ? undefined : "เลือก Distribution Channel ก่อน"}
+                />
+                <label htmlFor="addpkg-producttype">Product Type *</label>
+              </FloatLabel>
+              <FloatLabel>
+                <Dropdown
+                  inputId="addpkg-subproducttype"
+                  className="select"
+                  style={{ width: "100%" }}
+                  value={subProductType}
+                  options={subProductTypeOptions.map((t) => ({ label: t, value: t }))}
+                  onChange={(e) => {
+                    setSubProductType(e.value);
+                    setPlanCode("");
+                  }}
+                  disabled={!productType}
+                  placeholder={productType ? undefined : "เลือก Product Type ก่อน"}
+                />
+                <label htmlFor="addpkg-subproducttype">Sub Product Type *</label>
+              </FloatLabel>
             </div>
 
             <div className="field" style={{ border: "1px solid var(--gray-200)", borderRadius: 12, padding: 16 }}>
-              <label className="label" style={{ color: "var(--navy)", fontSize: 15, fontWeight: 500, marginBottom: 6 }}>
-                Package
-              </label>
-              <Dropdown
-                className="select"
-                style={{ width: "100%" }}
-                value={planCode}
-                options={allThreeSelected ? afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode })) : []}
-                onChange={(e) => setPlanCode(e.value)}
-                disabled={!allThreeSelected || afterSubProductType.length === 0}
-                placeholder={
-                  !allThreeSelected
-                    ? "เลือก Distribution Channel, Product Type, Sub Product Type ก่อน"
-                    : afterSubProductType.length === 0
-                    ? "ไม่พบ Package ที่ตรงเงื่อนไข"
-                    : "Package *"
-                }
-              />
+              <FloatLabel>
+                <Dropdown
+                  inputId="addpkg-package"
+                  className="select"
+                  style={{ width: "100%" }}
+                  value={planCode}
+                  options={allThreeSelected ? afterSubProductType.map((p) => ({ label: `${p.nameEn} (${p.planCode})`, value: p.planCode })) : []}
+                  onChange={(e) => setPlanCode(e.value)}
+                  disabled={!allThreeSelected || afterSubProductType.length === 0}
+                  placeholder={
+                    !allThreeSelected
+                      ? "เลือก Distribution Channel, Product Type, Sub Product Type ก่อน"
+                      : afterSubProductType.length === 0
+                      ? "ไม่พบ Package ที่ตรงเงื่อนไข"
+                      : undefined
+                  }
+                />
+                <label htmlFor="addpkg-package">Package *</label>
+              </FloatLabel>
 
               {selectedProduct && (
                 <div className="package-preview">

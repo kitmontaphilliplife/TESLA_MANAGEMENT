@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { IconUpload, IconClose } from "../icons";
+import { IconUpload, IconClose, IconEye } from "../icons";
 
 export function ImageUploadBox({
   image,
@@ -12,7 +12,7 @@ export function ImageUploadBox({
 }: {
   image: string | null;
   width?: number;
-  height: number;
+  height?: number;
   label?: string;
   sublabel: string;
   onUpload: (file: File) => Promise<void>;
@@ -21,6 +21,7 @@ export function ImageUploadBox({
   const inputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   async function handleFile(file: File | null) {
     if (!file) return;
@@ -50,22 +51,22 @@ export function ImageUploadBox({
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 4, width: width ?? "100%", flexShrink: width ? 0 : undefined }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 4, width: width ?? "100%", height: height ? undefined : "100%", flexShrink: width ? 0 : undefined }}>
       <div
         className="upload-box"
-        style={{ width: width ?? "100%", height, position: "relative", padding: image ? 0 : undefined, overflow: "hidden", cursor: busy ? "wait" : "pointer" }}
+        style={{ width: width ?? "100%", height: height ?? "100%", position: "relative", padding: image ? 0 : undefined, overflow: "hidden", cursor: busy ? "wait" : "pointer" }}
         onClick={() => !busy && inputRef.current?.click()}
       >
         <input
           ref={inputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp"
+          accept="image/jpeg,image/png,image/webp,image/svg+xml"
           style={{ display: "none" }}
           onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
         />
         {image ? (
           <>
-            <img src={`/uploads/${image}`} alt={label ?? "uploaded"} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={`/uploads/${image}`} alt={label ?? "uploaded"} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             <div
               style={{
                 position: "absolute",
@@ -86,6 +87,14 @@ export function ImageUploadBox({
             </div>
             <button
               className="icon-btn"
+              style={{ position: "absolute", top: 6, left: 6, background: "#fff" }}
+              onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
+              title="ดูรูปขนาดจริง"
+            >
+              <IconEye />
+            </button>
+            <button
+              className="icon-btn"
               style={{ position: "absolute", top: 6, right: 6, background: "#fff" }}
               onClick={handleRemove}
               title="ลบรูป"
@@ -103,6 +112,14 @@ export function ImageUploadBox({
         )}
       </div>
       {error && <div className="upload-sub" style={{ color: "var(--red)" }}>{error}</div>}
+      {lightboxOpen && image && (
+        <div className="image-lightbox" onClick={() => setLightboxOpen(false)}>
+          <button className="image-lightbox-close" onClick={() => setLightboxOpen(false)} title="ปิด">
+            <IconClose />
+          </button>
+          <img src={`/uploads/${image}`} alt={label ?? "uploaded"} onClick={(e) => e.stopPropagation()} />
+        </div>
+      )}
     </div>
   );
 }

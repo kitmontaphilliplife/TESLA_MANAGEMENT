@@ -5,8 +5,6 @@ import { Button } from "primereact/button";
 import { api } from "../api";
 import { IconClose, IconRefresh, IconSave, IconPackage } from "../icons";
 
-const MAX_LENGTH = 10000;
-
 const ERROR_MESSAGES: Record<string, string> = {
   payload_required: "กรุณาวาง payload ก่อนบันทึก",
   missing_required_fields: "Payload ต้องมีอย่างน้อย plan_Code, plan_Name_En และ plan_Name_Th",
@@ -91,12 +89,11 @@ export function PayloadModal({
           className="textarea"
           style={{ width: "100%", minHeight: 260, fontFamily: "monospace", fontSize: 12, resize: "vertical" }}
           value={text}
-          maxLength={MAX_LENGTH}
           onChange={(e) => setText(e.target.value)}
           placeholder="วาง TESLA_MASTER payload (JSON) ที่นี่..."
         />
         <div className="upload-sub" style={{ textAlign: "right", marginTop: 4 }}>
-          {text.length}/{MAX_LENGTH}
+          {text.length.toLocaleString()} ตัวอักษร
         </div>
       </div>
 

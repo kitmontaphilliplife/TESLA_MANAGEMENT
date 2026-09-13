@@ -7,6 +7,9 @@ import "./db.js";
 import { packagesRouter } from "./routes/packages.js";
 import { productsRouter } from "./routes/products.js";
 import { masterCodesRouter } from "./routes/masterCodes.js";
+import { campaignsRouter } from "./routes/campaigns.js";
+import { approvalsRouter } from "./routes/approvals.js";
+import { keyFeatureMasterRouter } from "./routes/keyFeatureMaster.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -20,6 +23,9 @@ app.get("/api/health", (_req, res) => res.json({ ok: true }));
 app.use("/api/packages", packagesRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/master-codes", masterCodesRouter);
+app.use("/api/campaigns", campaignsRouter);
+app.use("/api/approvals", approvalsRouter);
+app.use("/api/master-key-features", keyFeatureMasterRouter);
 
 // In production (or after `cd client && npm run build`) serve the built client from the
 // same origin/port as the API — one deployable service, no CORS or second host to manage.

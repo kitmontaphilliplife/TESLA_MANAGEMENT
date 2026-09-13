@@ -4,6 +4,7 @@ export type ChannelGroup = "F2F" | "ONLINE" | "UNMAPPED";
 export interface KeyFeature {
   id: string;
   icon: string;
+  iconImage: string | null;
   topic: string;
   value: string;
   highlight: boolean;
@@ -11,8 +12,21 @@ export interface KeyFeature {
 
 export interface KeyAdvantageCard {
   id: string;
+  image: string | null;
   title: string;
   subtitle: string;
+}
+
+export const DOCUMENT_TYPES = ["Terms & Conditions", "Benefit Table", "Other"] as const;
+export type DocumentType = (typeof DOCUMENT_TYPES)[number];
+
+export interface PackageDocument {
+  id: string;
+  filename: string;
+  originalName: string;
+  fileSize: number;
+  documentType: DocumentType;
+  uploadedAt: string;
 }
 
 export interface ProductInfoItem {
@@ -27,18 +41,123 @@ export interface RecommendedPackage {
   category: string;
 }
 
+export const CAMPAIGN_CHANNELS = ["Web", "Agent app", "LINE OA", "Call centre"] as const;
+export type CampaignChannel = (typeof CAMPAIGN_CHANNELS)[number];
+
+export const CAMPAIGN_TYPES = ["Voucher", "Cashback", "Discount", "Gift", "Installment"] as const;
+export type CampaignType = (typeof CAMPAIGN_TYPES)[number];
+
+// "Gift" is the stored value (kept for continuity with existing data) but the dashboard's
+// own mockup labels it "Free gift" — every other type displays under its own name as-is.
+export const CAMPAIGN_TYPE_LABEL: Record<CampaignType, string> = {
+  Voucher: "Voucher",
+  Cashback: "Cashback",
+  Discount: "Discount",
+  Gift: "Free gift",
+  Installment: "Installment",
+};
+
 export interface Campaign {
   id: string;
-  type: "Coupon" | "Cashback" | "Discount" | "Gift";
+  code: string;
+  type: CampaignType;
   name: string;
   startDate: string;
   endDate: string;
   discountLabel: string;
+  channels: CampaignChannel[];
+  budget: number;
+  budgetUsed: number;
+  redemptions: number;
+}
+
+// One package/channel a Campaign is attached to.
+export interface CampaignAttachment {
+  channelType: ChannelType;
+  planCode: string;
+  packageNameEn: string;
+  packageNameTh: string;
+}
+
+// A Campaign plus every package/channel it's currently attached to (zero, one, or many).
+export interface CampaignListItem extends Campaign {
+  attachments: CampaignAttachment[];
+}
+
+// Dashboard summary for one date range — stat cards, promotion mix, and the schedule strip.
+export interface CampaignSummary {
+  campaignsCount: number;
+  liveNowCount: number;
+  budgetCommitted: number;
+  budgetUsed: number;
+  redemptions: number;
+  redemptionsDeltaPct: number | null;
+  costPerPolicy: number;
+  annualBudgetPlan: number;
+  costPerPolicyTarget: number;
+  usageVolumeTarget: number;
+  mixByType: { type: CampaignType; pct: number }[];
+  schedule: { id: string; name: string; startDate: string; endDate: string }[];
+}
+
+export interface CampaignSettings {
+  annualBudgetPlan: number;
+  costPerPolicyTarget: number;
+  usageVolumeTarget: number;
+}
+
+// One package's channel contents and the campaigns scheduled on each — the Campaign builder screen.
+export interface PackageChannelCampaigns {
+  channelType: ChannelType;
+  campaigns: Campaign[];
 }
 
 export interface AuditEntry {
   message: string;
   created_at: string;
+}
+
+export interface ApprovalStep {
+  id: string;
+  role: "Submitted" | "Marketing lead" | "Compliance" | "Publish";
+  person: string;
+  state: "done" | "active" | "todo";
+  note: string;
+  decidedAt: string | null;
+}
+
+export interface PackageComment {
+  id: string;
+  sectionId: string;
+  sectionLabel: string;
+  author: string;
+  body: string;
+  createdAt: string;
+  resolved: boolean;
+}
+
+// One row in the Approval queue's overview table.
+export interface ApprovalQueueItem {
+  planCode: string;
+  nameTh: string;
+  nameEn: string;
+  category: string;
+  status: PackageDetail["status"];
+  updatedAt: string;
+  updatedBy: string;
+  currentStep: ApprovalStep["role"] | null;
+  openComments: number;
+}
+
+// One package's approval chain + comments + audit log — the Approval detail screen.
+export interface ApprovalDetail {
+  planCode: string;
+  status: PackageDetail["status"];
+  updatedAt: string;
+  updatedBy: string;
+  chain: ApprovalStep[];
+  comments: PackageComment[];
+  auditLog: AuditEntry[];
 }
 
 // One content set for one distribution-channel group (TESLA-B = F2F, TESLA-C = ONLINE).
@@ -62,7 +181,8 @@ export interface ChannelContent {
     highlights: ProductInfoItem[];
   } | null; // F2F only
 
-  document: { filename: string | null; uploadedAt: string | null; legalText: string | null };
+  document: { legalText: string | null };
+  documents: PackageDocument[];
   campaign: Campaign | null;
 }
 
@@ -158,6 +278,27 @@ export interface MasterCode {
   nameTh: string;
   parentName: string | null; // e.g. Sub Product Type "Whole Life" -> parentName "Ordinary Life Insurance"
   channelGroup: ChannelGroup | null; // only used for category === "distribution_channel"
+  updatedAt: string;
+  updatedBy: string;
+}
+
+// Master Setup > Key Features — reference catalog of Key Feature topics/values, one entry
+// per F2F or ONLINE template. feature/detailFeature are manual for now (payload-sourced later).
+export const KEY_FEATURE_SECTIONS = ["key_features", "key_advantages"] as const;
+export type KeyFeatureSection = (typeof KEY_FEATURE_SECTIONS)[number];
+export const KEY_FEATURE_SECTION_LABEL: Record<KeyFeatureSection, string> = {
+  key_features: "Key Features",
+  key_advantages: "Key Advantages",
+};
+
+export interface KeyFeatureMaster {
+  id: string;
+  codeId: string;
+  iconImage: string | null;
+  feature: string;
+  detailFeature: string;
+  section: KeyFeatureSection;
+  system: "F2F" | "ONLINE";
   updatedAt: string;
   updatedBy: string;
 }

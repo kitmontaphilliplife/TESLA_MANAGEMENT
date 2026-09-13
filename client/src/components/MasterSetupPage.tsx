@@ -9,6 +9,7 @@ import type { MasterCode, MasterCodeCategory } from "../types";
 import { api } from "../api";
 import { MasterCodeModal } from "./MasterCodeModal";
 import { PackageMasterViewer } from "./PackageMasterViewer";
+import { KeyFeatureMasterViewer } from "./KeyFeatureMasterViewer";
 import { RowActionsMenu } from "./RowActionsMenu";
 import {
   IconPlus,
@@ -21,9 +22,10 @@ import {
   IconBroadcast,
   IconCard,
   IconPackage,
+  IconStar,
 } from "../icons";
 
-type SidebarCategory = MasterCodeCategory | "package";
+type SidebarCategory = MasterCodeCategory | "package" | "key_features";
 
 const CATEGORY_ICON: Record<SidebarCategory, () => JSX.Element> = {
   class_of_business: IconLayers,
@@ -39,6 +41,7 @@ const CATEGORY_ICON: Record<SidebarCategory, () => JSX.Element> = {
   payment_mode: IconCard,
   payment_method: IconCard,
   package: IconPackage,
+  key_features: IconStar,
 };
 
 export function MasterSetupPage() {
@@ -57,7 +60,7 @@ export function MasterSetupPage() {
   const [viewOnly, setViewOnly] = useState(false);
 
   function reload() {
-    if (category === "package") return;
+    if (category === "package" || category === "key_features") return;
     api
       .listMasterCodes(category)
       .then(setCodes)
@@ -80,7 +83,7 @@ export function MasterSetupPage() {
   const hasParent = category === "line_of_business" || category === "product_type" || category === "sub_product_type";
 
   async function handleSave(data: { codeId: string; nameEn: string; nameTh: string; channelGroup?: string }) {
-    if (category === "package") return;
+    if (category === "package" || category === "key_features") return;
     if (editing) {
       await api.updateMasterCode(category, editing.id, { nameEn: data.nameEn, nameTh: data.nameTh, channelGroup: data.channelGroup });
     } else {
@@ -92,7 +95,7 @@ export function MasterSetupPage() {
   }
 
   async function handleDelete(code: MasterCode) {
-    if (category === "package") return;
+    if (category === "package" || category === "key_features") return;
     if (!confirm(`ลบ ${code.codeId} — ${code.nameEn} ?`)) return;
     await api.deleteMasterCode(category, code.id).catch((e) => setError(String(e.message ?? e)));
     reload();
@@ -127,11 +130,18 @@ export function MasterSetupPage() {
           <div className={`master-setup-nav-item ${category === "package" ? "active" : ""}`} onClick={() => setCategory("package")}>
             <IconPackage /> Package
           </div>
+          <div className={`master-setup-nav-item ${category === "key_features" ? "active" : ""}`} onClick={() => setCategory("key_features")}>
+            <IconStar /> Key Features
+          </div>
         </div>
 
         {category === "package" ? (
           <div style={{ flex: 1, minWidth: 0 }}>
             <PackageMasterViewer />
+          </div>
+        ) : category === "key_features" ? (
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <KeyFeatureMasterViewer />
           </div>
         ) : (
         <div className="list-page-table card" style={{ margin: 0, flex: 1 }}>
@@ -211,7 +221,7 @@ export function MasterSetupPage() {
         )}
       </div>
 
-      {modalOpen && category !== "package" && (
+      {modalOpen && category !== "package" && category !== "key_features" && (
         <MasterCodeModal
           category={category}
           editing={editing}

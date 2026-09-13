@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 import type { PackageDetail } from "../types";
-import { IconArrowLeft, IconSave, IconSend, IconClock, IconEye } from "../icons";
+import { IconArrowLeft, IconSave, IconSend, IconClock, IconEye, IconLiveTv, IconEdit, IconTag, IconLayers } from "../icons";
 
 const STATUS_LABEL: Record<PackageDetail["status"], string> = {
   draft: "Draft",
@@ -20,14 +20,24 @@ export function Topbar({
   pkg,
   saving,
   readOnly,
+  submitDisabled,
+  previewAvailable,
+  previewOn,
+  onTogglePreview,
   onSaveDraft,
+  onSaveAndClose,
   onSubmit,
   onBack,
 }: {
   pkg: PackageDetail;
   saving: boolean;
   readOnly: boolean;
+  submitDisabled: boolean;
+  previewAvailable: boolean;
+  previewOn: boolean;
+  onTogglePreview: () => void;
   onSaveDraft: () => void;
+  onSaveAndClose: () => void;
   onSubmit: () => void;
   onBack: () => void;
 }) {
@@ -43,6 +53,11 @@ export function Topbar({
         <div className="title-left">
           <div className="title">
             {pkg.product.planCode} · {pkg.product.nameTh}
+            {!readOnly && (
+              <span className="title-edit-icon" title="แก้ไขชื่อ Package ผ่าน Master Setup → Package">
+                <IconEdit />
+              </span>
+            )}
           </div>
           <Tag value={STATUS_LABEL[pkg.status]} severity={STATUS_SEVERITY[pkg.status]} />
         </div>
@@ -51,17 +66,32 @@ export function Topbar({
             <span className="read-only-badge"><IconEye /> อ่านอย่างเดียว</span>
           ) : (
             <>
-              {saving ? <span className="save-status">กำลังบันทึก…</span> : <span className="save-status">บันทึกอัตโนมัติแล้ว</span>}
-              <Button label="บันทึกฉบับร่าง" icon={<IconSave />} outlined severity="secondary" onClick={onSaveDraft} />
+              {saving && <span className="save-status">กำลังบันทึก…</span>}
+              {previewAvailable && (
+                <button className={`preview-toggle ${previewOn ? "on" : ""}`} onClick={onTogglePreview}>
+                  <IconLiveTv /> Preview
+                </button>
+              )}
+              <Button label="Save & Close" icon={<IconSave />} outlined severity="secondary" onClick={onSaveAndClose} />
+              <Button label="Save" icon={<IconSave />} outlined severity="secondary" onClick={onSaveDraft} />
               <Button
-                label={pkg.status === "pending_approval" ? "รออนุมัติ" : "ส่งขออนุมัติ"}
+                label={pkg.status === "pending_approval" ? "รออนุมัติ" : "Submit"}
                 icon={pkg.status === "pending_approval" ? <IconClock /> : <IconSend />}
                 onClick={onSubmit}
-                disabled={pkg.status === "pending_approval"}
+                disabled={pkg.status === "pending_approval" || submitDisabled}
               />
             </>
           )}
         </div>
+      </div>
+      <div className="topbar-meta">
+        <span className="topbar-meta-item"><IconTag /> {pkg.product.planCode}</span>
+        <span className="topbar-meta-divider" />
+        <span className="topbar-meta-item"><IconLayers /> {pkg.product.category}</span>
+        <span className="topbar-meta-divider" />
+        <span className="topbar-meta-item"><IconClock /> Eff Date : {pkg.product.startDate ?? "-"}</span>
+        <span className="topbar-meta-divider" />
+        <span className="topbar-meta-item"><IconClock /> Exp Date : {pkg.product.endDate ?? "ไม่มีกำหนด"}</span>
       </div>
     </div>
   );

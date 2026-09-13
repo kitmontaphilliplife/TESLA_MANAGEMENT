@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
+import { FloatLabel } from "primereact/floatlabel";
 import { Button } from "primereact/button";
 import type { MasterCode, MasterCodeCategory } from "../types";
 import { IconClose, IconSave, IconTag, IconEye } from "../icons";
@@ -90,14 +91,18 @@ export function MasterCodeModal({
         </div>
         {isDistributionChannel && (
           <div className="field">
-            <label className="label">Group (F2F / Online)</label>
-            <Dropdown
-              className="select"
-              value={channelGroup ?? "UNMAPPED"}
-              options={CHANNEL_GROUP_OPTIONS}
-              onChange={(e) => setChannelGroup(e.value)}
-              disabled={readOnly}
-            />
+            <FloatLabel>
+              <Dropdown
+                inputId="mastercode-channelgroup"
+                className="select"
+                style={{ width: "100%" }}
+                value={channelGroup ?? "UNMAPPED"}
+                options={CHANNEL_GROUP_OPTIONS}
+                onChange={(e) => setChannelGroup(e.value)}
+                disabled={readOnly}
+              />
+              <label htmlFor="mastercode-channelgroup">Group (F2F / Online)</label>
+            </FloatLabel>
           </div>
         )}
         {error && <div className="readonly-note">{error}</div>}

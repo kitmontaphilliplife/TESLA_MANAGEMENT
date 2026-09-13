@@ -27,18 +27,18 @@ export function ThumbnailCard({
       <div className="card-head">
         <div className="card-head-left">
           <div className="card-title"><IconImage /> Thumbnail</div>
-          <div className="card-sub">รูปและข้อความสรุปที่แสดงในการ์ดหน้ารายการสินค้า</div>
         </div>
       </div>
       <div className="card-body" style={{ display: "flex", gap: 16 }}>
-        <ImageUploadBox
-          image={content.thumbnail.image}
-          width={140}
-          height={120}
-          sublabel="Recommended 800x600px (JPG/PNG)"
-          onUpload={onUploadImage}
-          onRemove={onRemoveImage}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, width: "50%", flexShrink: 0 }}>
+          <ImageUploadBox
+            image={content.thumbnail.image}
+            height={220}
+            sublabel="Recommended 800x600px (JPG/PNG)"
+            onUpload={onUploadImage}
+            onRemove={onRemoveImage}
+          />
+        </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
           <div className="field">
             <label className="label">1st Thumbnail</label>

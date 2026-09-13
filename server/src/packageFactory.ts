@@ -27,6 +27,17 @@ export function createPackageForProduct(planCode: string, status: string, update
       const id = nanoid(10);
       db.prepare(`INSERT INTO package_channel_content (id, package_id, channel_type) VALUES (?, ?, ?)`).run(id, packageId, g);
       channelContentIds[g] = id;
+      // Key Advantages is a fixed 4-card grid (per design), not an add/remove list, so the
+      // rows must exist up front — there's no "add card" route.
+      if (g === "ONLINE") {
+        for (let i = 0; i < 4; i++) {
+          db.prepare(`INSERT INTO key_advantage_cards (id, channel_content_id, sort_order, title, subtitle) VALUES (?, ?, ?, '', '')`).run(
+            nanoid(10),
+            id,
+            i
+          );
+        }
+      }
     }
   });
 

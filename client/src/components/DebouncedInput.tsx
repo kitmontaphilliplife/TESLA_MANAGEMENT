@@ -6,12 +6,14 @@ export function DebouncedInput({
   className,
   placeholder,
   as = "input",
+  disabled,
 }: {
   value: string;
   onCommit: (value: string) => void;
   className?: string;
   placeholder?: string;
   as?: "input" | "textarea";
+  disabled?: boolean;
 }) {
   const [local, setLocal] = useState(value);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -35,6 +37,7 @@ export function DebouncedInput({
         className={className}
         value={local}
         placeholder={placeholder}
+        disabled={disabled}
         onChange={(e) => handleChange(e.target.value)}
         onBlur={handleBlur}
       />
@@ -46,6 +49,7 @@ export function DebouncedInput({
       className={className}
       value={local}
       placeholder={placeholder}
+      disabled={disabled}
       onChange={(e) => handleChange(e.target.value)}
       onBlur={handleBlur}
     />
