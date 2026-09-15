@@ -14,7 +14,6 @@ import { DocumentCard } from "./components/DocumentCard";
 import { sectionsForContent } from "./components/SectionsRail";
 import { SectionStepper } from "./components/SectionStepper";
 import { LivePreviewRail } from "./components/LivePreviewRail";
-import { CampaignPanel } from "./components/SidePanels";
 import { PackageListPage } from "./components/PackageListPage";
 import { CampaignDashboardPage } from "./components/CampaignDashboardPage";
 import { CampaignDetailPage } from "./components/CampaignDetailPage";
@@ -386,17 +385,6 @@ export default function App() {
                 {previewAvailable && previewOn && (
                   <LivePreviewRail pkg={pkg} content={content} onClose={() => setPreviewOn(false)} />
                 )}
-
-                <div className="col-side">
-                  <CampaignPanel
-                    planCode={planCode!}
-                    channelType={activeChannel}
-                    onOpenCampaign={(id) => {
-                      setCampaignId(id);
-                      setView("campaign-detail");
-                    }}
-                  />
-                </div>
               </div>
             </>
           )}

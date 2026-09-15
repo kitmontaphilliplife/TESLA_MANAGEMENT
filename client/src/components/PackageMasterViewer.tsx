@@ -326,6 +326,7 @@ export function PackageMasterViewer() {
   const [payloadModal, setPayloadModal] = useState<{ mode: "add" | "edit"; planCode?: string; initialText: string } | null>(null);
 
   function reload() {
+    // Approved (APP) packages only — same set as the Add Package cascade.
     api.listProducts().then(setProducts).catch((e) => setError(String(e.message ?? e)));
   }
 
@@ -368,7 +369,7 @@ export function PackageMasterViewer() {
       .catch((e) => setError(String(e.message ?? e)));
   }, [selected]);
 
-  const filtered = useMemo(() => products ?? [], [products]);
+  const filtered = useMemo(() => (products ?? []).slice(0, 25), [products]);
 
   if (selected) {
     return (
@@ -429,8 +430,9 @@ export function PackageMasterViewer() {
               <tr>
                 <th>Plan Code</th>
                 <th>Name</th>
-                <th>Category</th>
-                <th>Payload</th>
+                <th>Distribution</th>
+                <th>Product</th>
+                <th>Sub Product</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -439,13 +441,12 @@ export function PackageMasterViewer() {
                 <tr key={p.planCode}>
                   <td>{p.planCode}</td>
                   <td>
-                    <div>{p.nameEn}</div>
-                    <div className="upload-sub">{p.nameTh}</div>
+                    <div>{p.nameTh}</div>
+                    <div className="upload-sub">{p.nameEn}</div>
                   </td>
-                  <td>{p.category}</td>
-                  <td>
-                    <Tag severity={p.hasRawPayload ? "success" : "secondary"} value={p.hasRawPayload ? "มี payload จริง" : "ไม่มี payload"} />
-                  </td>
+                  <td>{p.channels[0]?.nameEn ?? "-"}</td>
+                  <td>{p.productTypeNameEn || "-"}</td>
+                  <td>{p.subProductTypeNameEn || "-"}</td>
                   <td>
                     <RowActionsMenu
                       onView={() => setSelected(p.planCode)}

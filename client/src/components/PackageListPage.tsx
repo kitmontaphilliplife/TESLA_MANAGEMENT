@@ -287,7 +287,7 @@ export function PackageListPage({ onOpenPackage }: { onOpenPackage: (planCode: s
                 onView={() => onOpenPackage(p.planCode, "view")}
                 onEdit={() => onOpenPackage(p.planCode, "edit")}
                 onDelete={() => handleDelete(p)}
-                canDelete={p.status === "draft" || p.status === "pending_approval"}
+                canDelete={p.status === "draft" || p.status === "pending_approval" || p.status === "inactive"}
                 extraActions={[
                   { label: "Submit", icon: <IconSend />, onClick: () => handleSubmit(p), disabled: p.status !== "draft" },
                 ]}

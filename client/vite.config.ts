@@ -10,6 +10,9 @@ export default defineConfig({
     host: true,
     port: 5173,
     proxy: {
+      // service-tesla-admin (TeslaAdminApi) — real backend, PathBase /tesla-admin @ :5277
+      "/tesla-admin": "http://localhost:5277",
+      // legacy prototype server (Express + SQLite @ :4000) — endpoints not yet migrated
       "/api": "http://localhost:4000",
       "/uploads": "http://localhost:4000",
     },

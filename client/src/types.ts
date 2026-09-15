@@ -309,6 +309,8 @@ export interface ProductListItem {
   nameTh: string;
   nameEn: string;
   category: string;
+  productTypeCode: string;
+  subProductTypeCode: string;
   productTypeNameEn: string;
   subProductTypeNameEn: string;
   startDate: string | null;

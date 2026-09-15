@@ -3,7 +3,7 @@ import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
 import { FloatLabel } from "primereact/floatlabel";
 import { Button } from "primereact/button";
-import type { MasterCode, ProductListItem } from "../types";
+import type { ProductListItem } from "../types";
 import { api } from "../api";
 import { IconClose, IconRefresh, IconSave, IconPackage, IconClock } from "../icons";
 
@@ -22,49 +22,59 @@ export function AddPackageModal({
   onCreated: (planCode: string) => void;
 }) {
   const [products, setProducts] = useState<ProductListItem[] | null>(null);
-  const [channels, setChannels] = useState<MasterCode[] | null>(null);
+  const [channels, setChannels] = useState<{ code: string; nameEn: string }[] | null>(null);
+  // Product Type / Sub Product Type dropdowns are driven by GIO master data (synced from GIO),
+  // not derived from the available packages — so the full GIO taxonomy is filterable.
+  const [productTypes, setProductTypes] = useState<{ code: string; nameEn: string }[]>([]);
+  const [subProductTypes, setSubProductTypes] = useState<{ code: string; nameEn: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
+  // channelCode / productType / subProductType hold GIO CODES (not display names).
   const [channelCode, setChannelCode] = useState("");
   const [productType, setProductType] = useState("");
   const [subProductType, setSubProductType] = useState("");
   const [planCode, setPlanCode] = useState("");
 
   useEffect(() => {
-    api.listProducts().then(setProducts).catch((e) => setError(String(e.message ?? e)));
-    api.listMasterCodes("distribution_channel").then(setChannels).catch((e) => setError(String(e.message ?? e)));
+    api.listChannels().then(setChannels).catch((e) => setError(String(e.message ?? e)));
+    api.listGioProductTypes().then(setProductTypes).catch((e) => setError(String(e.message ?? e)));
   }, []);
+
+  // Sub product types cascade from the selected product type (GIO master).
+  useEffect(() => {
+    if (!productType) {
+      setSubProductTypes([]);
+      return;
+    }
+    api.listSubProductTypes(productType).then(setSubProductTypes).catch((e) => setError(String(e.message ?? e)));
+  }, [productType]);
+
+  // Packages are fetched SERVER-SIDE filtered by all three dropdowns — only once all are chosen.
+  useEffect(() => {
+    if (!channelCode || !productType || !subProductType) {
+      setProducts([]);
+      return;
+    }
+    api.listProducts(channelCode, productType, subProductType).then(setProducts).catch((e) => setError(String(e.message ?? e)));
+  }, [channelCode, productType, subProductType]);
 
   const available = useMemo(() => (products ?? []).filter((p) => !p.hasPackage), [products]);
 
   // The full Distribution Channel reference list from Master Setup — not just the
   // channels that happen to appear on products still available to add a package for.
-  const channelOptions = useMemo(() => (channels ?? []).map((c) => ({ code: c.codeId, nameEn: c.nameEn })), [channels]);
+  const channelOptions = useMemo(() => (channels ?? []).map((c) => ({ code: c.code, nameEn: c.nameEn })), [channels]);
 
-  const afterChannel = useMemo(
-    () => (channelCode ? available.filter((p) => p.channels.some((c) => c.code === channelCode)) : available),
-    [available, channelCode]
-  );
-
-  const productTypeOptions = useMemo(
-    () => Array.from(new Set(afterChannel.map((p) => p.productTypeNameEn))),
-    [afterChannel]
-  );
-
-  const afterProductType = useMemo(
-    () => (productType ? afterChannel.filter((p) => p.productTypeNameEn === productType) : afterChannel),
-    [afterChannel, productType]
-  );
-
-  const subProductTypeOptions = useMemo(
-    () => Array.from(new Set(afterProductType.map((p) => p.subProductTypeNameEn))),
-    [afterProductType]
-  );
-
+  // Package dropdown narrows to the chosen channel + product type + sub product type (by CODE).
   const afterSubProductType = useMemo(
-    () => (subProductType ? afterProductType.filter((p) => p.subProductTypeNameEn === subProductType) : afterProductType),
-    [afterProductType, subProductType]
+    () =>
+      available.filter(
+        (p) =>
+          (!channelCode || p.channels.some((c) => c.code === channelCode)) &&
+          (!productType || p.productTypeCode === productType) &&
+          (!subProductType || p.subProductTypeCode === subProductType)
+      ),
+    [available, channelCode, productType, subProductType]
   );
 
   const allThreeSelected = Boolean(channelCode && productType && subProductType);
@@ -84,7 +94,7 @@ export function AddPackageModal({
     setSaving(true);
     setError(null);
     try {
-      await api.createPackage(planCode);
+      await api.createPackage(planCode, channelCode);
       onCreated(planCode);
     } catch (e: any) {
       setError(String(e.message ?? e));
@@ -111,10 +121,10 @@ export function AddPackageModal({
       }
     >
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {(products === null || channels === null) && !error && <div className="search-empty">กำลังโหลด…</div>}
-        {(products === null || channels === null) && error && <div className="readonly-note">{error}</div>}
+        {channels === null && !error && <div className="search-empty">กำลังโหลด…</div>}
+        {channels === null && error && <div className="readonly-note">{error}</div>}
 
-        {products !== null && channels !== null && (
+        {channels !== null && (
           <>
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <FloatLabel>
@@ -139,7 +149,7 @@ export function AddPackageModal({
                   className="select"
                   style={{ width: "100%" }}
                   value={productType}
-                  options={productTypeOptions.map((t) => ({ label: t, value: t }))}
+                  options={productTypes.map((t) => ({ label: t.nameEn, value: t.code }))}
                   onChange={(e) => {
                     setProductType(e.value);
                     setSubProductType("");
@@ -156,7 +166,7 @@ export function AddPackageModal({
                   className="select"
                   style={{ width: "100%" }}
                   value={subProductType}
-                  options={subProductTypeOptions.map((t) => ({ label: t, value: t }))}
+                  options={subProductTypes.map((t) => ({ label: t.nameEn, value: t.code }))}
                   onChange={(e) => {
                     setSubProductType(e.value);
                     setPlanCode("");
@@ -191,7 +201,11 @@ export function AddPackageModal({
 
               {selectedProduct && (
                 <div className="package-preview">
-                  {previewChannel && <span className="package-preview-badge">{previewChannel.nameEn}</span>}
+                  {channelCode && (
+                    <span className="package-preview-badge">
+                      {channelOptions.find((c) => c.code === channelCode)?.nameEn ?? previewChannel?.nameEn ?? channelCode}
+                    </span>
+                  )}
                   <span className="chip package-preview-code">Package code : {selectedProduct.planCode}</span>
                   <div className="package-preview-title">{selectedProduct.nameEn}</div>
                   <div className="upload-sub">{selectedProduct.nameTh}</div>

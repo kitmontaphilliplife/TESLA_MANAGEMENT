@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import type { KeyFeatureMaster } from "../types";
-import { KEY_FEATURE_SECTION_LABEL } from "../types";
 import { api } from "../api";
 import { RowActionsMenu } from "./RowActionsMenu";
 import { KeyFeatureModal } from "./KeyFeatureModal";
@@ -64,11 +62,8 @@ export function KeyFeatureMasterViewer() {
             <thead>
               <tr>
                 <th>Code ID</th>
-                <th>Icon</th>
                 <th>Feature</th>
-                <th>Detail Feature</th>
-                <th>Section</th>
-                <th>System</th>
+                <th>Name (EN)</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -76,19 +71,8 @@ export function KeyFeatureMasterViewer() {
               {items.map((item) => (
                 <tr key={item.id}>
                   <td>{item.codeId}</td>
-                  <td>
-                    {item.iconImage ? (
-                      <img src={`/uploads/${item.iconImage}`} alt="" style={{ width: 18, height: 18, objectFit: "cover", borderRadius: 6 }} />
-                    ) : (
-                      <span className="upload-sub">-</span>
-                    )}
-                  </td>
                   <td>{item.feature}</td>
                   <td>{item.detailFeature || "-"}</td>
-                  <td>{KEY_FEATURE_SECTION_LABEL[item.section]}</td>
-                  <td>
-                    <Tag value={item.system} severity={item.system === "ONLINE" ? "info" : "secondary"} />
-                  </td>
                   <td>
                     <RowActionsMenu
                       onView={() => setModal({ editing: item, readOnly: true })}
@@ -100,7 +84,7 @@ export function KeyFeatureMasterViewer() {
               ))}
               {items.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="search-empty">
+                  <td colSpan={4} className="search-empty">
                     ยังไม่มีข้อมูล
                   </td>
                 </tr>
